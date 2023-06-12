@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    // suong 2
     public function index()
     {
         return view('fe.index');
