@@ -1,0 +1,47 @@
+.select_padding_col {
+    padding: 0;
+}
+
+
+.select_height_2 {
+    height: 50px;
+}
+
+.font_size_icon {
+    font-size: 14px !important;
+}
+
+#image_index_product {
+    width: 150px;
+    height: 150px;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.image_slider_edit {
+    height: 200px;
+    object-fit: cover;
+}
+
+.padding-input-select-2 {
+    padding-left: 0;
+}
+
+span.select2-selection.select2-selection--single {
+    height: 50px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 22px;
+}
+
+.image_product {
+    height: 150px;
+    object-fit: cover;
+}
+
+.image_detail_product {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}

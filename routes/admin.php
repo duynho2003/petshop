@@ -30,9 +30,6 @@ Route::get('logout', [AdminLoginController::class, 'logout'])->name('admin.logou
 // Xử lí status success
 Route::get('order/{order_id}/check-mail', [AdminOrderController::class, 'checkStatusMail'])->name('order.checkStatusMail');
 
-
-
-
 Route::middleware('admin.auth')->group(function() {
     // Dashboard
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');

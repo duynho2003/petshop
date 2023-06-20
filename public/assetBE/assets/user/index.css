@@ -1,0 +1,15 @@
+#image_user_config {
+    width: 150px;
+    height: 200px;
+    border-radius: 0;
+    object-fit: cover;
+}
+
+.image_user_edit {
+    height: 200px;
+    object-fit: cover;
+}
+
+.float_btn {
+    float: right;
+}

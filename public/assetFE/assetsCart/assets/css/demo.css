@@ -1,0 +1,52 @@
+
+  #buttoncheck {
+    text-align: center !important;
+
+    color: rgb(255, 255, 255)!important;
+    background-color: #000000!important  ;
+    border-color: #1b1d20 !important;
+} 
+#buttoncheck:hover {
+  color: rgb(0, 0, 0) !important;
+  background-color: #ffffff !important;
+  border-color: #1b1d20 !important;
+} 
+
+
+input {
+  border: none;
+  outline: none;
+
+
+  }
+  .form-group .d-flex {
+  border: 1px solid #ddd;
+  }
+  .form-group .d-flex input {
+  width: 95%
+  }
+  .form-group .d-flex:hover {
+  color: #000;
+  cursor: pointer;
+  border: 1px solid #000000
+  }
+  select {
+  width: 100%;
+  padding: 8px 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px
+  }
+  input[type="checkbox"]+label {
+  font-size: 0.85rem;
+  font-weight: 600
+  }
+
+  .text-right {
+    text-align: center !important;
+  }
+
+  .header_name {
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+  }

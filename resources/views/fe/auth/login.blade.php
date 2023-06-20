@@ -65,8 +65,24 @@
                         <div class="contact-title mb-20">
                             <h2 class="title">Log In<span>.</span></h2>
                         </div>
+                        @if($errors->has('errors'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('errors') }}
+                        </div>
+                        @endif
+
+                        @if(session('success'))
+                        <p class="success">{{ session('success') }}</p>
+                        @endif
+
+                        @if(session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                        @endif
                         <div class="contact-wrap-content">
-                            <form action="#" class="contact-form">
+                            <form action="{{ Route ('processLogin') }}" class="contact-form" method="POST" class="form">
+                                @csrf
                                 <div class="form-grp">
                                     <label for="name">Your Email <span>*</span></label>
                                     <input type="email" placeholder="Email" name="email" />
@@ -79,7 +95,7 @@
                                     <a href="{{Route('forgot')}}">Forgot your password?</a>
                                 </div>
                                 <div>
-                                    <button type="button" class="btn rounded-btn"><a href="acc.html">Log In</a></button>
+                                    <button type="submit" class="btn rounded-btn">Log In</button>
                                     <button type="button" class="btn rounded-btn"><a href="{{ Route('register') }}">Register</a></button>
                                 </div>
                                 <div class="contact-social">
@@ -93,35 +109,35 @@
                         </div>
                     </div>
                     <div class="col-xl-5 col-lg-6 col-md-8">
-                            <div class="contact-info-wrap">
-                                <div class="contact-img">
-                                    <img src="{{ asset('/fe/img/images/contact_img.png')}}" alt="")}}>
-                                </div>
-                                <div class="contact-info-list">
-                                    <ul>
-                                        <li>
-                                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-                                            <div class="content">
-                                                <p>590 Cach Mang Thang Tam</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><i class="fas fa-phone-alt"></i></div>
-                                            <div class="content">
-                                                <p>0123 456 789</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="icon"><i class="fas fa-envelope-open"></i></div>
-                                            <div class="content">
-                                                <p>petco@fpt.edu.vn</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
+                        <div class="contact-info-wrap">
+                            <div class="contact-img">
+                                <img src="{{ asset('/fe/img/images/contact_img.png')}}" alt="">
                             </div>
+                            <div class="contact-info-list">
+                                <ul>
+                                    <li>
+                                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                                        <div class="content">
+                                            <p>590 Cach Mang Thang Tam</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                                        <div class="content">
+                                            <p>0123 456 789</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon"><i class="fas fa-envelope-open"></i></div>
+                                        <div class="content">
+                                            <p>petco@fpt.edu.vn</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

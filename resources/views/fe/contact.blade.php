@@ -91,7 +91,7 @@
                         <div class="col-xl-5 col-lg-6 col-md-8">
                             <div class="contact-info-wrap">
                                 <div class="contact-img">
-                                    <img src="{{ asset(img/images/contact_img.png')}}" alt="")}}>
+                                    <img src="{{ asset('fe/images/contact_img.png')}}" alt="")}}>
                                 </div>
                                 <div class="contact-info-list">
                                     <ul>

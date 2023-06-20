@@ -1,0 +1,33 @@
+/* form index */
+
+.dropdown .dropdown-toggle:after {
+    display: none;
+}
+
+.edit_input_date {
+    font-size: 17px;
+    border-radius: 10px;
+    width: 124%;
+    height: 44px;
+    padding: 5px 20px;
+}
+
+.margin_right {
+    margin-right: 5%;;
+}
+
+.form_search_date {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* form detail */
+
+.text_align_right {
+    text-align: right;
+}
+
+.margin_top {
+    margin-top: 5%;
+}
