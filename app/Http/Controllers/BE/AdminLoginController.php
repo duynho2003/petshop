@@ -1,8 +1,21 @@
 <?php
 namespace App\Http\Controllers\BE;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Support\Facades\Auth;
+
+
+
 class AdminLoginController extends Controller
 {
+    public function admins(Request $request) {
+        \Sentinel::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return view('be.components.home.home');
+    }
+
     public function login() 
     {
         /*
@@ -39,6 +52,39 @@ class AdminLoginController extends Controller
         $activation = \Activation::create($user);
         */
 
-        return view('be.components.home.home');
+        return view('be.auth.login');
+    }
+
+    // public function processLogin(Request $request)
+    // {
+    //     $email = $request->email;
+    //     $pass = $request->password;
+
+    //     $credentials = [
+    //         'email'    => $email,
+    //         'password' => $pass,
+    //     ];
+        
+    //     $user = \Sentinel::authenticate($credentials);
+
+    //     //dd($user->roles);
+    //     return redirect('/admin');
+    //     // return redirect()->route('home');
+    // }
+
+
+    public function processLogin(AdminLoginRequest $request) {
+        $remember = $request->remember;
+        $credentials = $request->only('email', 'password');
+        if(Auth::guard('admin')->attempt($credentials, $remember)) {
+            return redirect()->route('admin.dashboard');    
+        }
+        return back()->with('error', 'The provided credentials do not match our records.');
+    }
+
+    public function logout()
+    {
+        \Sentinel::logout();
+        return redirect('/admin/login');
     }
 }
