@@ -2,69 +2,72 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>@yield('title')</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('assetBE/vendors/feather/feather.css') }} ">
-    <link rel="stylesheet" href="{{ asset('assetBE/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assetBE/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assetBE/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('assetBE/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
-    <link rel="stylesheet" href="{{ asset('assetBE/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assetBE/js/select.dataTables.min.css') }}">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('assetBE/css/vertical-layout-light/style.css') }}">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('assetBE/images/favicon.png') }}" />
-    @yield('css')
+    <!-- Custom fonts for this template-->
+    <link href="{{ asset ('/be/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="{{ asset ('be/css/sb-admin-2.min.css')}}" rel="stylesheet">
 </head>
-<body>
-    <div class="container-scroller">
 
-        @include('be.layouts.header')
+<body id="page-top">
 
-        <div class="container-fluid page-body-wrapper">
-
-            @include('be.layouts.setting_theme')
-
-            @include('be.layouts.sidebar')
-
-            <div class="main-panel">
-                @yield('content')
-                @include('be.layouts.footer')
-            </div>
-
-        </div>   
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Sidebar -->
+        @include('be.layouts.sidebar')
+        <!-- /Sidebar -->
+        @yield('content')
     </div>
+    <!-- End of Page Wrapper -->
 
-    <!-- plugins:js -->
-    <script src="{{ asset('assetBE/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('assetBE/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('assetBE/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assetBE/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('assetBE/js/dataTables.select.min.js') }}"></script>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assetBE/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assetBE/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assetBE/js/template.js') }}"></script>
-    <script src="{{ asset('assetBE/js/settings.js') }}"></script>
-    <script src="{{ asset('assetBE/js/todolist.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="{{ asset('assetBE/js/dashboard.js') }}"></script>
-    <script src="{{ asset('assetBE/js/Chart.roundedBarCharts.js') }}"></script>
-    <!-- End custom js for this page-->
-    @yield('js')
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{{ route('admin.logout') }}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<!-- new -->
+<!-- Bootstrap core JavaScript-->
+<script src="{{ asset ('be/vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset ('be/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ asset ('be/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ asset ('be/js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ asset ('be/vendor/chart.js/Chart.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ asset ('/be/js/demo/chart-area-demo.js')}}"></script>
+<script src="{{ asset ('/be/js/demo/chart-pie-demo.js')}}"></script>
+<!-- new -->
+@yield('js')
 
 </html>
-

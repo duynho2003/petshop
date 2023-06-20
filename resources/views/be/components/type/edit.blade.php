@@ -1,7 +1,7 @@
-@extends('backend.layouts.master')
+@extends('be.layouts.master')
 
 @section('title')
-    Computer Type Create Admin 
+    Pet Type Create Admin 
 @endsection
 
 @section('css')
@@ -12,7 +12,8 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper card">
+<div id="content-wrapper" class="content-wrapper card">
+    @include('be.layouts.header')
         <form class="forms-sample" action="{{ route('type.update', $type->id) }}" method="post">
             @csrf
             @method('put')

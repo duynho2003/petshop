@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\FE\ProcessRegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BE\DashboardController;
+
 use App\Http\Controllers\BE\ProductController;
 use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\AuthenticateController;

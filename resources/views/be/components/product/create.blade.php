@@ -1,7 +1,7 @@
-@extends('backend.layouts.master')
+@extends('be.layouts.master')
 
 @section('title')
-    Computer Product Create Admin 
+    Pet Product Create Admin 
 @endsection
 
 @section('css')
@@ -30,7 +30,8 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper card">
+<div id="content-wrapper" class="content-wrapper card">
+    @include('be.layouts.header')
         <form class="forms-sample" action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="col-12 grid-margin stretch-card">

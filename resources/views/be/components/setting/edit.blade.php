@@ -1,7 +1,7 @@
-@extends('backend.layouts.master')
+@extends('be.layouts.master')
 
 @section('title')
-    Computer Setting Edit Admin 
+    Pet Setting Edit Admin 
 @endsection
 
 @section('css')
@@ -24,7 +24,8 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper card">
+<div id="content-wrapper" class="content-wrapper card">
+    @include('be.layouts.header')
         <form class="forms-sample" action="{{ route('setting.update', $setting->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')

@@ -1,7 +1,7 @@
-@extends('backend.layouts.master')
+@extends('be.layouts.master')
 
 @section('title')
-    Computer User Edit Admin 
+    Pet User Edit Admin 
 @endsection
 
 @section('css')
@@ -17,6 +17,8 @@
 @endsection
 
 @section('content')
+<div id="content-wrapper" class="content-wrapper card">
+    @include('be.layouts.header')
     <div class="content-wrapper card">
         <form class="forms-sample" action="{{ route('user.update', $user->id) }}" method="post" enctype="multipart/form-data">
             @csrf
