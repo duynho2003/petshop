@@ -70,18 +70,27 @@
                             <h2 class="title">Reset Password<span>.</span></h2>
                         </div>
                         <div class="contact-wrap-content">
-                            <form action="#" class="contact-form">
+                            <form action="{{ Route ('processForgotPassword') }}" class="contact-form" method="POST" class="form">
+                                @csrf
+                                @error('email')
+                                <p class="error">{{ $message }}</p>
+                                @enderror
+                                @if(session('success'))
+                                <p class="success">{{ session('success') }}</p>
+                                @endif
+
                                 <div class="form-grp">
-                                    <label for="name">Your Email <span>*</span></label>
-                                    <input type="email" placeholder="Email" />
-                                </div>
-                                <div class="form-grp">
-                                    <label for="email">Verification Code<span>*</span></label>
-                                    <input type="password" placeholder="Password" />
+                                    <label for="name">Enter Your Email <span>*</span></label>
+                                    <input type="email" placeholder="Email" name="email" required />
                                 </div>
 
+                                <!-- <div class="form-grp">
+                                    <label for="email">Verification Code<span>*</span></label>
+                                    <input type="password" placeholder="Password" name="password" required />
+                                </div> -->
+
                                 <div>
-                                    <button type="button" class="btn rounded-btn"><a href="acc.html">Submit</a></button>
+                                    <button type="submit" class="btn rounded-btn">Submit</button>
                                 </div>
 
                             </form>

@@ -1,0 +1,15 @@
+.text-primary {
+    color: #fff !important;
+}
+
+.float-btn {
+    float: right;
+}
+
+.dropdown-menu.show {
+    left: -67px !important;
+}
+
+a.dropdown-item {
+    font-size: 16px !important;
+}

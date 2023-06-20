@@ -1,0 +1,11 @@
+.text-primary {
+    color: #fff !important;
+}
+
+.float-btn {
+    float: right;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}

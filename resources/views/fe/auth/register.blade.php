@@ -59,47 +59,96 @@
     <!--Sign up-->
     <!-- contact-area -->
     <section class="container">
-        <form action="#" class="form">
-            <div class="input-box">
+        @if($errors->has('errors_confirm_password'))
+        <div class="alert alert-danger">
+            {{ $errors->first('errors_confirm_password') }}
+        </div>
+        @endif
+
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+
+        <form action="{{ Route ('processRegister') }}" class="form" method="POST">
+            @csrf
+            <!-- <div class="input-box">
                 <label>Full Name</label>
                 <input type="text" placeholder="Enter Full Name" required />
+            </div> -->
+
+            <div class="column">
+                <div class="input-box">
+                    <label>First Name</label>
+                    <input type="text" placeholder="Enter first name" name="first_name" required />
+                </div>
+                <div class="input-box">
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Enter last name " name="last_name" required />
+                </div>
             </div>
+
             <div class="input-box">
                 <label>Email Address</label>
-                <input type="text" placeholder="Enter Email Address" required />
+                <input type="text" placeholder="Enter Email Address" name="email" required />
             </div>
             <div class="input-box">
                 <label>Password<span></span></label>
-                <input type="password" placeholder="Enter Your Password" />
+                <input type="password" placeholder="Enter Your Password" name="password" required />
             </div>
+
+            <div class="input-box">
+                <label>Confirm Password<span></span></label>
+                <input type="password" placeholder="Enter Your Confirm Password" name="confirm_password" required />
+            </div>
+
             <div class="column">
                 <div class="input-box">
                     <label>Phone Number</label>
-                    <input type="number" placeholder="Enter phone number" required />
+                    <input type="number" placeholder="Enter phone number" name="phone" required />
                 </div>
                 <div class="input-box">
                     <label>Birth Date</label>
-                    <input type="date" placeholder="Enter birth date" required />
+                    <input type="date" placeholder="Enter birth date" name="birthday" max="<?php echo date('Y-m-d',  strtotime('-1 day')); ?>" required />
                 </div>
             </div>
             <div class="gender-box">
                 <h3>Gender</h3>
                 <div class="gender-option">
                     <div class="gender">
-                        <input type="radio" id="check-male" name="gender" checked />
+                        <input type="radio" id="check-male" name="gender" value="male" checked />
                         <label for="check-male">male</label>
                     </div>
                     <div class="gender">
-                        <input type="radio" id="check-female" name="gender" />
+                        <input type="radio" id="check-female" name="gender" value="female" />
                         <label for="check-female">Female</label>
                     </div>
                     <div class="gender">
-                        <input type="radio" id="check-other" name="gender" />
+                        <input type="radio" id="check-other" name="gender" value="other" />
                         <label for="check-other">prefer not to say</label>
                     </div>
                 </div>
             </div>
-            <div class="input-box address">
+
+            <div class="input-box">
+                <label>Address<span></span></label>
+                <input type="text" placeholder="Enter Your Address" name="address" required />
+            </div>
+
+
+            <!-- <div class="input-box address">
                 <label>Address</label>
                 <input type="text" placeholder="Enter street address" required />
                 <input type="text" placeholder="Enter street address line 2" required />
@@ -118,16 +167,16 @@
                 <div class="column">
                     <input type="text" placeholder="Enter your region" required />
                     <input type="number" placeholder="Enter postal code" required />
+                </div>-->
+            <div class="container-button">
+                <div class="vertical-center">
+                    <button type="submit" class="btn rounded-btn">Register</button>
                 </div>
-                <div class="container-button">
-            <div class="vertical-center">
-            <button type="button" class="btn rounded-btn"><a href="acc.html">Register</a></button>
             </div>
-    </div>  
             </div>
         </form>
     </section>
-    
+
     </main>
     <!-- main-area-end -->
 
