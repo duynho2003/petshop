@@ -58,27 +58,20 @@ class AdminUserController extends Controller
         try {
             DB::beginTransaction();
             $dataUserEdit = [
-                'name' => $request->name,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'gender' => $request->gender,
+                'address' =>$request->address,
                 'birthday' => $request->birthday,
-                'sex' => $request->sex,
-                'address_1' =>$request->address_1,
             ];
 
-            $dataUpLoadAvatar = $this->TraitUpLoadFile($request, 'avatar', 'images/users');
-            if(!empty($dataUpLoadAvatar)) {
-                $dataUserEdit['image_name'] = $dataUpLoadAvatar['image_name'];
-                $dataUserEdit['avatar'] = $dataUpLoadAvatar['image_path'];
-            }
-
-            if (!empty($request->address_2)) {
-                $dataUserEdit['address_2'] = $request->address_2;
-            }
-
-            if (!empty($request->address_3)) {
-                $dataUserEdit['address_3'] = $request->address_3;
-            }
+            // $dataUpLoadAvatar = $this->TraitUpLoadFile($request, 'avatar', 'images/users');
+            // if(!empty($dataUpLoadAvatar)) {
+            //     $dataUserEdit['image_name'] = $dataUpLoadAvatar['image_name'];
+            //     $dataUserEdit['avatar'] = $dataUpLoadAvatar['image_path'];
+            // }
             
             $user->update($dataUserEdit);
 
