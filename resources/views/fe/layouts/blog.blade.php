@@ -26,9 +26,9 @@
                                 <li><i class="far fa-bell"></i> Mar 29, 2023</li>
                             </ul>
                         </div>
-                        <h3 class="title"><a href="blog-details.html">Working For Dog Adoption</a></h3>
+                        <h3 class="title"><a href="{{ Route('blogdetails1') }}">Working For Dog Adoption</a></h3>
                         <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                        <a href="blog-details.html" class="read-more">Read More <img src="{{ asset ('fe/img/icon/pawprint.png') }}" alt=""></a>
+                        <a href="{{ Route('blogdetails1') }}" class="read-more">Read More <img src="{{ asset ('fe/img/icon/pawprint.png') }}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -47,9 +47,9 @@
                                 <li><i class="far fa-bell"></i> May 29, 2023</li>
                             </ul>
                         </div>
-                        <h3 class="title"><a href="blog-details.html">Dog Derived From an Ancient</a></h3>
+                        <h3 class="title"><a href="{{ Route('blogdetails2') }}">Dog Derived From an Ancient</a></h3>
                         <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                        <a href="blog-details.html" class="read-more">Read More <img src="{{ asset ('fe/img/icon/pawprint.png') }}" alt=""></a>
+                        <a href="{{ Route('blogdetails2') }}" class="read-more">Read More <img src="{{ asset ('fe/img/icon/pawprint.png') }}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -68,9 +68,9 @@
                                 <li><i class="far fa-bell"></i> Jun 3, 2023</li>
                             </ul>
                         </div>
-                        <h3 class="title"><a href="blog-details.html">Ten Dog Breeds are Noted</a></h3>
+                        <h3 class="title"><a href="{{ Route('blogdetails3') }}">Ten Dog Breeds are Noted</a></h3>
                         <p>The best overall dog test is Embark Breed & Health Kit view at Chewy.</p>
-                        <a href="blog-details.html" class="read-more">Read More <img src="{{ asset ('fe/img/icon/pawprint.png') }}" alt=""></a>
+                        <a href="{{ Route('blogdetails3') }}" class="read-more">Read More <img src="{{ asset ('fe/img/icon/pawprint.png') }}" alt=""></a>
                     </div>
                 </div>
             </div>

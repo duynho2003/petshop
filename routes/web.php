@@ -19,6 +19,12 @@ Route::get('/adoption', [HomeController::class, 'adoption'])->name('adoption');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+Route::get('/blogdetails1', [HomeController::class, 'blogdetails1'])->name('blogdetails1');
+
+Route::get('/blogdetails2', [HomeController::class, 'blogdetails2'])->name('blogdetails2');
+
+Route::get('/blogdetails3', [HomeController::class, 'blogdetails3'])->name('blogdetails3');
+
 
 // Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
 //             ->name('productDetails');

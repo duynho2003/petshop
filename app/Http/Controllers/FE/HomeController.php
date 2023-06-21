@@ -35,6 +35,21 @@ class HomeController extends Controller
         return view("fe.contact");
     }
 
+    public function blogdetails1() 
+    {
+        return view("fe.blogdetails1");
+    }
+
+    public function blogdetails2() 
+    {
+        return view("fe.blogdetails2");
+    }
+
+    public function blogdetails3() 
+    {
+        return view("fe.blogdetails3");
+    }
+
     // public function productDetails($slug) 
     // {
     //     // hàm first() được dùng để lấy về record đầu tiến
