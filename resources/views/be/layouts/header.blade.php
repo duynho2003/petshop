@@ -1,15 +1,12 @@
-<!-- <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-    <a class="navbar-brand brand-logo mr-5" href="{{ route('admin.dashboard') }}"><img src="{{ asset('assetBE/images/logo.svg') }}" class="mr-2" alt="logo" /></a>
-    <a class="navbar-brand brand-logo-mini" href="{{ route('admin.dashboard') }}"><img src="{{ asset('assetBE/images/logo-mini.svg') }}" alt="logo" /></a>
-  </div>
-  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-      <span class="icon-menu"></span>
-    </button>
+<!-- Topbar Navbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+      <!-- Sidebar Toggle (Topbar) -->
+      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+      </button>
 
-    {{-- @if ( Route::currentRouteName() == "product.index" )
-          <form action="{{ route('product.search') }}" method="post">
+<!-- {{-- @if ( Route::currentRouteName() == "product.index" )
+  <form action="{{ route('product.search') }}" method="post">
     @csrf
     <ul class="navbar-nav mr-lg-2">
       <li class="nav-item nav-search d-none d-lg-block">
@@ -70,41 +67,28 @@
     </form>
     @break
     @case("order.index")
-    <form action="{{ route('order.search') }}" method="post">
+    <form action="{{ route('order.search') }}" method="post" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
       @csrf
-      <ul class="navbar-nav mr-lg-2">
-        <li class="nav-item nav-search d-none d-lg-block">
-          <div class="input-group" style="width: 500px;">
-            <input type="text" class="form-control" name="search" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-
-            <button type="submit" class="btn btn-primary btn-rounded btn-icon">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon" style="justify-content: center; ">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search" style="color: #fff; font-size: 1.1rem;"></i>
-                </span>
-              </div>
+        <div class="input-group">
+          <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-search fa-sm"></i>
             </button>
           </div>
-        </li>
-      </ul>
-    </form>
+        </div>
+      </form>
     @break
     @default @break
     @endswitch -->
 
-    <!-- Topbar Navbar -->
-    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-      <!-- Sidebar Toggle (Topbar) -->
-      <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-        <i class="fa fa-bars"></i>
-      </button>
-
       <!-- Topbar Search -->
-      <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      <form action="{{ route('order.search') }}" method="post" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+      @csrf
         <div class="input-group">
           <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
+            <button class="btn btn-primary" type="submit">
               <i class="fas fa-search fa-sm"></i>
             </button>
           </div>
