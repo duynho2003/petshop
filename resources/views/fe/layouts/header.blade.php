@@ -13,12 +13,12 @@
                                     <li><a href="{{ Route('doglist') }}">Dog List</a></li>
                                     <li><a href="{{ Route('shop') }}">Shop</a></li>
                                     <li><a href="{{ Route('adoption') }}">Adoption</a></li>
-                                    <li class="menu-item-has-children"><a href="blog.html">Blog</a>
+                                    <!-- <li class="menu-item-has-children"><a href="blog.html">Blog</a>
                                         <ul class="submenu">
                                             <li><a href="blog.html">Our Blog</a></li>
                                             <li><a href="blog-details.html">Blog Details</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                     <li><a href="{{ Route('contact') }}">Contacts</a></li>
                                     <!-- My Account -->
                                     @if (auth()->check())
@@ -27,7 +27,6 @@
                                             @if (auth()->check())
                                             {{ auth()->user()->first_name }}
                                             @endif
-
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="submenu">
@@ -41,6 +40,7 @@
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="submenu">
+                                            <li><strong>Hello, please sign in your account.</strong></li>
                                             <li><a href="{{ route('login') }}"><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Sign In</a></li>
                                             <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a></li>
                                         </ul>
@@ -59,7 +59,6 @@
                                                 <div class="cart-img">
                                                     <a href="#"><img src="{{ asset ('fe/img/product/cart_p01.jpg') }}" alt=""></a>
                             </div>
-
                             <div class="cart-content">
                                 <h4><a href="#">The King Charles Spaniel</a></h4>
                                 <div class="cart-price">
@@ -101,7 +100,7 @@
                             </ul>
                             </li>
                             --}}
-                            <li class="header-btn"><a href="adoption.html" class="btn">Adopt Here <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a></li>
+                            <li class="header-btn"><a href="{{ Route('adoption')}}" class="btn">Adopt Here <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a></li>
                             </ul>
                     </div>
                     </nav>

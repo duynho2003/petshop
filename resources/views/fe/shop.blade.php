@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="widget shop-widget-banner">
-                                <a href="shop.html"><img src="img/product/shop_add.jpg" alt=""></a>
+                                <a href="shop.html"><img src="{{ asset ('/fe/img/product/shop_add.jpg')}}" alt=""></a>
                             </div>
                         </aside>
                     </div>
