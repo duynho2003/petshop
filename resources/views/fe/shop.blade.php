@@ -155,7 +155,7 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="shop-item mb-55">
                                         <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="{{ asset('/images/' . $product->image) }}" alt=""></a>
+                                            <a href="{{ Route('productDetails', $product->slug) }}"><img src="{{ asset('/images/' . $product->image) }}" alt=""></a>
                                         </div>
                                         <div class="shop-content">
                                             <span>{{ $product->name }}</span>
@@ -163,7 +163,7 @@
                                             <div class="shop-content-bottom">
                                                 <span class="price">{{number_format($product->promotion_price)}} VNĐ</span>
                                                 <p style="font-size: 12px; margin-left: 10px; color: #b5aec4; text-decoration: line-through;">{{number_format($product->normal_price)}} VNĐ</p>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
+                                                <span class="add-cart"><a href="">ADD +</a></span>
                                             </div>
                                         </div>
                                     </div>
