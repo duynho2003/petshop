@@ -37,16 +37,16 @@
     <!-- main-area -->
     <main>
         <!-- breadcrumb-area -->
-        <section class="breadcrumb-area breadcrumb-bg" data-background="img/bg/breadcrumb_bg.jpg">
+        <section class="breadcrumb-area breadcrumb-bg" data-background="{{ asset ('fe/img/bg/breadcrumb_bg.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
                         <div class="breadcrumb-content">
-                            <h2 class="title">Blog Single</h2>
+                            <h2 class="title">Blog</h2>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Blog Single</li>
+                                    <li class="breadcrumb-item"><a href="{{ Route('home') }}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Blog</li>
                                 </ol>
                             </nav>
                         </div>
@@ -94,19 +94,19 @@
                                 </div>
                                 <p>Doiated dendant of the wolf. The dog derived from an ancient, extinct wolf, and the modern grey wolf the dog's nrest living relative. The dog was the first species to be dticaed, by hunte–gatherers. These will include the core vaccines, which are administered.</p>
                                 <div class="blog-details-img">
-                                    <div class="row">
+                                <div class="row">
                                         <div class="col-md-6">
-                                            <img src="img/blog/blog_details_img01.jpg" alt="">
+                                            <img src="{{ asset ('fe/img/blog/blog_details_img01.jpg') }}" alt="">
                                         </div>
                                         <div class="col-md-6">
-                                            <img src="img/blog/blog_details_img02.jpg" alt="">
+                                            <img src="{{ asset ('fe/img/blog/blog_details_img02.jpg') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
                                 <p>Non-core vaccines are given dependng on the dog's exposure risk. These include vaccines against Bordetella
                                     bronchiseptica, Borrelia burgdorferi and Leptosira bacteria.The dog was the first species to be domesticated, by
                                     hunter–gatherers include the core vaccines.</p>
-                                <div class="blog-line" data-background="img/blog/blog_item_line.png"></div>
+                                <div class="blog-line" data-background="{{ asset ('fe/img/blog/blog_item_line.png') }}"></div>
                                 <div class="blog-details-bottom">
                                     <div class="blog-details-tags">
                                         <ul>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="avatar-post mt-50 mb-50">
                             <div class="post-avatar-img">
-                                <img src="img/blog/post_avatar_img.png" alt="img">
+                                <img src="{{ asset ('fe/img/blog/post_avatar_img.png') }}" alt="img">
                             </div>
                             <div class="post-avatar-content">
                                 <h5>Thomas Herlihy</h5>
@@ -146,10 +146,10 @@
                         <div class="blog-next-prev">
                             <ul>
                                 <li class="blog-prev">
-                                    <a href="#"><img src="img/icon/left_arrow.png" alt="img">Previous Post</a>
+                                    <a href="#"><img src="{{ asset ('fe/img/icon/left_arrow.png') }}" alt="img">Previous Post</a>
                                 </li>
                                 <li class="blog-next">
-                                    <a href="#">Next Post<img src="img/icon/right_arrow.png" alt="img"></a>
+                                    <a href="#">Next Post<img src="{{ asset ('fe/img/icon/right_arrow.png') }}" alt="img"></a>
                                 </li>
                             </ul>
                         </div>
@@ -207,7 +207,7 @@
                                     <ul>
                                         <li>
                                             <div class="rc-post-thumb">
-                                                <a href="blog-details.html"><img src="img/blog/rc_post_thumb01.jpg" alt=""></a>
+                                                <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/rc_post_thumb01.jpg') }}" alt=""></a>
                                             </div>
                                             <div class="rc-post-content">
                                                 <h5 class="title"><a href="blog-details.html">Best Online Pet Everything Your Pet Needs</a></h5>
@@ -221,7 +221,7 @@
                                         </li>
                                         <li>
                                             <div class="rc-post-thumb">
-                                                <a href="blog-details.html"><img src="img/blog/rc_post_thumb02.jpg" alt=""></a>
+                                                <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/rc_post_thumb02.jpg') }}" alt=""></a>
                                             </div>
                                             <div class="rc-post-content">
                                                 <h5 class="title"><a href="blog-details.html">Pet Needs Special Food like Human Foods</a></h5>
@@ -238,7 +238,7 @@
                             </div>
                             <div class="widget sidebar-newsletter">
                                 <div class="sn-icon">
-                                    <img src="img/icon/sn_icon.png" alt="">
+                                    <img src="{{ asset ('fe/img/icon/sn_icon.png') }}" alt="">
                                 </div>
                                 <div class="sn-title">
                                     <h4 class="title">Subscribe Newsletter</h4>
