@@ -49,9 +49,7 @@
                                         <td class="price-format">{{$product->normal_price}}</td>
                                         <td class="price-format">{{$product->promotion_price}}</td>
                                         <td>{{$product->description}}</td>
-                                        <td>
-                                            <img id="image_index_product" src="{{ asset($product->feature_image_path) }}" alt="{{$product->feature_image_name}}">
-                                        </td>
+                                        <td>{{$product->image}}</td>
                                         <td>{{optional($product->category)->name}}</td>
                                         <td class="parent">
                                             <a href="{{ route('specId.index'). '/?product_id='.$product->id.' &&type_id='.$product->type_id }}">
