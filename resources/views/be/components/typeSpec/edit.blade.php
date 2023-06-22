@@ -1,7 +1,7 @@
-@extends('backend.layouts.master')
+@extends('be.layouts.master')
 
 @section('title')
-    Computer Type Edit Admin 
+    Pet Type Edit Admin 
 @endsection
 
 @section('css')
@@ -30,7 +30,8 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper card">
+<div id="content-wrapper" class="content-wrapper card">
+    @include('be.layouts.header')
         <form class="forms-sample" action="{{ route('type.store'). '/?type_id='.request()->type_id.'&&product_id='.request()->product_id }}" method="post">
             @csrf
             <div class="col-12 grid-margin stretch-card">
@@ -38,10 +39,10 @@
                     <div class="card-body">
                         @switch(request()->type_id)
                             @case(1)
-                                @include('backend.components.type.specificate.spec_laptop')
+                                @include('be.components.type.specificate.spec_laptop')
                                 @break
                             @case(2)
-                                @include('backend.components.type.specificate.spec_linh_kien')
+                                @include('be.components.type.specificate.spec_linh_kien')
                                 @break
                             @default
                                 @break

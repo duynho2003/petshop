@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('fe/img/favicon.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -100,9 +100,9 @@
                                 </div>
                                 <div class="contact-social">
                                     <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
                                     </ul>
                                 </div>
                             </form>
@@ -148,21 +148,7 @@
     <!-- footer-end -->
 
     <!-- JS here -->
-    <script src="{{ asset ('/fe/js/vendor/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/jquery.odometer.min.js') }}"></script>
-    <script src="{{ asset ('/fe/js/jquery.nice-select.min.js')}}"></script>
-    <script src="{{ asset ('/fe/js/jquery-ui.min.js')}}"></script>
-    <script src="{{ asset ('/fe/js/jquery.appear.js')}}"></script>
-    <script src="{{ asset ('/fe/js/slick.min.js')}}"></script>
-    <script src="{{ asset ('/fe/js/wow.min.js')}}"></script>
-    <script src="{{ asset ('/fe/js/plugins.js')}}"></script>
-    <script src="{{ asset ('/fe/js/main.js')}}"></script>
-    <script src="{{ asset ('/fe/js/signin.js')}}"></script>
+    @include('fe.layouts.master')
 </body>
 
 </html>

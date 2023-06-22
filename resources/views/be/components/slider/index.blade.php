@@ -1,7 +1,7 @@
-@extends('backend.layouts.master')
+@extends('be.layouts.master')
 
 @section('title')
-    Computer Slider Show Admin 
+    Pet Slider Show Admin 
 @endsection
 
 @section('css')
@@ -16,7 +16,8 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper card">
+<div id="content-wrapper" class="content-wrapper card">
+    @include('be.layouts.header')
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">

@@ -13,7 +13,7 @@ class AdminLoginController extends Controller
         \Sentinel::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return view('be.components.home.home');
+        return view('be.auth.login');
     }
 
     public function login() 
@@ -82,9 +82,11 @@ class AdminLoginController extends Controller
         return back()->with('error', 'The provided credentials do not match our records.');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         \Sentinel::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('/admin/login');
     }
 }

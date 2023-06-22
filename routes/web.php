@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\FE\ProcessRegisterController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BE\DashboardController;
+
 use App\Http\Controllers\BE\ProductController;
 use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\AuthenticateController;
@@ -18,6 +18,12 @@ Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 Route::get('/adoption', [HomeController::class, 'adoption'])->name('adoption');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+Route::get('/blogdetails1', [HomeController::class, 'blogdetails1'])->name('blogdetails1');
+
+Route::get('/blogdetails2', [HomeController::class, 'blogdetails2'])->name('blogdetails2');
+
+Route::get('/blogdetails3', [HomeController::class, 'blogdetails3'])->name('blogdetails3');
 
 
 // Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
