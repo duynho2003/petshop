@@ -51,8 +51,8 @@
                             </div>
                             <div class="header-action d-none d-md-block">
                                 <ul>
-                                    <li class="header-search"><a href="#"><i class="flaticon-search"></i></a></li>
-                                    <li class="header-shop-cart"><a href="#"><i class="flaticon-shopping-bag"></i><span>0</span></a>
+                                    {{-- <li class="header-search"><a href="#"><i class="flaticon-search"></i></a></li> --}}
+                                    <li class="header-shop-cart"><a href="{{ route('viewCart') }}"><i class="flaticon-shopping-bag"></i><span>0</span></a>
                                         {{--
                                         <ul class="minicart">
                                             <li class="d-flex align-items-start">

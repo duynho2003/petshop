@@ -149,143 +149,27 @@
                                     </form>
                                 </div>
                             </div>
+                            <!-- View Product -->
+                            @foreach ($prods as $product)  
                             <div class="row justify-content-center">
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="shop-item mb-55">
                                         <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item01.jpg" alt=""></a>
+                                            <a href="shop-details.html"><img src="{{ asset('/images/' . $product->image) }}" alt=""></a>
                                         </div>
                                         <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Pet Knit Knacks</a></h4>
+                                            <span>{{ $product->name }}</span>
+                                            <h4 class="title"><a href="{{ Route('productDetails', $product->slug) }}">{{ $product->name }}</a></h4>
                                             <div class="shop-content-bottom">
-                                                <span class="price">$28.00</span>
+                                                <span class="price">{{number_format($product->promotion_price)}} VNĐ</span>
+                                                <p style="font-size: 12px; margin-left: 10px; color: #b5aec4; text-decoration: line-through;">{{number_format($product->normal_price)}} VNĐ</p>
                                                 <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item02.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Squeaky Dog</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$19.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item03.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Pet Knit Knacks</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$29.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item04.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Yoda Carriage</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$49.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item05.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Pet Carriage</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$09.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item06.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Squeaky Dog</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$16.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item07.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Carriage Dog</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$18.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item08.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Yoda Carriage</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$12.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="shop-item mb-55">
-                                        <div class="shop-thumb">
-                                            <a href="shop-details.html"><img src="img/product/shop_item09.jpg" alt=""></a>
-                                        </div>
-                                        <div class="shop-content">
-                                            <span>Dog toy’s</span>
-                                            <h4 class="title"><a href="shop-details.html">Pet Knit Knacks</a></h4>
-                                            <div class="shop-content-bottom">
-                                                <span class="price">$32.00</span>
-                                                <span class="add-cart"><a href="shop-details.html">ADD +</a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
+                               
                             <div class="shop-page-meta">
                                 <div class="shop-grid-menu">
                                     <ul>

@@ -57,13 +57,10 @@ class AdminProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+  
     public function store(AdminProductRequest $request)
     {
-        // dd($request->type);
-        // dd($request->type_id);
-
-        try {
-            DB::beginTransaction();
+      
             $normal_price = filter_var($request->normal_price, FILTER_SANITIZE_NUMBER_INT);
             $promotion_price = filter_var($request->promotion_price, FILTER_SANITIZE_NUMBER_INT);
             $dataProductCreate = [
@@ -73,59 +70,50 @@ class AdminProductController extends Controller
                 'slug' => Str::slug($request->name),
                 'category_id' => $request->category_id,
                 'description' => $request->description,
-                'type_id' =>$request->type_id
+                'type_id' =>$request->type_id,
+                'image' =>$request->image
             ];
 
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $ext = $file->getClientOriginalExtension();
+                // if ($ext != 'jpg' && $ext != 'jpeg' && $ext != 'png') {
+                //     $error = 1;
+                //     return view('admin.product.create', compact(error));
+                // }
+                $imageFilename = $file->getClientOriginalName();
+                $file->move('images', $imageFilename);
+            } else {
+                $imageFilename = null;
+            }
+
             // Choose folder
-            $folder = "";
-            switch ($request->type_id) {
-                case 1:
-                    $folder = 'images/products/laptop';
-                    break;
-                case 2:
-                    $folder = 'images/products/pc';
-                    break;
-                case 3:
-                    $folder = 'images/products/monitor';
-                    break;
-                case 4:
-                    $folder = 'images/products/keyboard';
-                    break;
-                case 5:
-                    $folder = 'images/products/mouse';
-                    break;
-                default: break;
-            }
-            // dd($folder);
+            // $folder = "";
+            // switch ($request->type_id) {
+            //     case 1:
+            //         $folder = 'images/products/laptop';
+            //         break;
+            //     case 2:
+            //         $folder = 'images/products/pc';
+            //         break;
+            //     case 3:
+            //         $folder = 'images/products/monitor';
+            //         break;
+            //     case 4:
+            //         $folder = 'images/products/keyboard';
+            //         break;
+            //     case 5:
+            //         $folder = 'images/products/mouse';
+            //         break;
+            //     default: break;
+            // }
+   
+            $dataProductCreate['image'] = $imageFilename;
+            Product::create($dataProductCreate);
 
-
-            // xử lý ảnh feature
-            
-            $dataUpLoadFeatureImage = $this->TraitUpLoadFile($request, 'feature_image_path', $folder);
-            if(!empty($dataUpLoadFeatureImage)) {
-                $dataProductCreate['feature_image_name'] = $dataUpLoadFeatureImage['image_name'];
-                $dataProductCreate['feature_image_path'] = $dataUpLoadFeatureImage['image_path'];
-            }
-            $product = Product::create($dataProductCreate);
-
-            // thêm hình ảnh vào ProductImage
-            if(!empty($request->image_path)) {
-                foreach ($request->image_path as $imageItem) {
-                    $dataProductImageDetail = $this->TraitMultiUpLoadFile($imageItem, $folder);
-                    $product->images()->create([
-                        'image_name' => $dataProductImageDetail['image_name'],
-                        'image_path' => $dataProductImageDetail['image_path'],
-                    ]);
-                }
-            }
-
-            DB::commit();
-            return redirect()->route('product.index');
-            
-        } catch (\Exception $ex) {
-            DB::rollBack();
-            Log::error("Message: {$ex->getMessage()} --- Line: {$ex->getLine()} --- File: {$ex->getFile()}");
-        }
+            // DB::commit();
+            // return redirect()->route('admin.dashboard');
+ 
     
     }
 

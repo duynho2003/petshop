@@ -2,7 +2,8 @@
 use App\Http\Controllers\FE\ProcessRegisterController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\BE\ProductController;
+use App\Http\Controllers\BE\AdminProductController;
+use App\Http\Controllers\BE\AdminCategoryController;
 use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\AuthenticateController;
 use App\Http\Middleware\Authenticate;
@@ -25,15 +26,9 @@ Route::get('/blogdetails2', [HomeController::class, 'blogdetails2'])->name('blog
 
 Route::get('/blogdetails3', [HomeController::class, 'blogdetails3'])->name('blogdetails3');
 
-
-// Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
-//             ->name('productDetails');
-
-
-
-// Route::post('/login', [DashboardController::class, 'processLogin'])
-//         ->name('processLogin');
-
+Route::get('/product', [HomeController::class, 'product'])->name('product'); 
+Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
+            ->name('productDetails');
 
 //xu li dang ki 
 Route::get('/register', [AuthenticateController::class, 'register'])->name('register');
@@ -58,11 +53,12 @@ Route::get('/reset-password', [ForgotPasswordController::class, 'reset'])->name(
 Route::get('/reset-password/{token}/{email}', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'processResetPassword'])->name('processResetPassword');
-// Route::post('/add-cart', [HomeController::class, 'addCart'])->name('addCart');
 
-// Route::get('/view-cart', [HomeController::class, 'viewCart'])->name('viewCart');
+Route::post('/add-cart', [HomeController::class, 'addCart'])->name('addCart');
 
-// Route::get('/clear-cart', [HomeController::class, 'clearCart'])->name('clearCart');
+Route::get('/view-cart', [HomeController::class, 'viewCart'])->name('viewCart');
+
+Route::get('/clear-cart', [HomeController::class, 'clearCart'])->name('clearCart');
 
 // y/c cần phải login
 Route::group(['middleware'=>'islogin'], function() {

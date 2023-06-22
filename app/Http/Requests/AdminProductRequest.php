@@ -27,8 +27,6 @@ class AdminProductRequest extends FormRequest
             'name' => 'required',
             'normal_price' => 'bail|required|max:1000000000',
             'promotion_price' => 'bail|required|max:1000000000',
-            'feature_image_path' => 'bail|required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-            'feature_image_name' => 'required',
             'description' => 'required',
             'type_id' => 'required',
         ];
@@ -42,10 +40,6 @@ class AdminProductRequest extends FormRequest
             'normal_price.max' => 'Giá phải nhỏ hơn 1,000,000,000',
             'promotion_price.required' => 'Giá khuyến mãi không được để trống',
             'promotion_price.max' => 'Giá phải nhỏ hơn 1,000,000,000',
-            'feature_image_path.required' => 'Không được để trống hình ảnh',
-            'feature_image_path.mimes' => 'Phần mở rộng không phù hợp',
-            'feature_image_path.max' => 'Tối đa 2048 kilobytes',
-            'image_path.required' => 'Không được để trống hình ảnh',
             'description.required' => 'Mô ta không được để trống',
             'type_id.required' => 'Loại sản phẩm không được để trống',
         ];

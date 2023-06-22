@@ -4,7 +4,7 @@ namespace App\Http\Controllers\FE;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use App\Models\Product;
+use App\Models\Product;
 // use App\Models\CartItem;
 
 class HomeController extends Controller
@@ -22,7 +22,8 @@ class HomeController extends Controller
 
     public function shop() 
     {
-        return view("fe.shop");
+        $prods = Product::all();
+        return view('fe.shop', compact('prods'));
     }
 
     public function adoption() 
@@ -50,12 +51,13 @@ class HomeController extends Controller
         return view("fe.blogdetails3");
     }
 
-    // public function productDetails($slug) 
-    // {
-    //     // hàm first() được dùng để lấy về record đầu tiến
-    //     $prod = Product::where('slug', '=', $slug)->first();
-    //     return view('fe.product_details', compact('prod'));
-    // }
+    public function productDetails($slug) 
+    {
+        $prods = Product::all();
+        // hàm first() được dùng để lấy về record đầu tiến
+        $prod = Product::where('slug', '=', $slug)->first();
+        return view('fe.product_details', compact('prod','prods'));
+    }
 
     // public function addCart(Request $request)
     // {
@@ -80,17 +82,18 @@ class HomeController extends Controller
     //     } 
     // }
 
-    // public function clearCart(Request $request)
-    // {
-    //     if($request->session()->has('cart')) {
-    //         $request->session()->forget('cart');
-    //     }
-    // }
+    public function clearCart(Request $request)
+    {
+        if($request->session()->has('cart')) {
+            $request->session()->forget('cart');
+        }
+    }
 
-    // public function viewCart(Request $request)
-    // {
-    //     if($request->session()->has('cart')) {
-    //         return $request->session()->get('cart');
-    //     }
-    // }
+    public function viewCart(Request $request)
+    {
+        return view('fe.view_cart');
+        // if ($request->session()->has('cart')) {
+        //     return $request->session()->get('cart');
+        // }
+    }
 }
