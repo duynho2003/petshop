@@ -6,6 +6,7 @@ use App\Http\Controllers\BE\AdminProductController;
 use App\Http\Controllers\BE\AdminCategoryController;
 use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\AuthenticateController;
+use App\Http\Controllers\FE\CartController;
 use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\FE\ForgotPasswordController;
 use App\Http\Controllers\BE\AdminLoginController;
@@ -30,6 +31,7 @@ Route::get('/product', [HomeController::class, 'product'])->name('product');
 Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
             ->name('productDetails');
 
+            Route::post('/search', [HomeController::class, 'search'])->name('customer.search'); 
 //xu li dang ki 
 Route::get('/register', [AuthenticateController::class, 'register'])->name('register');
 Route::post('/register', [AuthenticateController::class, 'processRegister'])->name('processRegister');
@@ -53,12 +55,17 @@ Route::get('/reset-password', [ForgotPasswordController::class, 'reset'])->name(
 Route::get('/reset-password/{token}/{email}', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'processResetPassword'])->name('processResetPassword');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit_user');
+    Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
+});
 
-Route::post('/add-cart', [HomeController::class, 'addCart'])->name('addCart');
-
-Route::get('/view-cart', [HomeController::class, 'viewCart'])->name('viewCart');
-
-Route::get('/clear-cart', [HomeController::class, 'clearCart'])->name('clearCart');
+// Cart
+Route::get('/view-cart', [CartController::class, 'cart'])->name('customer.cart'); 
+Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart'); 
+Route::get('/update-cart', [CartController::class, 'updateCart'])->name('customer.updateCart'); 
+Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
+Route::post('clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
 // y/c cần phải login
 Route::group(['middleware'=>'islogin'], function() {
