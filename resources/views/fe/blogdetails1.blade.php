@@ -63,7 +63,7 @@
                     <div class="col-lg-8">
                         <div class="standard-blog-item mb-50">
                             <div class="standard-blog-thumb">
-                                <img src="{{ asset ('fe/img/blog/blog_thumb01.jpg')}}" alt="">
+                                <img src="{{ asset ('fe/img/blog1/blog_thumb01.jpg')}}" alt="">
                             </div>
                             <div class="standard-blog-content blog-details-content">
                                 <div class="blog-post-meta">
@@ -96,17 +96,17 @@
                                 <div class="blog-details-img">
                                 <div class="row">
                                         <div class="col-md-6">
-                                            <img src="{{ asset ('fe/img/blog/blog_details_img01.jpg') }}" alt="">
+                                            <img src="{{ asset ('fe/img/blog1/blog_details_img01.jpg') }}" alt="">
                                         </div>
                                         <div class="col-md-6">
-                                            <img src="{{ asset ('fe/img/blog/blog_details_img02.jpg') }}" alt="">
+                                            <img src="{{ asset ('fe/img/blog1/blog_details_img02.jpg') }}" alt="">
                                         </div>
                                     </div>
                                 </div>
                                 <p>Non-core vaccines are given dependng on the dog's exposure risk. These include vaccines against Bordetella
                                     bronchiseptica, Borrelia burgdorferi and Leptosira bacteria.The dog was the first species to be domesticated, by
                                     hunter–gatherers include the core vaccines.</p>
-                                <div class="blog-line" data-background="{{ asset ('fe/img/blog/blog_item_line.png') }}"></div>
+                                <div class="blog-line" data-background="{{ asset ('fe/img/blog1/blog_item_line.png') }}"></div>
                                 <div class="blog-details-bottom">
                                     <div class="blog-details-tags">
                                         <ul>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="avatar-post mt-50 mb-50">
                             <div class="post-avatar-img">
-                                <img src="{{ asset ('fe/img/blog/post_avatar_img.png') }}" alt="img">
+                                <img src="{{ asset ('fe/img/blog1/post_avatar_img.png') }}" alt="img">
                             </div>
                             <div class="post-avatar-content">
                                 <h5>Thomas Herlihy</h5>
@@ -207,7 +207,7 @@
                                     <ul>
                                         <li>
                                             <div class="rc-post-thumb">
-                                                <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/rc_post_thumb01.jpg') }}" alt=""></a>
+                                                <a href="blog-details.html"><img src="{{ asset ('fe/img/blog1/rc_post_thumb01.jpg') }}" alt=""></a>
                                             </div>
                                             <div class="rc-post-content">
                                                 <h5 class="title"><a href="blog-details.html">Best Online Pet Everything Your Pet Needs</a></h5>
@@ -221,7 +221,7 @@
                                         </li>
                                         <li>
                                             <div class="rc-post-thumb">
-                                                <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/rc_post_thumb02.jpg') }}" alt=""></a>
+                                                <a href="blog-details.html"><img src="{{ asset ('fe/img/blog1/rc_post_thumb02.jpg') }}" alt=""></a>
                                             </div>
                                             <div class="rc-post-content">
                                                 <h5 class="title"><a href="blog-details.html">Pet Needs Special Food like Human Foods</a></h5>
