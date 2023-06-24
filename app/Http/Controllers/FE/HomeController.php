@@ -5,7 +5,10 @@ namespace App\Http\Controllers\FE;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
-// use App\Models\CartItem;
+use App\Models\Category;
+use App\Models\CartItem;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,8 +25,13 @@ class HomeController extends Controller
 
     public function shop() 
     {
-        $prods = Product::all();
-        return view('fe.shop', compact('prods'));
+        $max_price = Product::max('normal_price');
+        $max_price_range = $max_price + 10000000;
+        $min_price = Product::min('normal_price');
+        $min_price_range = $min_price - $min_price;
+        $categories = Category::where("active", 1)->get();
+        $prods = Product::where('active',1)->inRandomOrder()->paginate(20);  
+        return view('fe.shop', compact('categories','prods','max_price','min_price','max_price_range','min_price_range'));
     }
 
     public function adoption() 
@@ -53,47 +61,84 @@ class HomeController extends Controller
 
     public function productDetails($slug) 
     {
-        $prods = Product::all();
         // hàm first() được dùng để lấy về record đầu tiến
-        $prod = Product::where('slug', '=', $slug)->first();
-        return view('fe.product_details', compact('prod','prods'));
+        $product = Product::where('slug', '=', $slug)->first();
+        return view('fe.product_details', compact('product'));
     }
 
-    // public function addCart(Request $request)
-    // {
-    //     try {
-    //     $pid = $request->pid;
-    //     $quantity = $request->quantity; 
-        
-    //     $cart = []; 
-    //     if ($request->session()->has('cart')) {
-    //         $cart = $request->session()->get('cart');    
-    //     }
-
-    //     // tìm product theo id
-    //     $prod = Product::find($pid);
-    //     // tạo đối tượng CartItem
-    //     $cartItem = new CartItem($prod, $quantity);
-    //     $cart[] = $cartItem; // add to array
-    //     $request->session()->put('cart', $cart);
-    //     return 1;
-    // } catch (\Exception $e) {
-    //     return 0;
-    //     } 
-    // }
-
-    public function clearCart(Request $request)
+    public function editUser($id)
     {
-        if($request->session()->has('cart')) {
-            $request->session()->forget('cart');
+        // Lấy thông tin người dùng đã đăng nhập
+        $loggedInUser = Auth::user();
+        
+        // Kiểm tra xem ID của người dùng đã đăng nhập có khớp với ID trong route hay không
+        if ($loggedInUser->id == $id) {
+            // Nếu khớp, thực hiện logic xử lý
+            $user = User::find($id);
+            return view('fe.editUser', compact('user'));
+            // ...
+        } 
+    }
+
+    public function processEditUser($id, Request $request)
+    {
+        // Lấy thông tin người dùng đã đăng nhập
+        $loggedInUser = Auth::user();
+    
+        // Kiểm tra xem ID của người dùng đã đăng nhập có khớp với ID trong route hay không
+        if ($loggedInUser->id == $id) {
+            // Lấy dữ liệu từ request
+            $first_name = $request->input('first_name');
+            $last_name = $request->input('last_name');
+            $phone = $request->input('phone');
+            $address = $request->input('address');
+    
+            // Cập nhật thông tin người dùng trong bảng "users"
+            $user = User::find($id);
+            $user->first_name = $first_name;
+            $user->last_name = $last_name;
+            $user->phone = $phone;
+            $user->address = $address;
+            $user->save();
+            return view('fe.editUser', compact('user'));
+
+            // Thực hiện các logic khác nếu cần
+    
+            // Redirect hoặc trả về response thành công
         }
     }
 
-    public function viewCart(Request $request)
-    {
-        return view('fe.view_cart');
-        // if ($request->session()->has('cart')) {
-        //     return $request->session()->get('cart');
-        // }
+
+    public function search(Request $request) {
+        
+        if ($request->has('search')) {
+            $products = null;
+            switch ($request->type) {
+                case 0:
+                    $products = Product::search($request->search)->get();
+                    break;
+                case 1:
+                    $products = Product::search($request->search)->where("category_id",1)->get();
+                    break;
+                case 2:
+                    $products = Product::search($request->search)->where("category_id",2)->get();
+                    break;
+                case 3:
+                    $products = Product::search($request->search)->where("category_id",3)->get();
+                    break;
+                case 4:
+                    $products = Product::search($request->search)->where("category_id",4)->get();
+                    break;
+                case 5:
+                    $products = Product::search($request->search)->where("category_id",5)->get();
+                    break;
+                default: break;
+            }
+        } elseif ($request->has('max_price') && $request->has('min_price')) {
+            $products = Product::whereBetween('promotion_price', [$request->max_price, $request->min_price])->get();
+        } else {
+            $products = Product::get();
+        }
+        return view('fe.search', compact('products'));
     }
 }
