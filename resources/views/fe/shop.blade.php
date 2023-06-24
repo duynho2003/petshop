@@ -37,6 +37,7 @@
     <!-- header-area-end -->
     <!-- main-area -->
     <main>
+
         <!-- breadcrumb-area -->
         <section class="breadcrumb-area breadcrumb-bg" data-background="{{ asset ('/fe/img/bg/breadcrumb_bg.jpg')}}">
             <div class="container">
@@ -58,6 +59,13 @@
         <!-- breadcrumb-area-end -->
 
         <!-- shop-area -->
+        <div class="container">
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+        </div>
         <div class="shop-area pt-110 pb-110">
             <div class="container">
                 <div class="row justify-content-center">
@@ -75,24 +83,12 @@
                                 <h4 class="sidebar-title">Category</h4>
                                 <div class="shop-cat-list">
                                     <ul>
-                                        <li><a href="shop.html">Squeaky <span>+</span></a></li>
+                                        <li><a href="{{ route('shop') }}">All <span>+</span></a></li>
                                         <li><a href="shop.html">Dog Food <span>+</span></a></li>
                                         <li><a href="shop.html">Dog-Kit <span>+</span></a></li>
                                         <li><a href="shop.html">Dog Home <span>+</span></a></li>
                                         <li><a href="shop.html">Safety-Suits <span>+</span></a></li>
                                         <li><a href="shop.html">Pet Protect <span>+</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="widget">
-                                <h4 class="sidebar-title">Top Brand</h4>
-                                <div class="shop-brand-list">
-                                    <ul>
-                                        <li><a href="shop.html">Geco</a></li>
-                                        <li><a href="shop.html">Carnation</a></li>
-                                        <li><a href="shop.html">Suppke</a></li>
-                                        <li><a href="shop.html">WeBeyond</a></li>
-                                        <li><a href="shop.html">Edstudy</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -150,8 +146,8 @@
                                 </div>
                             </div>
                             <!-- View Product -->
-                            @foreach ($prods as $product)  
-                            <div class="row justify-content-center">
+                            @foreach ($prods as $product)
+                            <div class="product-grid">
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="shop-item mb-55">
                                         <div class="shop-thumb">
@@ -163,50 +159,51 @@
                                             <div class="shop-content-bottom">
                                                 <span class="price">{{number_format($product->promotion_price)}} VNĐ</span>
                                                 <p style="font-size: 12px; margin-left: 10px; color: #b5aec4; text-decoration: line-through;">{{number_format($product->normal_price)}} VNĐ</p>
-                                                <span class="add-cart"><a href="">ADD +</a></span>
+                                                @if (auth()->check())
+                                                <span class="add-cart"><a href="{{ route('add_to_cart', $product->id) }}">ADD +</a></span>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
-                               
-                            <div class="shop-page-meta">
-                                <div class="shop-grid-menu">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="fas fa-th"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-list"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="shop-showing-result">
-                                    <p>Total Items 1-12 of 13</p>
-                                </div>
-                                <div class="shop-show-list">
-                                    <form action="#">
-                                        <label for="bottomShow">Show</label>
-                                        <select id="bottomShow" class="selected">
-                                            <option value="">08</option>
-                                            <option value="">12</option>
-                                            <option value="">16</option>
-                                            <option value="">18</option>
-                                            <option value="">20</option>
-                                        </select>
-                                    </form>
-                                </div>
-                                <div class="shop-pagination">
-                                    <ul>
-                                        <li class="active"><a href="shop.html">1</a></li>
-                                        <li><a href="shop.html">2</a></li>
-                                        <li><a href="shop.html"><i class="fas fa-angle-double-right"></i></a></li>
-                                    </ul>
+                                @endforeach
+
+                                <div class="shop-page-meta">
+                                    <div class="shop-grid-menu">
+                                        <ul>
+                                            <li class="active"><a href="#"><i class="fas fa-th"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-list"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="shop-showing-result">
+                                        <p>Total Items 1-12 of 13</p>
+                                    </div>
+                                    <div class="shop-show-list">
+                                        <form action="#">
+                                            <label for="bottomShow">Show</label>
+                                            <select id="bottomShow" class="selected">
+                                                <option value="">08</option>
+                                                <option value="">12</option>
+                                                <option value="">16</option>
+                                                <option value="">18</option>
+                                                <option value="">20</option>
+                                            </select>
+                                        </form>
+                                    </div>
+                                    <div class="shop-pagination">
+                                        <ul>
+                                            <li class="active"><a href="shop.html">1</a></li>
+                                            <li><a href="shop.html">2</a></li>
+                                            <li><a href="shop.html"><i class="fas fa-angle-double-right"></i></a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- shop-area-end -->
-
+            <!-- shop-area-end -->
     </main>
     <!-- main-area-end -->
     <!-- footer-start -->
@@ -216,5 +213,10 @@
     <!-- JS here -->
     @include('fe.layouts.master')
 </body>
+@section('js')
+<script>
+
+</script>
+@endsection
 
 </html>

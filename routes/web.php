@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/view-cart', [CartController::class, 'cart'])->name('customer.cart'); 
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart'); 
 Route::get('/update-cart', [CartController::class, 'updateCart'])->name('customer.updateCart'); 
-Route::delete('remove-from-cart', [ProductsController::class, 'remove'])->name('remove_from_cart');
+Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
 Route::post('clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
 // y/c cần phải login
