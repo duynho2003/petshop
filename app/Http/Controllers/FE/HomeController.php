@@ -30,7 +30,7 @@ class HomeController extends Controller
         $min_price = Product::min('normal_price');
         $min_price_range = $min_price - $min_price;
         $categories = Category::where("active", 1)->get();
-        $prods = Product::where('active',1)->inRandomOrder()->paginate(20);  
+        $prods = Product::all();
         return view('fe.shop', compact('categories','prods','max_price','min_price','max_price_range','min_price_range'));
     }
 
@@ -92,7 +92,7 @@ class HomeController extends Controller
             $last_name = $request->input('last_name');
             $phone = $request->input('phone');
             $address = $request->input('address');
-    
+            
             // Cập nhật thông tin người dùng trong bảng "users"
             $user = User::find($id);
             $user->first_name = $first_name;
@@ -100,8 +100,10 @@ class HomeController extends Controller
             $user->phone = $phone;
             $user->address = $address;
             $user->save();
+            // Thông báo màn hình
+            session()->flash('success', 'Your information has been updated!');
             return view('fe.editUser', compact('user'));
-
+            
             // Thực hiện các logic khác nếu cần
     
             // Redirect hoặc trả về response thành công

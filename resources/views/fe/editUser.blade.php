@@ -55,7 +55,15 @@
     </section>
     <!-- breadcrumb-area-end -->
 
-    <!--Sign in-->
+    <!--Edit information-->
+    <div class="container">
+      @if(session('success'))
+      <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ session('success') }}
+      </div>
+    </div>
+    @endif
     <!-- contact-area -->
     <section class="contact-area pt-110 pb-110">
       <div class="container">
@@ -74,8 +82,8 @@
                               <div class="row">
                                 <div class="col-12 col-sm-auto mb-3">
                                   <div class="mx-auto" style="width: 140px;">
-                                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);" img id="img" scr="">
-                                      <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                                    <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px;     background-color: rgb(233, 236, 239);"><img src="{{ asset ('/fe/img/images/testi_avatar01.png') }}" alt="avatar" width="140" height="140">
+                                    {{--<span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>--}}  
                                     </div>
                                   </div>
                                 </div>

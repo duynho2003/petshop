@@ -50,13 +50,12 @@ class CartController extends Controller
         }
     }
 
-    public function clearCart(Request $request)
+    public function clearCart(Request $request) //làm trống giỏ hàng
     {
         if ($request->session()->has('cart')) {
             $request->session()->forget('cart');
         }
-        session()->flash('success', 'Cart has cleared!');
-        return view('fe.index');
+        return redirect('/');
     }
 
     public function updateCart(Request $request)
@@ -65,13 +64,13 @@ class CartController extends Controller
         $newCart = new Cart($oldCart);
         $newCart->updateCartDetail($request->id, $request->quantity);
         session()->put('cart', $newCart);
-        return view('frontend.components.cart.listCart');
+        return view('fe.view_cart');;
     }
 
     public function checkout()
     {
         $user = auth()->user();
-        return view('frontend.components.cart.checkout', compact('user'));
+        return view('fe.components.cart.checkout', compact('user'));
     }
 
     public function processCheckout(Request $request)
@@ -99,9 +98,9 @@ class CartController extends Controller
 
             $name = $request->name;
             session()->forget('cart');
-            return view('frontend.components.cart.confirmCheckout', compact('name'));
+            return view('fe.components.cart.confirmCheckout', compact('name'));
         } else {
-            return redirect()->route('customer.product');
+            return redirect()->route('fe.view_cart');
         }
     }
 }
