@@ -1,1 +1,0 @@
-<font-awesome-icon icon="['fat', 'user']" />
