@@ -34,7 +34,12 @@
     @include('fe.layouts.header')
     <!-- header-area-end -->
     <!-- breadcrumb-area -->
-    <section class="breadcrumb-area breadcrumb-bg" data-background="{{ asset('fe/img/bg/breadcrumb_bg.jpg') }}">    
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+    <section class="breadcrumb-area breadcrumb-bg" data-background="{{ asset('fe/img/bg/breadcrumb_bg.jpg') }}">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -52,46 +57,97 @@
         </div>
     </section>
     <!-- breadcrumb-area-end -->
+    @if (session('cart'))
+    <div class="container mt-5 p-3 rounded cart">
+        <h6 class="mb-0">Shopping cart</h6>
+        <span>You have {{ count((array) session('cart')) }} items in your cart</span>
+        <form action="{{ route('cart.clear') }}" method="POST">
+            @csrf
+            <button>Clear All Cart</button>
+        </form>
+    </div>
+    @endif
+    @php $total = 0 @endphp
+    @if (session('cart'))
+    @foreach(session('cart') as $id => $details)
+    @php $total += $details['normal_price'] * $details['quantity'] @endphp
     <div class="container mt-5 p-3 rounded cart">
         <div class="row no-gutters">
             <div class="col-md-8">
                 <div class="product-details mr-2">
-                    <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i><span class="ml-2">Continue Shopping</span></div>
-                    <hr>
-                    <h6 class="mb-0">Shopping cart</h6>
-                    <div class="d-flex justify-content-between"><span>You have 1 items in your cart</span>
-                        <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort by:</span>
-                            <div class="price ml-2"><span class="mr-1">price</span><i class="fa fa-angle-down"></i></div>
-                        </div>
+                    <div class="d-flex justify-content-between">
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                        <div class="d-flex flex-row"><img src="img/product/cart.jpg" width="50">
-                            <div class="ml-2"><span class="font-weight-bold d-block">Food</span><span class="spec">wet food for dog</span></div>
+                        <div class="d-flex flex-row"><img src="" width="50">
+                            <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['name'] }}</span></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">1</span><span class="d-block ml-5 font-weight-bold">$29.9</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                        <div class="d-flex flex-row align-items-center"><span class="d-block">{{ $details['quantity'] }}</span><span class="d-block ml-5 font-weight-bold">{{ $details['normal_price'] }} đ</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                        <div class="del-icon">
+                            <a href="#"><i class="far fa-trash-alt"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="payment-info">
-                    <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img class="rounded" src="" width="30"></div><span class="type d-block mt-3 mb-1">Card type</span><label class="radio"> <input type="radio" name="card" value="payment" checked> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
-
-                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
-
-                    <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>
-                    <div><label class="credit-card-label">Name on card</label><input type="text" class="form-control credit-inputs" placeholder="Name"></div>
-                    <div><label class="credit-card-label">Card number</label><input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
-                    <div class="row">
-                        <div class="col-md-6"><label class="credit-card-label">Date</label><input type="text" class="form-control credit-inputs" placeholder="12/24"></div>
-                        <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="342"></div>
+            @endforeach
+            <div class="col-md-6">
+                <div class="cart-detail bg-light p-3 p-md-4" style="width: 360px; z-index: -1;">
+                    <h3 class="billing-heading mb-4">Payment Method</h3>
+                    <div class="container">
+                        <script src="https://www.paypal.com/sdk/js?client-id=AVkFJNDwx4HO4IloZNSeNgDotbwt3pYAu0nqOaYh9uTEHocf9NFuPBkusDBPqjkGD-KyWzMhsfp3K7qp">
+                            // Required. Replace YOUR_CLIENT_ID with your sandbox client ID.
+                        </script>
+                        <div id="paypal-button-container" type="submit" style="z-index: -1;"></div>
+                        <script>
+                            paypal.Buttons({
+                                createOrder: function(data, actions) {
+                                    // This function sets up the details of the transaction, including the amount and line item details.
+                                    return actions.order.create({
+                                        purchase_units: [{
+                                            amount: {
+                                                value: "{{ $total }}" //truyền tong tiền vào 
+                                            }
+                                        }]
+                                    });
+                                },
+                                onApprove: function(data, actions) {
+                                    // This function captures the funds from the transaction.
+                                    return actions.order.capture().then(function(details) {
+                                        // This function shows a transaction success message to your buyer.
+                                        alert('Transaction completed by you');
+                                        document.getElementById('payment').innerHTML = '<input name="payment" value="paypal" hidden>';
+                                        document.getElementById('theForm').submit();
+                                    });
+                                }
+                            }).render('#paypal-button-container');
+                            //This function displays Smart Payment Buttons on your web page.
+                        </script>
+                        <div class="cart-content">
+                            <h6>Cart total</h6>
+                            <ul>
+                                <li>Subtotal <span>{{ $total }} $</span></li>
+                                <li>Total <span>{{ $total }} $</span></li>
+                            </ul>
+                            <a href="" class="primary-btn">Proceed to checkout</a>
+                        </div>
                     </div>
-                    <hr class="line">
-                    <div class="d-flex justify-content-between information"><span>Subtotal</span><span>$29.90</span></div>
-                    <div class="d-flex justify-content-between information"><span>Shipping</span><span>$01.00</span></div>
-                    <div class="d-flex justify-content-between information"><span>Total(Incl. taxes)</span><span>$30.90</span></div><button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="button"><span>$30.90</span><span a href="#">Checkout<i class="fa fa-long-arrow-right ml-1"></i></span></button>
                 </div>
             </div>
         </div>
+
+        @else
+        <div class="container mt-5 p-3 rounded cart">
+            <div class="table-responsive">
+                <table class="table table-bordered m-0">
+                    <div style="text-align: center; height: 150px;">
+                        <p style="font-size: 25px; font-weight: 600;">Không có gì trong giỏ hết =((</p>
+                        <div style="font-size: 18px; font-weight: 400;">
+                            <i class="ti-hand-point-right"></i><a href="{{ Route('home') }}"> Tiếp tục mua hàng</a>
+                        </div>
+                    </div>
+                </table>
+            </div>
+        </div>
+        @endif
     </div>
     <!-- footer-start -->
     @include('fe.layouts.footer')
@@ -99,6 +155,29 @@
 
     <!-- JS here -->
     @include('fe.layouts.master')
+    @section('js')
+    <script type="text/javascript">
+        $(".del-icon a").click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+
+            if (confirm("Do you really want to remove?")) {
+                $.ajax({
+                    url: '{{ route('remove_from_cart') }}',
+                    method: "DELETE",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: ele.parents("tr").attr("data-id")
+                    },
+                    success: function(response) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+    </script>
+    @endsection
 </body>
 
 </html>
