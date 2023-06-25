@@ -30,13 +30,13 @@ class HomeController extends Controller
         $min_price = Product::min('normal_price');
         $min_price_range = $min_price - $min_price;
         $categories = Category::where("active", 1)->get();
-        $prods = Product::all();
+        $prods = Product::where('category_id', 1)->get();
         return view('fe.shop', compact('categories','prods','max_price','min_price','max_price_range','min_price_range'));
     }
 
     public function adoption()
     {
-        $prods = Product::where('category_id', 2)->get();
+        $prods = Product::where('category_id', 1)->get();
         return view('fe.adoption', compact('prods'));
     }
 

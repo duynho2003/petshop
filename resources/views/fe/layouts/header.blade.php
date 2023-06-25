@@ -71,19 +71,11 @@
                                                         <span class="count"> Quantity: {{ $details['quantity'] }}</span>
                                                         <!-- <span><del>$229.9</del></span> -->
                                                     </div>
+                                                    <div class="del-icon">
+                                                        <a href="#" data-id="{{ $id }}"><i class="far fa-trash-alt"></i></a>
+                                                    </div>
                                                     @endforeach
                                                     @endif
-                                                </div>
-                                                <div class="del-icon">
-                                                    <a href="#"><i class="far fa-trash-alt"></i></a>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex align-items-start">
-                                                <div class="cart-img">
-                                                    <a href="#"><img src="" alt=""></a>
-                                                </div>
-                                                <div class="del-icon">
-                                                    <a href="#"><i class="far fa-trash-alt"></i></a>
                                                 </div>
                                             </li>
                                             <li>
@@ -132,3 +124,29 @@
     </div>
     <!-- header-search-end -->
 </header>
+
+<!-- JS here -->
+@include('fe.layouts.master')
+
+<script type="text/javascript">
+    $(".del-icon a").click(function(e) {
+        e.preventDefault();
+
+        var ele = $(this);
+        let id = ele.data("id");
+
+        if (confirm("Do you really want to remove?")) {
+            $.ajax({
+                url: "{{ route('remove_from_cart') }}",
+                method: "DELETE",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id
+                },
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        }
+    });
+</script>

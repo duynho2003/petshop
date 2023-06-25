@@ -38,7 +38,7 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Add to cart successfully')->with('product', $product);
     }
 
-    public function remove(Request $request)
+    public function remove(Request $request) //xóa từng món
     {
         if($request->id) {
             $cart = session()->get('cart');
@@ -58,14 +58,26 @@ class CartController extends Controller
         return view('fe.view_cart');
     }
 
-    public function updateCart(Request $request)
+    public function update(Request $request)
     {
-        $oldCart = session()->get('cart');
-        $newCart = new Cart($oldCart);
-        $newCart->updateCartDetail($request->id, $request->quantity);
-        session()->put('cart', $newCart);
-        return view('fe.view_cart');
+        if($request->id && $request->quantity){
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart successfully updated!');
+        }
     }
+
+    // public function updateCart(Request $request)
+    // {
+    //     $pids = $request->pids;
+    //     $qties = $request->qties;
+    //     $cart = $request->session()->get('cart');
+    //     for ($i = 0; $i < count($pids); $i++) {
+    //         $cart[$pids[$i]]->quantity = $qties[$i];
+    //     }
+    //     $request->session()->put('cart', $cart);    // lưu thay đổi
+    // }
 
     public function checkout()
     {

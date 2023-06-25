@@ -26,6 +26,12 @@
     <link rel="stylesheet" href="{{ asset('/fe/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/fe/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/fe/css/cart.css') }}">
+
+    <style>
+        .input-quantity {
+            width: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -81,14 +87,23 @@
                         <div class="d-flex flex-row"><img src="" width="50">
                             <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['name'] }}</span></div>
                         </div>
-                        <div class="d-flex flex-row align-items-center"><span class="d-block">{{ $details['quantity'] }}</span><span class="d-block ml-5 font-weight-bold">{{ $details['normal_price'] }} đ</span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
+                        <input type="number" value="{{ $details['quantity'] }}" placeholder="" required class="input-quantity" />
+                        <!-- <div class="d-flex flex-row align-items-center"><input type="number" value="{{ $details['quantity'] }}" class="d-block"/>
+                        </div> -->
+                        <span class="d-block ml-5 font-weight-bold">{{ $details['normal_price'] }} đ</span>
                         <div class="del-icon">
-                            <a href="#"><i class="far fa-trash-alt"></i></a>
+                            <a href="#" data-id="{{ $id }}"><i class="far fa-trash-alt"></i></a>
                         </div>
+
+                    </div>
+                    <div class="continue__btn update__btn">
+                        <a href="#" data-id="{{ $id }}"><i class="fa fa-spinner"></i> Update cart</a>
                     </div>
                 </div>
             </div>
+
             @endforeach
+
             <div class="col-md-6">
                 <div class="cart-detail bg-light p-3 p-md-4" style="width: 360px; z-index: -1;">
                     <h3 class="billing-heading mb-4">Payment Method</h3>
@@ -124,8 +139,7 @@
                         <div class="cart-content">
                             <h6>Cart total</h6>
                             <ul>
-                                <li>Subtotal <span>{{ $total }} $</span></li>
-                                <li>Total <span>{{ $total }} $</span></li>
+                                <li>Total: <span>{{ $total }} $</span></li>
                             </ul>
                             <a href="" class="primary-btn">Proceed to checkout</a>
                         </div>
@@ -133,7 +147,6 @@
                 </div>
             </div>
         </div>
-
         @else
         <div class="container mt-5 p-3 rounded cart">
             <div class="table-responsive">
@@ -141,7 +154,7 @@
                     <div style="text-align: center; height: 150px;">
                         <p style="font-size: 25px; font-weight: 600;">Không có gì trong giỏ hết =((</p>
                         <div style="font-size: 18px; font-weight: 400;">
-                            <i class="ti-hand-point-right"></i><a href="{{ Route('home') }}"> Tiếp tục mua hàng</a>
+                            <i class="ti-hand-point-right"></i><a href="{{ Route('home') }}"> Back to shopping</a>
                         </div>
                     </div>
                 </table>
@@ -155,20 +168,20 @@
 
     <!-- JS here -->
     @include('fe.layouts.master')
-    @section('js')
     <script type="text/javascript">
         $(".del-icon a").click(function(e) {
             e.preventDefault();
 
             var ele = $(this);
+            let id = ele.data("id");
 
             if (confirm("Do you really want to remove?")) {
                 $.ajax({
-                    url: '{{ route('remove_from_cart') }}',
+                    url: "{{ route('remove_from_cart') }}",
                     method: "DELETE",
                     data: {
                         _token: '{{ csrf_token() }}',
-                        id: ele.parents("tr").attr("data-id")
+                        id: id
                     },
                     success: function(response) {
                         window.location.reload();
@@ -176,8 +189,29 @@
                 });
             }
         });
+
+        $(".continue__btn.update__btn a").click(function(e) {
+            e.preventDefault();
+
+            var ele = $(this);
+            let id = ele.data("id");
+            let quantity = $('.input-quantity').val();
+
+            $.ajax({
+                url: "{{ route('update_cart') }}",
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    quantity: quantity
+                },
+                success: function(response) {
+                    window.location.reload();
+                }
+            });
+        });
     </script>
-    @endsection
+
 </body>
 
 </html>

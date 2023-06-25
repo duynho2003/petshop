@@ -2,12 +2,10 @@
 use App\Http\Controllers\FE\ProcessRegisterController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\BE\AdminProductController;
-use App\Http\Controllers\BE\AdminCategoryController;
 use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\AuthenticateController;
 use App\Http\Controllers\FE\CartController;
-use App\Http\Middleware\Authenticate;
+use App\Http\Controllers\FE\RenderProductCategoryController;
 use App\Http\Controllers\FE\ForgotPasswordController;
 use App\Http\Controllers\BE\AdminLoginController;
 
@@ -34,6 +32,11 @@ Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
             ->name('productDetails');
 
             Route::post('/search', [HomeController::class, 'search'])->name('customer.search'); 
+
+
+// xu li phan loai render product view
+Route::get('/category-dog-food', [RenderProductCategoryController::class, 'categorydogfood'])->name('dogfood');
+
 //xu li dang ki 
 Route::get('/register', [AuthenticateController::class, 'register'])->name('register');
 Route::post('/register', [AuthenticateController::class, 'processRegister'])->name('processRegister');
@@ -65,7 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
 // Cart
 Route::get('/view-cart', [CartController::class, 'cart'])->name('customer.cart'); 
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart'); 
-Route::get('/update-cart', [CartController::class, 'updateCart'])->name('customer.updateCart'); 
+Route::patch('update-cart', [CartController::class, 'update'])->name('update_cart');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
 Route::post('clear', [CartController::class, 'clearCart'])->name('cart.clear');
 
