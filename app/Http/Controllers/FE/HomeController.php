@@ -34,9 +34,15 @@ class HomeController extends Controller
         return view('fe.shop', compact('categories','prods','max_price','min_price','max_price_range','min_price_range'));
     }
 
-    public function adoption() 
+    public function adoption()
     {
-        return view("fe.adoption");
+        $prods = Product::where('category_id', 2)->get();
+        return view('fe.adoption', compact('prods'));
+    }
+
+    public function out_adoption(Request $request)
+    {
+        return view('fe.out-adoption');
     }
 
     public function contact() 
