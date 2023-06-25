@@ -27,6 +27,8 @@ Route::get('/blogdetails2', [HomeController::class, 'blogdetails2'])->name('blog
 
 Route::get('/blogdetails3', [HomeController::class, 'blogdetails3'])->name('blogdetails3');
 
+Route::get('/out-adoption/{id}', [HomeController::class, 'out_adoption'])->name('out-adoption');
+
 Route::get('/product', [HomeController::class, 'product'])->name('product'); 
 Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
             ->name('productDetails');
