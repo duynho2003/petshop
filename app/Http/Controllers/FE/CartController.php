@@ -55,7 +55,7 @@ class CartController extends Controller
         if ($request->session()->has('cart')) {
             $request->session()->forget('cart');
         }
-        return redirect('/');
+        return view('fe.view_cart');
     }
 
     public function updateCart(Request $request)
@@ -64,7 +64,7 @@ class CartController extends Controller
         $newCart = new Cart($oldCart);
         $newCart->updateCartDetail($request->id, $request->quantity);
         session()->put('cart', $newCart);
-        return view('fe.view_cart');;
+        return view('fe.view_cart');
     }
 
     public function checkout()
