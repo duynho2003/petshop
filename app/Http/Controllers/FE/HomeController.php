@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\CartItem;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -23,26 +25,22 @@ class HomeController extends Controller
         return view("fe.dog");
     }
 
-    public function shop() 
+    public function shop(Request $request)
     {
-        $max_price = Product::max('normal_price');
-        $max_price_range = $max_price + 10000000;
-        $min_price = Product::min('normal_price');
-        $min_price_range = $min_price - $min_price;
-        $categories = Category::where("active", 1)->get();
-        $prods = Product::where('category_id', 1)->get();
-        return view('fe.shop', compact('categories','prods','max_price','min_price','max_price_range','min_price_range'));
-    }
+        if (isset($request->t)) {
+            $prods = Product::where('category_id', 1)
+                ->where('type_id', $request->t)
+                ->where('active', 1)
+                ->get();
+        } else {
+            $prods = Product::where('category_id', 1)
+                ->where('active', 1)
+                ->get();
+        }
 
-    public function adoption()
-    {
-        $prods = Product::where('category_id', 1)->get();
-        return view('fe.adoption', compact('prods'));
-    }
+        $types = Type::all();
 
-    public function out_adoption(Request $request)
-    {
-        return view('fe.out-adoption');
+        return view('fe.shop', compact('prods', 'types'));
     }
 
     public function contact() 
@@ -116,6 +114,7 @@ class HomeController extends Controller
         }
     }
 
+    
 
     public function search(Request $request) {
         
@@ -149,4 +148,29 @@ class HomeController extends Controller
         }
         return view('fe.search', compact('products'));
     }
+
+    public function adoption()
+    {
+        $prods = Product::where('category_id', 2)->get();
+        return view('fe.adoption', compact('prods'));
+    }
+
+
+    public function out_adoption($email)
+    {
+        // Validate the email address
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // Invalid email address format
+            return redirect()->back()->with('error', 'Invalid email address');
+        }
+
+        // Send email to the user
+        Mail::send('fe.mail-adoption', [], function ($message) use ($email) {
+            $message->to($email);
+            $message->subject('Email Verification Mail');
+        });
+
+        return view('fe.out-adoption');
+    }
+
 }
