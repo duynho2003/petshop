@@ -28,6 +28,17 @@
     <link rel="stylesheet" href="{{ asset('/fe/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/fe/css/cart.css') }}">
 
+    <style>
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        
+        
+    </style>
+
 </head>
 
 <body>
@@ -82,14 +93,9 @@
                             <div class="widget">
                                 <h4 class="sidebar-title">Category</h4>
                                 <div class="shop-cat-list">
-                                    <ul>
-                                        <li><a href="{{ route('shop') }}">All <span>+</span></a></li>
-                                        <li><a href="shop.html">Dog Food <span>+</span></a></li>
-                                        <li><a href="shop.html">Dog-Kit <span>+</span></a></li>
-                                        <li><a href="shop.html">Dog Home <span>+</span></a></li>
-                                        <li><a href="shop.html">Safety-Suits <span>+</span></a></li>
-                                        <li><a href="shop.html">Pet Protect <span>+</span></a></li>
-                                    </ul>
+                                    @foreach ($types as $type)
+                                    <li><a href="{{ Route('shop').'?t='.$type->id }}">{{ $type->name }} <span>+</span></a></li>
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="widget">
@@ -146,9 +152,10 @@
                                 </div>
                             </div>
                             <!-- View Product -->
-                            @foreach ($prods as $product)
-                            <div class="product-grid">
-                                <div class="col-lg-4 col-sm-6">
+
+                            <div class="product-container">
+                                @foreach ($prods as $product)
+                                <div class="col-lg-4 col-md-6">
                                     <div class="shop-item mb-55">
                                         <div class="shop-thumb">
                                             <a href="{{ Route('productDetails', $product->slug) }}"><img src="{{ asset('/images/' . $product->image) }}" alt=""></a>
@@ -166,9 +173,10 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 @endforeach
 
-                                <div class="shop-page-meta">
+                                <!-- <div class="shop-page-meta">
                                     <div class="shop-grid-menu">
                                         <ul>
                                             <li class="active"><a href="#"><i class="fas fa-th"></i></a></li>
@@ -197,7 +205,7 @@
                                             <li><a href="shop.html"><i class="fas fa-angle-double-right"></i></a></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
