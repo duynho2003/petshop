@@ -46,15 +46,16 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{$user->id}}</td>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->first_name}} {{$user->last_name}} </td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td class="parent">
+                                        
                                         <a href="{{ route('user.show', $user->id) }}">
-                                            <button type="button" class="btn btn-social-icon btn-info"><i class="ti-info"></i></button>
+                                        <button class="btn btn-social-icon btn-info"><i class="fas fa-info"></i></button>
                                         </a>
 
-                                        @if ($user->status == 0)
+                                        <!-- @if ($user->status == 0)
                                             <a href="{{ route('user.status', $user->id) }}">
                                                 <button type="button" class="btn btn-social-icon btn-success"><i class="ti-unlock"></i></button>
                                             </a>
@@ -62,11 +63,11 @@
                                             <a href="{{ route('user.status', $user->id) }}">
                                                 <button type="button" class="btn btn-social-icon btn-danger"><i class="ti-lock"></i></button>
                                             </a>
-                                        @endif
+                                        @endif -->
                                         
-                                        <a href="" data-url="{{ route('user.destroy', $user->id) }}" class="active_delete">
+                                        <!-- <a href="" data-url="{{ route('user.destroy', $user->id) }}" class="active_delete">
                                             <button type="button" class="btn btn-social-icon btn-danger"><i class="ti-trash"></i></button>
-                                        </a>
+                                        </a> -->
                                     </td>
                                 </tr>
                             @endforeach
