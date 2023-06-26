@@ -12,7 +12,9 @@
                                     <li><a href="{{ Route('home') }}">Home</a></li>
                                     <!-- <li><a href="{{ Route('doglist') }}">Dog List</a></li> -->
                                     <li><a href="{{ Route('shop') }}">Shop</a></li>
+                                    @if (auth()->check())
                                     <li><a href="{{ Route('adoption') }}">Adoption</a></li>
+                                    @endif
                                     <li><a href="{{ Route('contact') }}">Contacts</a></li>
                                     <!-- My Account -->
                                     @if (auth()->check())

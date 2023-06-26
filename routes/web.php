@@ -34,6 +34,12 @@ Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
             Route::post('/search', [HomeController::class, 'search'])->name('customer.search'); 
 
 
+// adoption
+Route::get('/adoption', [HomeController::class, 'adoption'])->name('adoption');
+
+Route::get('/out-adoption/{email}', [HomeController::class, 'out_adoption'])->name('out-adoption');
+
+
 // xu li phan loai render product view
 Route::get('/category-dog-food', [RenderProductCategoryController::class, 'categorydogfood'])->name('dogfood');
 

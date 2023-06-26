@@ -194,7 +194,8 @@
                         <div class="adoption-shop-thumb">
                             <img src="{{ asset('/images/' . $product->image) }}" alt="" width="460px" height="160px">
 
-                            <a href="{{ Route ('out-adoption',['id' => $product->id]) }}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                            <a href="{{ route('out-adoption', ['email' => Auth::user()->email]) }}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+
                         </div>
                         <div class="adoption-shop-content">
                             <h4 class="title"><a href="shop-details.html">{{ $product->name }}</a></h4>
