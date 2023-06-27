@@ -29,7 +29,7 @@
                                             @if(Auth::check())
                                             <li><a href=" {{ route('edit_user', ['id' => Auth::user()->id]) }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Edit Information</a></li>
                                             @endif
-
+                                            <li><a href="{{ route('myOrders') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Purchased History</a></li>
                                             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
                                         </ul>
                                     </li>

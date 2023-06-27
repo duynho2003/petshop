@@ -79,6 +79,8 @@ Route::middleware('admin.auth')->group(function() {
 
     // Order
     Route::get('order/status-all', [AdminOrderController::class, 'statusAll'])->name('order.statusAll');
+    Route::get('order/status-shipping', [AdminOrderController::class, 'statusShipping'])->name('order.statusShipping');
+    Route::get('order/status-process', [AdminOrderController::class, 'statusProcess'])->name('order.statusProcess');
     Route::post('order/search', [AdminOrderController::class, 'search'])->name('order.search');
     Route::get('order/{order}/status', [AdminOrderController::class, 'status'])->name('order.status');
     Route::resource('order', AdminOrderController::class)->only(['index','show']);
