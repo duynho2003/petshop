@@ -154,7 +154,8 @@ class HomeController extends Controller
 
     public function adoption()
     {
-        $prods = Product::where('category_id', 2)->get();
+        $prods = Product::where('category_id', 2)->where('active', 1)
+            ->get();
         return view('fe.adoption', compact('prods'));
     }
 
@@ -175,13 +176,26 @@ class HomeController extends Controller
         return view('fe.out-adoption');
     }
 
-    public function myOrders()
+    public function myOrders($id)
     {
-        $orders = Order::where("active", 1)->paginate(5);
-        $items = DB::table('order_products')
+        $orders = Order::where('user_id', $id)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        return view('fe.order.orders', compact('orders'));
+    }
+    
+    public function showOrder($id)
+    {
+        $order = Order::find($id);
+        if (!$order) {
+            // Xử lý khi không tìm thấy đơn hàng
+        }
+        // Lấy thông tin sản phẩm đã mua trong đơn hàng
+        $orderItems = DB::table('order_products')
             ->join('products', 'order_products.product_id', '=', 'products.id')
             ->select('order_products.quantity', 'order_products.order_id', 'products.name', 'products.promotion_price')
+            ->where('order_id', $id)
             ->get();
-        return view("fe.order.orders", compact('orders', 'items'));
+        return view('fe.order.order_detail', compact('order', 'orderItems'));
     }
 }

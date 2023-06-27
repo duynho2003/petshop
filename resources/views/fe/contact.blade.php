@@ -61,33 +61,10 @@
             <div class="container">
                 <div class="container-inner-wrap">
                     <div class="row justify-content-center justify-content-lg-between">
-                        <div class="col-lg-6 col-md-8 order-2 order-lg-0">
-                            <div class="contact-title mb-20">
-                                <h5 class="sub-title">Contact Us</h5>
-                                <h2 class="title">Let's Talk Question<span>.</span></h2>
-                            </div>
-                            <div class="contact-wrap-content">
-                                <form action="#" class="contact-form">
-                                    <div class="form-grp">
-                                        <label for="name">Your Name <span>*</span></label>
-                                        <input type="text" id="name" placeholder="Jon Deo...">
-                                    </div>
-                                    <div class="form-grp">
-                                        <label for="email">Your Email <span>*</span></label>
-                                        <input type="text" id="email" placeholder="info.example@.com">
-                                    </div>
-                                    <div class="form-grp">
-                                        <label for="message">Your Message <span>*</span></label>
-                                        <textarea name="message" id="message" placeholder="Opinion..."></textarea>
-                                    </div>
-                                    <div class="form-grp checkbox-grp">
-                                        <input type="checkbox" id="checkbox">
-                                        <label for="checkbox">Don’t show your email address</label>
-                                    </div>
-                                    <button type="button" class="btn rounded-btn">Send Now</button>
-                                </form>
-                            </div>
+                        <div id="map" style="width:500px;height:500px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d489.9152215904311!2d106.66572627386384!3d10.786648897343117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752edac37c5025%3A0xd5fab66e51e1049d!2sFPT%20Arena%20Multimedia!5e0!3m2!1svi!2s!4v1687840644496!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
+
                         <div class="col-xl-5 col-lg-6 col-md-8">
                             <div class="contact-info-wrap">
                                 <div class="contact-img">
@@ -117,7 +94,7 @@
                                 </div>
                                 <div class="contact-social">
                                     <ul>
-                                    <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></li>
                                         <li><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
                                     </ul>

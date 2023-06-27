@@ -136,18 +136,19 @@
             
             <div class="col-md-8">
                 @foreach(session('cart') as $id => $details)
-                @php $total += $details['normal_price'] * $details['quantity'] @endphp
+                @php $total += $details['promotion_price'] * $details['quantity'] @endphp
                 <div class="product-details mr-2">
                     <div class="d-flex justify-content-between">
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                         <div class="d-flex flex-row"><img src="" width="50">
+                           
                             <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['name'] }}</span></div>
                         </div>
                         <input type="number" value="{{ $details['quantity'] }}" required data-pid="{{ $id }}" class="input-quantity"/>
                         <!-- <div class="d-flex flex-row align-items-center"><input type="number" value="{{ $details['quantity'] }}" class="d-block"/>
                         </div> -->
-                        <span class="d-block ml-5 font-weight-bold">{{ $details['normal_price'] }} USD</span>
+                        <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['promotion_price'] }}</span></div>
                         <div class="del-icon">
                             <a href="#" data-id="{{ $id }}"><i class="far fa-trash-alt"></i></a>
                         </div>

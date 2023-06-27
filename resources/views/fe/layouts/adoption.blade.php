@@ -194,7 +194,11 @@
                         <div class="adoption-shop-thumb">
                             <img src="{{ asset('/images/' . $product->image) }}" alt="" width="460px" height="160px">
 
+                            @if (auth()->check())
                             <a href="{{ route('out-adoption', ['email' => Auth::user()->email]) }}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                            @else
+                            <a href="{{ route('login')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                            @endif
 
                         </div>
                         <div class="adoption-shop-content">

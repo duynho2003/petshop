@@ -83,12 +83,12 @@
                     <div class="col-lg-3 col-md-8 order-2 order-lg-0">
                         <aside class="shop-sidebar">
                             <div class="widget">
-                                <div class="sidebar-search">
+                                <!-- <div class="sidebar-search">
                                     <form action="#">
                                         <input type="text" placeholder="Search ...">
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="widget">
                                 <h4 class="sidebar-title">Category</h4>
@@ -98,7 +98,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="widget">
+                            <!-- <div class="widget">
                                 <h4 class="sidebar-title">Filter by Price</h4>
                                 <div class="price_filter">
                                     <div id="slider-range"></div>
@@ -108,7 +108,7 @@
                                         <input type="submit" class="btn" value="Filter">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="widget shop-widget-banner">
                                 <a href="shop.html"><img src="{{ asset ('/fe/img/product/shop_add.jpg')}}" alt=""></a>
                             </div>
@@ -116,41 +116,7 @@
                     </div>
                     <div class="col-lg-9">
                         <div class="shop-wrap">
-                            <h4 class="title">Shop</h4>
-                            <div class="shop-page-meta mb-30">
-                                <div class="shop-grid-menu">
-                                    <ul>
-                                        <li class="active"><a href="#"><i class="fas fa-th"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-list"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="shop-showing-result">
-                                    <p>Total Items 1-12 of 13</p>
-                                </div>
-                                <div class="shop-show-list">
-                                    <form action="#">
-                                        <label for="show">Show</label>
-                                        <select id="show" class="selected">
-                                            <option value="">08</option>
-                                            <option value="">12</option>
-                                            <option value="">16</option>
-                                            <option value="">18</option>
-                                            <option value="">20</option>
-                                        </select>
-                                    </form>
-                                </div>
-                                <div class="shop-short-by">
-                                    <form action="#">
-                                        <label for="shortBy">Sort By</label>
-                                        <select id="shortBy" class="selected">
-                                            <option value="">Sort by latest</option>
-                                            <option value="">Low to high</option>
-                                            <option value="">High to low</option>
-                                            <option value="">Popularity</option>
-                                        </select>
-                                    </form>
-                                </div>
-                            </div>
+                           
                             <!-- View Product -->
 
                             <div class="product-container">

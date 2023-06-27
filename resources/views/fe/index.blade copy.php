@@ -130,7 +130,7 @@
                         <div class="adoption-content">
                             <h2 class="title">Working For <br> Dog <span>Adoption</span> Free, Happy Time</h2>
                             <p>Adopting dogs is giving them a new life.</p>
-                            <a href="{{ Route ('adoption') }}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                            <a href="adoption.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>
@@ -161,10 +161,10 @@
                         <div class="adoption-shop-item">
                             <div class="adoption-shop-thumb">
                                 <img src="{{ asset('fe/img/product/adoption_shop_thumb01.jpg') }}" alt="">
-                                <a href="{{Route('adoption')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                                <a href="shop-details.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                             </div>
                             <div class="adoption-shop-content">
-                                <h4 class="title"><a href="{{Route('adoption')}}">Mister Tartosh</a></h4>
+                                <h4 class="title"><a href="shop-details.html">Mister Tartosh</a></h4>
                                 <div class="adoption-meta">
                                     <ul>
                                         <li><i class="fas fa-cog"></i><a href="#">Siberian Husky</a></li>
@@ -190,10 +190,10 @@
                         <div class="adoption-shop-item">
                             <div class="adoption-shop-thumb">
                                 <img src="{{ asset('fe/img/product/adoption_shop_thumb02.jpg') }}" alt="">
-                                <a href="{{Route('adoption')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                                <a href="shop-details.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                             </div>
                             <div class="adoption-shop-content">
-                                <h4 class="title"><a href="{{Route('adoption')}}">Charlie</a></h4>
+                                <h4 class="title"><a href="shop-details.html">Charlie</a></h4>
                                 <div class="adoption-meta">
                                     <ul>
                                         <li><i class="fas fa-cog"></i><a href="#">Golden Retriever</a></li>
@@ -219,10 +219,10 @@
                         <div class="adoption-shop-item">
                             <div class="adoption-shop-thumb">
                                 <img src="{{ asset('fe/img/product/adoption_shop_thumb03.jpg') }}" alt="">
-                                <a href="{{Route('adoption')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                                <a href="shop-details.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                             </div>
                             <div class="adoption-shop-content">
-                                <h4 class="title"><a href="{{Route('adoption')}}">Alessia Max</a></h4>
+                                <h4 class="title"><a href="shop-details.html">Alessia Max</a></h4>
                                 <div class="adoption-meta">
                                     <ul>
                                         <li><i class="fas fa-cog"></i><a href="#">German Sherped</a></li>
@@ -248,10 +248,10 @@
                         <div class="adoption-shop-item">
                             <div class="adoption-shop-thumb">
                                 <img src="{{ asset('fe/img/product/adoption_shop_thumb04.jpg') }}" alt="">
-                                <a href="{{Route('adoption')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                                <a href="shop-details.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                             </div>
                             <div class="adoption-shop-content">
-                                <h4 class="title"><a href="{{Route('adoption')}}">Canadian</a></h4>
+                                <h4 class="title"><a href="shop-details.html">Canadian</a></h4>
                                 <div class="adoption-meta">
                                     <ul>
                                         <li><i class="fas fa-cog"></i><a href="#">German Sherped</a></li>
@@ -277,10 +277,10 @@
                         <div class="adoption-shop-item">
                             <div class="adoption-shop-thumb">
                                 <img src="{{ asset('fe/img/product/adoption_shop_thumb05.jpg') }}" alt="">
-                                <a href="{{Route('adoption')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                                <a href="shop-details.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                             </div>
                             <div class="adoption-shop-content">
-                                <h4 class="title"><a href="{{Route('adoption')}}">Entertainment</a></h4>
+                                <h4 class="title"><a href="shop-details.html">Entertainment</a></h4>
                                 <div class="adoption-meta">
                                     <ul>
                                         <li><i class="fas fa-cog"></i><a href="#">Siberian Husky</a></li>
@@ -306,10 +306,10 @@
                         <div class="adoption-shop-item">
                             <div class="adoption-shop-thumb">
                                 <img src="{{ asset ('fe/img/product/adoption_shop_thumb06.jpg') }}" alt="">
-                                <a href="{{Route('adoption')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                                <a href="shop-details.html" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
                             </div>
                             <div class="adoption-shop-content">
-                                <h4 class="title"><a href="{{Route('adoption')}}">Dangerous</a></h4>
+                                <h4 class="title"><a href="shop-details.html">Dangerous</a></h4>
                                 <div class="adoption-meta">
                                     <ul>
                                         <li><i class="fas fa-cog"></i><a href="#">Golden Retriever</a></li>

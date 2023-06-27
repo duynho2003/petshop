@@ -71,7 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
 });
 Route::get('/myOrders', [HomeController::class, 'myOrders'])->name('myOrders');
-
+Route::get('/my-orders/{id}', [HomeController::class,'myOrders'])->name('myOrders');
+Route::get('/order/{id}', [HomeController::class, 'showOrder'])->name('showOrder');
 // Cart
 Route::get('/view-cart', [CartController::class, 'cart'])->name('customer.cart'); 
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart'); 

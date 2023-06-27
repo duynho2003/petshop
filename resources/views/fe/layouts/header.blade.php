@@ -12,9 +12,14 @@
                                     <li><a href="{{ Route('home') }}">Home</a></li>
                                     <!-- <li><a href="{{ Route('doglist') }}">Dog List</a></li> -->
                                     <li><a href="{{ Route('shop') }}">Shop</a></li>
+
                                     @if (auth()->check())
                                     <li><a href="{{ Route('adoption') }}">Adoption</a></li>
+                                    @else 
+                                    <li><a href="{{ Route('login') }}">Adoption</a></li>
+
                                     @endif
+
                                     <li><a href="{{ Route('contact') }}">Contacts</a></li>
                                     <!-- My Account -->
                                     @if (auth()->check())
@@ -29,7 +34,9 @@
                                             @if(Auth::check())
                                             <li><a href=" {{ route('edit_user', ['id' => Auth::user()->id]) }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Edit Information</a></li>
                                             @endif
-                                            <li><a href="{{ route('myOrders') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Purchased History</a></li>
+
+                                            <li><a href="{{ route('myOrders', ['id' => auth()->user()->id]) }}"><i class="fa fa-sign-out" aria-hidden="true"></i>History</a></li>
+
                                             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
                                         </ul>
                                     </li>
@@ -59,17 +66,17 @@
                                                 <div class="cart-content">
                                                     @php $total = 0 @endphp
                                                     @foreach((array) session('cart') as $id => $details)
-                                                    @php $total += $details['normal_price'] * $details['quantity']@endphp
+                                                    
                                                     @endforeach
                                                     <!-- kiem tra neu co gio hang ko -->
                                                     @if(session('cart'))
                                                     @foreach(session('cart') as $id => $details)
                                                     <div class="cart-img">
-                                                        <img src="{{ asset('img') }}/{{ $details['image'] }}">
+                                                        <img src="{{ asset('')}}">
                                                     </div>
                                                     <h4>{{ $details['name'] }}</h4>
                                                     <div class="cart-price">
-                                                        <span class="new">{{ $details['normal_price'] }} đ</span>
+                                                        
                                                         <span class="count"> Quantity: {{ $details['quantity'] }}</span>
                                                         <!-- <span><del>$229.9</del></span> -->
                                                     </div>

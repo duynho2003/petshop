@@ -1,41 +1,19 @@
-@extends('be.layouts.master')
+<!doctype html>
+<html class="no-js" lang="en">
 
-@section('title')
-Pet Order Detail Admin
-@endsection
+<head>
+    <!-- Các thẻ meta, title và các file CSS -->
+</head>
 
-@section('css')
-<link rel="stylesheet" href="{{ asset('assetBE/assets/order/index.css') }}">
-<link rel="stylesheet" href="{{ asset('assetBE/assets/main.css') }}">
-@endsection
-
-
-@section('js')
-<script src="{{ asset('assetBE/assets/main.js') }}"></script>
-<script src="{{ asset('assetBE/assets/vendors/sweetalert2/sweetalert2@11.js') }}"></script>
-@endsection
-
-@section('content')
-<div id="content-wrapper" class="content-wrapper card">
-    @include('be.layouts.header')
-    <div class="col-lg-12 grid-margin stretch-card">
+<body>
+    @include('fe.layouts.loadscroll')
+    @include('fe.layouts.header')
+    <main>
+  
+        <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Detail Order</h4>
-
-                <div style="text-align: end">
-                    @if ($order->status == "process")
-                    <a href="{{ route('order.status', $order->id) }}">
-                        <button type="button" class="btn btn-danger">Hàng đang được chuẩn bị</i></button>
-                    </a>
-
-                    @elseif ($order->status == "shipping")
-                    <a href="" style="display: none">
-                        <button type="button" class="btn btn-success">Hàng đang được giao</i></button>
-                    </a>
-                    @endif
-                </div>
-
                 <div style="display: flex">
                     <div class="table-responsive pt-3 col-md-5">
                         <h4>Information Customer</h4>
@@ -56,11 +34,11 @@ Pet Order Detail Admin
                                 <th>Address</th>
                                 <td>{{$order->address}}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th>Phương thức thanh toán</th>
                                 <td>{{$order->payment == 0 ? "Thanh toán bằng ví điện tử":"Thanh toán khi nhận hàng"}}</td>
-                            </tr>
-                            <tr>
+                            </tr> -->
+                            <!-- <tr>
                                 <th>Status</th>
                                 @switch($order->status)
                                 @case("process")
@@ -86,7 +64,7 @@ Pet Order Detail Admin
                                 @default
                                 @endswitch
 
-                            </tr>
+                            </tr> -->
                         </table>
                     </div>
                     <div class="table-responsive pt-3 col-md-7">
@@ -100,17 +78,20 @@ Pet Order Detail Admin
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($productItem as $item)
+                            @foreach ($orderItems as $item)
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->quantity}}</td>
-                                    <td>{{number_format($item->promotion_price)}} VNĐ</td>
+                                    <td>{{number_format($item->promotion_price)}} USD</td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                         <table class="table table-hover table-striped table-bordered margin_top">
-                          
+                            <tr>
+                                <th>Total Quantity</th>
+                                <td class="text_align_right">{{$order->quantity}}</td>
+                            </tr>
                             <tr>
                                 <th>Total Price</th>
                                 <td class="text_align_right">{{number_format($order->total)}} VNĐ</td>
@@ -122,5 +103,8 @@ Pet Order Detail Admin
         </div>
     </div>
 
-</div>
-@endsection
+    </main>
+    <!-- footer và các script -->
+</body>
+
+</html>
