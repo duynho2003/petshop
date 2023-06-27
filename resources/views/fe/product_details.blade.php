@@ -150,10 +150,11 @@
                                         <span>( 01 Review )</span>
                                     </div>
                                     <div class="shop-details-price">
-                                        <h2 class="price">{{number_format($product->promotion_price)}} VNĐ</h2>
+                                        <h2 class="price">{{number_format($product->promotion_price)}} USD</h2>
                                         <h5 class="stock-status">- IN Stock</h5>
                                     </div>
                                     <p>The domestic dog is a doiated dendant of the wolf. The dog derived from an ancient, extinct wolf, and the modern grey wolf is the dog's nearest living relative.</p>
+                                    {{--
                                     <div class="shop-details-dimension">
                                         <span>Dimension :</span>
                                         <ul>
@@ -162,6 +163,7 @@
                                             <li><a href="#">Small</a></li>
                                         </ul>
                                     </div>
+                                    --}}
                                     <div class="shop-details-color">
                                         {{-- <span>Color :</span>
                                         <ul>
@@ -184,13 +186,13 @@
                                         <ul>
                                             <li class="sd-category">
                                                 <span class="title">Categories :</span>
-                                                <a href="shop.html">Hand,</a>
-                                                <a href="shop.html">Sanitizer,</a>
-                                                <a href="shop.html">Covid - 19</a>
+                                                <a href="#">Hand,</a>
+                                                <a href="#">Sanitizer,</a>
+                                                <a href="#">Covid - 19</a>
                                             </li>
                                             <li class="sd-sku">
                                                 <span class="title">SKU :</span>
-                                                <a href="shop.html">H#21546</a>
+                                                <a href="#">H#21546</a>
                                             </li>
                                             <li class="sd-share">
                                                 <span class="title">Share Now :</span>
@@ -216,10 +218,12 @@
                                         <a class="nav-link" id="val-tab" data-toggle="tab" href="#val" role="tab" aria-controls="val"
                                             aria-selected="false">Information</a>
                                     </li>
+                                    {{--
                                     <li class="nav-item">
                                         <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
                                             aria-controls="review" aria-selected="false">Reviews (0)</a>
                                     </li>
+                                    --}}
                                 </ul>
                                 <div class="tab-content" id="myTabContentTwo">
                                     <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
@@ -251,6 +255,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {{--
                                     <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                         <div class="product-desc-review">
                                             <div class="review-title mb-20">
@@ -264,6 +269,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    --}}
                                 </div>
                             </div>
                         </div>
