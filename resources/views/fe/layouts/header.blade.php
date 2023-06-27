@@ -60,46 +60,6 @@
                                 <ul>
                                     {{-- <li class="header-search"><a href="#"><i class="flaticon-search"></i></a></li> --}}
                                     <li class="header-shop-cart"><a href="{{ route('customer.cart') }}"><i class="flaticon-shopping-bag"></i><span>{{ count((array) session('cart')) }}</span></a>
-                                        <ul class="minicart">
-                                            <li class="d-flex align-items-start">
-
-                                                <div class="cart-content">
-                                                    @php $total = 0 @endphp
-                                                    @foreach((array) session('cart') as $id => $details)
-                                                    
-                                                    @endforeach
-                                                    <!-- kiem tra neu co gio hang ko -->
-                                                    @if(session('cart'))
-                                                    @foreach(session('cart') as $id => $details)
-                                                    <div class="cart-img">
-                                                        <img src="{{ asset('')}}">
-                                                    </div>
-                                                    <h4>{{ $details['name'] }}</h4>
-                                                    <div class="cart-price">
-                                                        
-                                                        <span class="count"> Quantity: {{ $details['quantity'] }}</span>
-                                                        <!-- <span><del>$229.9</del></span> -->
-                                                    </div>
-                                                    <div class="del-icon">
-                                                        <a href="#" data-id="{{ $id }}"><i class="far fa-trash-alt"></i></a>
-                                                    </div>
-                                                    @endforeach
-                                                    @endif
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="total-price">
-                                                    <span class="f-left">Total:</span>
-                                                    <span class="f-right">{{ $total }} đ</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="checkout-link">
-                                                    <a href="{{ Route('customer.cart') }}">Shopping Cart</a>
-                                                    <a class="black-color" href="#">Checkout</a>
-                                                </div>
-                                            </li>
-                                        </ul>
                                     </li>
                                     <li class="header-btn"><a href="{{ Route('adoption')}}" class="btn">Adopt Here <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a></li>
                                 </ul>
@@ -136,26 +96,3 @@
 
 <!-- JS here -->
 @include('fe.layouts.master')
-
-<script type="text/javascript">
-    $(".del-icon a").click(function(e) {
-        e.preventDefault();
-
-        var ele = $(this);
-        let id = ele.data("id");
-
-        if (confirm("Do you really want to remove?")) {
-            $.ajax({
-                url: "{{ route('remove_from_cart') }}",
-                method: "DELETE",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    id: id
-                },
-                success: function(response) {
-                    window.location.reload();
-                }
-            });
-        }
-    });
-</script>
