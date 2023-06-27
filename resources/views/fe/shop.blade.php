@@ -130,8 +130,8 @@
                                             <span>{{ $product->name }}</span>
                                             <h4 class="title"><a href="{{ Route('productDetails', $product->slug) }}">{{ $product->name }}</a></h4>
                                             <div class="shop-content-bottom">
-                                                <span class="price">{{number_format($product->promotion_price)}} VNĐ</span>
-                                                <p style="font-size: 12px; margin-left: 10px; color: #b5aec4; text-decoration: line-through;">{{number_format($product->normal_price)}} VNĐ</p>
+                                                <span class="price">{{number_format($product->promotion_price)}} USD</span>
+                                                <p style="font-size: 12px; margin-left: 10px; color: #b5aec4; text-decoration: line-through;">{{number_format($product->normal_price)}} USD</p>
                                                 @if (auth()->check())
                                                 <span class="add-cart"><a href="{{ route('add_to_cart', $product->id) }}">ADD +</a></span>
                                                 @endif
