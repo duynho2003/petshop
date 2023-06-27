@@ -145,18 +145,24 @@
                             <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['name'] }}</span></div>
                         </div>
                         <input type="number" value="{{ $details['quantity'] }}" required data-pid="{{ $id }}" class="input-quantity"/>
+                        <!-- <div class="d-flex flex-row align-items-center"><input type="number" value="{{ $details['quantity'] }}" class="d-block"/>
+                        </div> -->
                         <span class="d-block ml-5 font-weight-bold">{{ $details['normal_price'] }} USD</span>
                         <div class="del-icon">
                             <a href="#" data-id="{{ $id }}"><i class="far fa-trash-alt"></i></a>
                         </div>
+
                     </div>
+                    
                 </div>
                 @endforeach
                 <div class="continue__btn update__btn">
                     <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
                 </div>
+                
             </div>
 
+            
             <div class="col-md-4">
                 <form action="{{ Route('processCheckout')}}" id="theForm" method="post" class="checkout-form">
                     <input type="hidden" name="payment" />
@@ -226,6 +232,9 @@
 
         </div>
     </div>
+
+
+
 
     @else
     <div class="container mt-5 p-3 rounded cart">
