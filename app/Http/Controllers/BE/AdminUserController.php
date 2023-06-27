@@ -21,7 +21,7 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::where('active', 1)->paginate(5);
-        return view('be.components.user.index',compact('users'));
+        return view('be.components.user.index', compact('users'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AdminUserController extends Controller
      */
     public function show(User $user)
     {
-        return view('be.components.user.detail',compact('user'));
+        return view('be.components.user.detail', compact('user'));
     }
 
     /**
@@ -43,7 +43,7 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('be.components.user.edit',compact('user'));
+        return view('be.components.user.edit', compact('user'));
     }
 
     /**
@@ -63,7 +63,7 @@ class AdminUserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'gender' => $request->gender,
-                'address' =>$request->address,
+                'address' => $request->address,
                 'birthday' => $request->birthday,
             ];
 
@@ -72,12 +72,11 @@ class AdminUserController extends Controller
             //     $dataUserEdit['image_name'] = $dataUpLoadAvatar['image_name'];
             //     $dataUserEdit['avatar'] = $dataUpLoadAvatar['image_path'];
             // }
-            
+
             $user->update($dataUserEdit);
 
             DB::commit();
             return redirect()->route('user.show', $user->id);
-            
         } catch (\Exception $ex) {
             DB::rollBack();
             Log::error("Message: {$ex->getMessage()} --- Line: {$ex->getLine()} --- File: {$ex->getFile()}");
@@ -95,25 +94,34 @@ class AdminUserController extends Controller
         $this->TraitHideRecord($user);
     }
 
+    // public function status(User $user)
+    // {
+    //     $status ='';
+    //     if ($user->active == 0) {
+    //         $status = $user->update([
+    //             'active' => 1,
+    //         ]);
+    //     } else {
+    //         $status = $user->update([
+    //             'active' => 0,
+    //         ]);
+    //     }
+    //     if(!empty($status)) {
+    //         return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
+    //     }
+    //     return redirect()->route('user.index')->withErrors('Cập nhật trạng thái thất bại');
+    // }
+
     public function status(User $user)
     {
-        $status ='';
-        if ($user->status == 0) {
-            $status = $user->update([
-                'status' => 1,
-            ]);
-        } else {
-            $status = $user->update([
-                'status' => 0,
-            ]);
-        }
-        if(!empty($status)) {
-            return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
-        }
-        return redirect()->route('user.index')->withErrors('Cập nhật trạng thái thất bại');
+        $active = $user->active == 0 ? 1 : 0;
+        $user->update(['active' => $active]);
+
+        return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         // dd($request->search);
         if ($request->has('search')) {
             $users = User::search($request->search)->get();
