@@ -100,4 +100,4 @@ class AdminOrderController extends Controller
         }
         return redirect()->route('order.index');
     }
-}1
+}
