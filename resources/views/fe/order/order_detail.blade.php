@@ -94,7 +94,7 @@
                             </tr>
                             <tr>
                                 <th>Total Price</th>
-                                <td class="text_align_right">{{number_format($order->total)}} VNĐ</td>
+                                <td class="text_align_right">{{number_format($order->total)}} USD</td>
                             </tr>
                         </table>
                     </div>
