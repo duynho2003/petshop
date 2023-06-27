@@ -1,6 +1,4 @@
-<h1>CHÀO MỪNG BẠN ĐẾN VỚI CỬA HÀNG CỦA CHÚNG TÔI</h1>
-<p>Vui lòng đến cửa hàng để làm thủ tục đăng kí nhận nuôi</p>
-<p>Xin cám ơn</p>
-<p>Mọi thông tin xin liên hệ: 113</p>
-<p>Trân trọng,</p>
-<p>Petco</p>
+<h1>Chào mừng bạn đã đến với PetCo</h1>
+<p>Chúng tôi đã nhận được thông tin muốn nhạn nuôi chó từ trang web PetCo</p>
+<p>Để hoàn tất thủ tục và các khoản lệ phí vui lòng đến địa chỉ 590CMT8.</p>
+<p>Xin trân trọng cảm ơn !</p>

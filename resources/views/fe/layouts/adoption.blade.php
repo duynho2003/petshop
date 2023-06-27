@@ -202,11 +202,11 @@
 
                         </div>
                         <div class="adoption-shop-content">
-                            <h4 class="title"><a href="shop-details.html">{{ $product->name }}</a></h4>
+                            <h4 class="title"><a href="#">{{ $product->name }}</a></h4>
                             <div class="adoption-meta">
                                 <ul>
-                                    <li><i class="fas fa-cog"></i><a href="#">Golden Retriever</a></li>
-                                    <li><i class="far fa-calendar-alt"></i> Cost: <span style="text-decoration: line-through;">{{ $product->normal_price }}</span></li>
+                                    <li><i class="fas fa-cog"></i><a href="#">{{ $product->name }}</a></li>
+                                    <li><i class="far fa-calendar-alt"></i> Cost: <span style="text-decoration: line-through;">{{ $product->normal_price }} $</span></li>
 
                                 </ul>
                             </div>
@@ -219,7 +219,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </li>
-                                    <li class="price">Total Price : <span>{{ $product->promotion_price }}</span></li>
+                                    <li class="price">Total Price : <span>{{ $product->promotion_price }} $</span></li>
 
                                 </ul>
                             </div>
