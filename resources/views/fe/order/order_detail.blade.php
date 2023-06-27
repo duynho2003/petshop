@@ -88,10 +88,12 @@
                             </tbody>
                         </table>
                         <table class="table table-hover table-striped table-bordered margin_top">
+                            {{--
                             <tr>
                                 <th>Total Quantity</th>
                                 <td class="text_align_right">{{$order->quantity}}</td>
                             </tr>
+                            --}}
                             <tr>
                                 <th>Total Price</th>
                                 <td class="text_align_right">{{number_format($order->total)}} USD</td>
