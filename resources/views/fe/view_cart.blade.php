@@ -242,7 +242,7 @@
         <div class="table-responsive">
             <table class="table table-bordered m-0">
                 <div style="text-align: center; height: 150px;">
-                    <p style="font-size: 25px; font-weight: 600;">Không có gì trong giỏ hết =((</p>
+                    <p style="font-size: 25px; font-weight: 600;">Your cart is empty</p>
                     <div style="font-size: 18px; font-weight: 400;">
                         <i class="ti-hand-point-right"></i><a href="{{ Route('home') }}"> Back to shopping</a>
                     </div>
