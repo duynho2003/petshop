@@ -60,35 +60,44 @@ class AdminOrderController extends Controller
                 'status' => "shipping",
             ]);
         }
-        Mail::send('frontend.components.status.checkStatusMail', ['order_id' => $order->id], function ($message) use($order) {
-            $message->to($order->email);
-            $message->subject('Succeed Delivery Mail');
-        });
         return redirect()->back();
     }
 
-    public function checkStatusMail($order_id) {
-        $order = Order::find($order_id);
-        $order->update([
-            'status' => "success",
-        ]);
-        return view("frontend.components.status.statusSuccess");
-    }
+    // public function checkStatusMail($order_id) {
+    //     $order = Order::find($order_id);
+    //     $order->update([
+    //         'status' => "success",
+    //     ]);
+    //     return view("frontend.components.status.statusSuccess");
+    // }
 
     public function statusAll() {
+        $orders = Order::where("status","shipping")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "success",
+            ]);    
+        }
+        return redirect()->route('order.index');
+    }
+
+    public function statusShipping() {
         $orders = Order::where("status","process")->get();
         foreach ($orders as $order) {
             $order->update([
                 'status' => "shipping",
             ]);     
-            
-            Mail::send('frontend.components.status.checkStatusMail', ['order_id' => $order->id], function ($message) use($order) {
-                $message->to($order->email);
-                $message->subject('Succeed Delivery Mail');
-            });
-
         }
         return redirect()->route('order.index');
     }
 
+    public function statusProcess() {
+        $orders = Order::where("status")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "process",
+            ]);     
+        }
+        return redirect()->route('order.index');
+    }
 }
