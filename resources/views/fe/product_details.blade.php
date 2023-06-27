@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="shop-details-price">
                                         <h2 class="price">{{number_format($product->promotion_price)}} USD</h2>
-                                        <h5 class="stock-status">- IN Stock</h5>
+                                        <!-- <h5 class="stock-status">- IN Stock</h5> -->
                                     </div>
                                     <p>The domestic dog is a doiated dendant of the wolf. The dog derived from an ancient, extinct wolf, and the modern grey wolf is the dog's nearest living relative.</p>
                                     {{--
