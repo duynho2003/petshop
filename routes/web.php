@@ -75,9 +75,9 @@ Route::get('/myOrders', [HomeController::class, 'myOrders'])->name('myOrders');
 // Cart
 Route::get('/view-cart', [CartController::class, 'cart'])->name('customer.cart'); 
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart'); 
-Route::post('update-cart', [CartController::class, 'update'])->name('update_cart');
-Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
-Route::post('clear', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::post('/update-cart', [CartController::class, 'updateCart'])->name('update_cart');
+Route::delete('/remove-from-cart', [CartController::class, 'remove'])->name('remove_from_cart');
+Route::post('/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::post('/processCheckout', [CartController::class, 'processCheckout'])->name('processCheckout');
 
 // y/c cần phải login

@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -14,7 +15,8 @@ class CartController extends Controller
 {
     public function cart()
     {
-        return view('fe.view_cart');
+        $user = Auth::user();
+        return view('fe.view_cart', compact('user'));
     }
 
     public function addToCart($id)
@@ -23,6 +25,7 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
+        // mảng associate
         if (isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
@@ -58,26 +61,16 @@ class CartController extends Controller
         return view('fe.view_cart');
     }
 
-    public function update(Request $request)
+    public function updateCart(Request $request)
     {
-        if($request->id && $request->quantity){
-            $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart successfully updated!');
+        $pids = $request->pids;
+        $qties = $request->qties;
+        $cart = $request->session()->get('cart');
+        for ($i = 0; $i < count($pids); $i++) {
+            $cart[$pids[$i]]['quantity'] = $qties[$i];
         }
+        $request->session()->put('cart', $cart);    // lưu thay đổi
     }
-
-    // public function updateCart(Request $request)
-    // {
-    //     $pids = $request->pids;
-    //     $qties = $request->qties;
-    //     $cart = $request->session()->get('cart');
-    //     for ($i = 0; $i < count($pids); $i++) {
-    //         $cart[$pids[$i]]->quantity = $qties[$i];
-    //     }
-    //     $request->session()->put('cart', $cart);    // lưu thay đổi
-    // }
 
     public function checkout()
     {
@@ -87,32 +80,33 @@ class CartController extends Controller
 
     public function processCheckout(Request $request)
     {
-        // dd($request->email);
+        // dd($request->all());
         if (session()->has('cart')) {
             $cart = session()->get('cart');
             $order = Order::create([
-                'user_id' => $request->id,
+                'user_id' => $request->user_id,
                 'name' => $request->name,
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'address' => $request->address,
-                'payment' => $request->payment,
-                'quantity' => $cart->totalQuantity,
-                'total' => $cart->totalPrice,
+                'payment' => $request->payment == 'cart' ? 1 : 0,
+                //'quantity' => $cart['quantity'],
+                'total' =>  $request->total,
             ]);
 
             // lưu xuống orderProduct
             if (!empty($cart)) {
-                foreach ($cart->products as $key => $value) {
+                foreach ($cart as $key => $value) {
                     $order->products()->attach($key, ['quantity' => $value['quantity']]);
                 }
             }
 
+
             $name = $request->name;
             session()->forget('cart');
-            return view('fe.components.cart.confirmCheckout', compact('name'));
+            return redirect()->route('home');
         } else {
-            return redirect()->route('fe.view_cart');
+            return redirect()->route('home');
         }
     }
 }
