@@ -25,8 +25,14 @@ Pet Order Show Admin
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Show Order</h4>
+                <a href="{{ route('order.statusProcess') }}">
+                    <button type="button" class="btn btn-success">Process</i></button>
+                </a>
+                <a href="{{ route('order.statusShipping') }}">
+                    <button type="button" class="btn btn-success">Shipping</i></button>
+                </a>
                 <a href="{{ route('order.statusAll') }}">
-                    <button type="button" class="btn btn-success">Ship All</i></button>
+                    <button type="button" class="btn btn-success">Complete</i></button>
                 </a>
                 <form action="{{ route('order.search') }}" method="post" class="form_search_date">
                     @csrf
@@ -49,8 +55,8 @@ Pet Order Show Admin
                                 <th>Phone</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Create</th>
-                                <th>Action</th>
+                                <th>Order Date</th>
+                                <th>Detail</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +66,7 @@ Pet Order Show Admin
                                 <td>{{$order->name}}</td>
                                 <td>{{$order->phone}}</td>
                                 <td>{{number_format($order->total)}} VND</td>
+
                                 @switch($order->status)
                                 @case("process")
                                 <td>
@@ -84,11 +91,10 @@ Pet Order Show Admin
                                 @default
 
                                 @endswitch
-
                                 <td>{{($order->created_at)}}</td>
                                 <td class="parent">
                                     <a href="{{ route('order.show', $order->id) }}">
-                                        <button type="button" class="btn btn-social-icon btn-info"><i class="ti-info"></i></button>
+                                    <button class="btn btn-social-icon btn-info"><i class="fas fa-info"></i></button>
                                     </a>
                                 </td>
                             </tr>
