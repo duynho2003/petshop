@@ -28,20 +28,20 @@ class AdminProductRequest extends FormRequest
             'normal_price' => 'bail|required|max:1000000000',
             'promotion_price' => 'bail|required|max:1000000000',
             'description' => 'required',
-            'type_id' => 'required',
+            // 'type_id' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Tên không được để trống',
-            'normal_price.required' => 'Giá không được để trống',
-            'normal_price.max' => 'Giá phải nhỏ hơn 1,000,000,000',
-            'promotion_price.required' => 'Giá khuyến mãi không được để trống',
-            'promotion_price.max' => 'Giá phải nhỏ hơn 1,000,000,000',
-            'description.required' => 'Mô ta không được để trống',
-            'type_id.required' => 'Loại sản phẩm không được để trống',
+            'name.required' => 'Name is required',
+            'normal_price.required' => 'Price is required',
+            'normal_price.max' => 'Price must smaller than 1,000,000,000',
+            'promotion_price.required' => 'Promotion price required',
+            'promotion_price.max' => 'Price must smaller than 1,000,000,000',
+            'description.required' => 'Description required',
+            // 'type_id.required' => 'Loại sản phẩm required',
         ];
     }
 }

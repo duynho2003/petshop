@@ -46,16 +46,15 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <td>{{$user->id}}</td>
-                                    <td>{{$user->first_name}} {{$user->last_name}} </td>
+                                    <td>{{$user->first_name }} {{$user->last_name }}</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
                                     <td class="parent">
-                                        
                                         <a href="{{ route('user.show', $user->id) }}">
                                         <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
                                         </a>
 
-                                        <!-- @if ($user->status == 0)
+                                        @if ($user->active == 1)
                                             <a href="{{ route('user.status', $user->id) }}">
                                                 <button type="button" class="btn btn-social-icon btn-success"><i class="ti-unlock"></i></button>
                                             </a>
@@ -63,11 +62,11 @@
                                             <a href="{{ route('user.status', $user->id) }}">
                                                 <button type="button" class="btn btn-social-icon btn-danger"><i class="ti-lock"></i></button>
                                             </a>
-                                        @endif -->
+                                        @endif
                                         
-                                        <!-- <a href="" data-url="{{ route('user.destroy', $user->id) }}" class="active_delete">
-                                            <button type="button" class="btn btn-social-icon btn-danger"><i class="ti-trash"></i></button>
-                                        </a> -->
+                                        <a href="" data-url="{{ route('user.destroy', $user->id) }}" class="active_delete">
+                                        <button class="btn btn-danger btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

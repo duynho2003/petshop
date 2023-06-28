@@ -83,42 +83,37 @@ class AdminUserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+    // Xóa user vĩnh viễn
     public function destroy(User $user)
     {
-        $this->TraitHideRecord($user);
+        $this->TraitDeleteUser($user);
+    }
+
+    public function status(User $user)
+    {
+        $status ='';
+        if ($user->active == 0) {
+            $status = $user->update([
+                'active' => 1,
+            ]);
+        } else {
+            $status = $user->update([
+                'active' => 0,
+            ]);
+        }
+        if(!empty($status)) {
+            return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
+        }
+        return redirect()->route('user.index')->withErrors('Cập nhật trạng thái thất bại');
     }
 
     // public function status(User $user)
     // {
-    //     $status ='';
-    //     if ($user->active == 0) {
-    //         $status = $user->update([
-    //             'active' => 1,
-    //         ]);
-    //     } else {
-    //         $status = $user->update([
-    //             'active' => 0,
-    //         ]);
-    //     }
-    //     if(!empty($status)) {
-    //         return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
-    //     }
-    //     return redirect()->route('user.index')->withErrors('Cập nhật trạng thái thất bại');
+    //     $active = $user->active == 0 ? 1 : 0;
+    //     $user->update(['active' => $active]);
+
+    //     return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
     // }
-
-    public function status(User $user)
-    {
-        $active = $user->active == 0 ? 1 : 0;
-        $user->update(['active' => $active]);
-
-        return redirect()->route('user.index')->withSuccess('Cập nhật trạng thái thành công');
-    }
 
     public function search(Request $request)
     {
