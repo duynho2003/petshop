@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -115,6 +116,39 @@ class HomeController extends Controller
             // Redirect hoặc trả về response thành công
         }
     }
+
+    public function changePass($id, Request $request)
+    {
+        // Lấy thông tin người dùng dựa trên $id
+        $user = User::find($id);
+
+        // Kiểm tra xác thực người dùng
+        if (!auth()->check() || $user->id !== auth()->user()->id) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+
+        // Lấy các trường dữ liệu từ request
+        $currentPassword = $request->input('current_pass');
+        $newPassword = $request->input('new_pass');
+        $confirmPassword = $request->input('confirm_pass');
+
+        // Kiểm tra tính hợp lệ của mật khẩu hiện tại
+        if (!Hash::check($currentPassword, $user->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect');
+        }
+
+        // Kiểm tra mật khẩu mới và mật khẩu xác nhận
+        if ($newPassword !== $confirmPassword) {
+            return redirect()->back()->with('error', 'New password and confirm password do not match');
+        }
+
+        // Cập nhật mật khẩu mới cho người dùng
+        $user->password = Hash::make($newPassword);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password has been changed successfully');
+    }
+
 
 
     public function search(Request $request)
