@@ -53,7 +53,8 @@
                                         <a href="{{ route('user.show', $user->id) }}">
                                         <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
                                         </a>
-
+                                        
+                                        {{--
                                         @if ($user->active == 1)
                                             <a href="{{ route('user.status', $user->id) }}">
                                                 <button type="button" class="btn btn-social-icon btn-success"><i class="ti-unlock"></i></button>
@@ -63,7 +64,7 @@
                                                 <button type="button" class="btn btn-social-icon btn-danger"><i class="ti-lock"></i></button>
                                             </a>
                                         @endif
-                                        
+                                        --}}
                                         <a href="" data-url="{{ route('user.destroy', $user->id) }}" class="active_delete">
                                         <button class="btn btn-danger btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                         </a>

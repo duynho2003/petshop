@@ -1,18 +1,18 @@
 @extends('be.layouts.master')
 
 @section('title')
-    Pet User Show Admin 
+Pet User Show Admin
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assetBE/assets/user/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('assetBE/assets/main.css') }}">
+<link rel="stylesheet" href="{{ asset('assetBE/assets/user/index.css') }}">
+<link rel="stylesheet" href="{{ asset('assetBE/assets/main.css') }}">
 @endsection
 
 
 @section('js')
-    <script src="{{ asset('assetBE/assets/main.js') }}"></script>
-    <script src="{{ asset('assetBE/assets/vendors/sweetalert2/sweetalert2@11.js') }}"></script>
+<script src="{{ asset('assetBE/assets/main.js') }}"></script>
+<script src="{{ asset('assetBE/assets/vendors/sweetalert2/sweetalert2@11.js') }}"></script>
 @endsection
 
 @section('content')
@@ -21,14 +21,15 @@
     <div class="content-wrapper card">
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
-              <div class="card-body">
-                <h4 class="card-title">Detail User</h4>
-
+                <div class="card-body">
+                    <h4 class="card-title">Detail User</h4>
+                    {{--
                 <div class="form-group float_btn" >
                     <a href="{{ route('user.edit', $user->id) }}">
                     <button class="btn btn-icon btn-success"><i class="fas fa-pencil-alt"></i></button>
                     </a>
                 </div>
+                --}}
                 <div class="table-responsive pt-3">
                     <table class="table table-hover table-striped">
                         <tr>
@@ -54,15 +55,15 @@
                         <tr>
                             <th>Gender</th>
                             <td>{{($user->sex == 1) ? "Male":"Female"}}</td>
-                        </tr>   
+                        </tr>
                         <tr>
                             <th>Address</th>
                             <td>{{$user->address}}</td>
-                        </tr>                   
+                        </tr>
                     </table>
                 </div>
-              </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
