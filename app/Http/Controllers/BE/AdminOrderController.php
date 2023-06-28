@@ -59,9 +59,9 @@ class AdminOrderController extends Controller
 
     public function status(Order $order)
     {
-        if ($order->status === "process") {
+        if ($order->status === "Process") {
             $status = $order->update([
-                'status' => "shipping",
+                'status' => "Shipping",
             ]);
         }
         return redirect()->back();
@@ -77,10 +77,10 @@ class AdminOrderController extends Controller
     
     public function statusAll()
     {
-        $orders = Order::where("status", "shipping")->get();
+        $orders = Order::where("status", "Shipping")->get();
         foreach ($orders as $order) {
             $order->update([
-                'status' => "success",
+                'status' => "Completed",
             ]);
         }
         return redirect()->route('order.index');
@@ -88,10 +88,10 @@ class AdminOrderController extends Controller
 
     public function statusShipping()
     {
-        $orders = Order::where("status", "process")->get();
+        $orders = Order::where("status", "Process")->get();
         foreach ($orders as $order) {
             $order->update([
-                'status' => "shipping",
+                'status' => "Shipping",
             ]);
         }
         return redirect()->route('order.index');
@@ -102,32 +102,45 @@ class AdminOrderController extends Controller
         $orders = Order::where("status")->get();
         foreach ($orders as $order) {
             $order->update([
-                'status' => "process",
+                'status' => "Process",
             ]);
         }
         return redirect()->route('order.index');
     }
 
-    //cap nhat trang thai cho tung don hang
+    //Cập nhật trạng thái cho từng đơn hàng {id}
+
+    public function statusCancelByID($id)
+    {
+        $orders = Order::where("status", "Process", "Shipping")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "Cancelled",
+            ]);
+        }
+        return redirect()->route('order.index');
+    }
 
     public function statusShippingByID($id)
     {
-        $order = Order::findOrFail($id);
-    
-        $order->update([
-            'status' => 'shipping',
-        ]);
+        $orders = Order::where("status", "Process")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "Shipping",
+            ]);
+        }
     
         return redirect()->route('order.index');
     }
 
     public function statusCompleteByID($id)
     {
-        $order = Order::findOrFail($id);
-    
-        $order->update([
-            'status' => 'success',
-        ]);
+        $orders = Order::where("status", "Shipping")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "Completed",
+            ]);
+        }
     
         return redirect()->route('order.index');
     }

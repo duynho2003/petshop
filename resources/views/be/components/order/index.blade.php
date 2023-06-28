@@ -25,17 +25,17 @@ Pet Order Show Admin
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Show Order</h4>
-                
+
                 <a href="{{ route('order.statusProcess') }}">
-                    <button type="button" class="btn btn-success">Process</i></button>
+                    <button type="button" class="btn btn-icon btn-warning"><i class="fas fa-exclamation-circle"></i></button>
                 </a>
                 <a href="{{ route('order.statusShipping') }}">
-                    <button type="button" class="btn btn-success">Shipping</i></button>
+                    <button type="button" class="btn btn-icon btn-info"><i class="fas fa-truck"></i></button>
                 </a>
                 <a href="{{ route('order.statusAll') }}">
-                    <button type="button" class="btn btn-success">Complete</i></button>
+                <button class="btn btn-icon btn-success"><i class="fas fa-check"></i></button>
                 </a>
-                
+
                 <form action="{{ route('order.search') }}" method="post" class="form_search_date">
                     @csrf
                     <div class="justify-content-end d-flex margin_right">
@@ -70,28 +70,27 @@ Pet Order Show Admin
                                 <td>{{$order->phone}}</td>
                                 <td>{{number_format($order->total)}} USD</td>
                                 @switch($order->status)
-                                @case("process")
+                                @case("Process")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("shipping")
+                                @case("Shipping")
                                 <td>
                                     <label class="badge badge-info" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("success")
+                                @case("Completed")
                                 <td>
                                     <label class="badge badge-success" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("cancel")
+                                @case("Cancelled")
                                 <td>
                                     <label class="badge badge-danger" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
                                 @default
-
                                 @endswitch
                                 <td>{{($order->created_at)}}</td>
                                 <td class="parent">
@@ -100,6 +99,9 @@ Pet Order Show Admin
                                     </a>
                                 </td>
                                 <td>
+                                    <a href="{{ route('order.statusCancelByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i><b>X</b></button>
+                                    </a>
                                     <a href="{{ route('order.statusShippingByID', $order->id) }}">
                                         <button class="btn btn-icon btn-warning"><i class="fas fa-truck"></i></button>
                                     </a>

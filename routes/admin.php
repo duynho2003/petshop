@@ -91,7 +91,8 @@ Route::middleware('admin.auth')->group(function() {
     Route::resource('order', AdminOrderController::class)->only(['index','show']);
 
     //Order Process for {id}
-    Route::get('order/status-complete/{id}', [AdminOrderController::class, 'statusCompleteByID'])->name('order.statusCompleteByID');
+    Route::get('order/status-cancel/{id}', [AdminOrderController::class, 'statusCancelByID'])->name('order.statusCancelByID');
     Route::get('order/status-shipping/{id}', [AdminOrderController::class, 'statusShippingByID'])->name('order.statusShippingByID');
+    Route::get('order/status-complete/{id}', [AdminOrderController::class, 'statusCompleteByID'])->name('order.statusCompleteByID');
 
 });
