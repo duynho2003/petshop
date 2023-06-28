@@ -112,35 +112,30 @@ class AdminOrderController extends Controller
 
     public function statusCancelByID($id)
     {
-        $orders = Order::where("status", "Process", "Shipping")->get();
-        foreach ($orders as $order) {
+        $order = Order::findOrFail($id);
             $order->update([
                 'status' => "Cancelled",
             ]);
-        }
+
         return redirect()->route('order.index');
     }
 
     public function statusShippingByID($id)
     {
-        $orders = Order::where("status", "Process")->get();
-        foreach ($orders as $order) {
+        $order = Order::findOrFail($id);
             $order->update([
                 'status' => "Shipping",
             ]);
-        }
     
         return redirect()->route('order.index');
     }
 
     public function statusCompleteByID($id)
     {
-        $orders = Order::where("status", "Shipping")->get();
-        foreach ($orders as $order) {
+        $order = Order::findOrFail($id);
             $order->update([
                 'status' => "Completed",
             ]);
-        }
     
         return redirect()->route('order.index');
     }
