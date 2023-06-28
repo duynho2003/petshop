@@ -20,12 +20,12 @@ class HomeController extends Controller
     // suong 2
     public function index()
     {
-        return view('fe.index');
+        return view('fe.home.index');
     }
 
     public function doglist()
     {
-        return view("fe.dog");
+        return view("fe.home.dog");
     }
 
     public function shop(Request $request)
@@ -48,22 +48,22 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view("fe.contact");
+        return view("fe.home.contact");
     }
 
     public function blogdetails1()
     {
-        return view("fe.blogdetails1");
+        return view("fe.blog.blogdetails1");
     }
 
     public function blogdetails2()
     {
-        return view("fe.blogdetails2");
+        return view("fe.blog.blogdetails2");
     }
 
     public function blogdetails3()
     {
-        return view("fe.blogdetails3");
+        return view("fe.blog.blogdetails3");
     }
 
     public function productDetails($slug)
@@ -82,7 +82,7 @@ class HomeController extends Controller
         if ($loggedInUser->id == $id) {
             // Nếu khớp, thực hiện logic xử lý
             $user = User::find($id);
-            return view('fe.editUser', compact('user'));
+            return view('fe.auth.editUser', compact('user'));
             // ...
         }
     }
@@ -149,11 +149,8 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Password has been changed successfully');
     }
 
-
-
     public function search(Request $request)
     {
-
         if ($request->has('search')) {
             $products = null;
             switch ($request->type) {
@@ -183,14 +180,14 @@ class HomeController extends Controller
         } else {
             $products = Product::get();
         }
-        return view('fe.search', compact('products'));
+        return view('fe.home.search', compact('products'));
     }
 
     public function adoption()
     {
         $prods = Product::where('category_id', 2)->where('active', 1)
             ->get();
-        return view('fe.adoption', compact('prods'));
+        return view('fe.home.adoption', compact('prods'));
     }
 
     public function out_adoption($email)
@@ -207,7 +204,7 @@ class HomeController extends Controller
             $message->subject('Email Verification Mail');
         });
 
-        return view('fe.out-adoption');
+        return view('fe.home.out-adoption');
     }
 
     public function myOrders($id)
