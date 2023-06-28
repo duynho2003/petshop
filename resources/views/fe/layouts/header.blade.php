@@ -17,7 +17,6 @@
                                     <li><a href="{{ Route('adoption') }}">Adoption</a></li>
                                     @else 
                                     <li><a href="{{ Route('login') }}">Adoption</a></li>
-
                                     @endif
 
                                     <li><a href="{{ Route('contact') }}">Contacts</a></li>
@@ -32,12 +31,12 @@
                                         </a>
                                         <ul class="submenu">
                                             @if(Auth::check())
-                                            <li><a href=" {{ route('edit_user', ['id' => Auth::user()->id]) }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Edit Information</a></li>
+                                            <li><a href=" {{ route('edit_user', ['id' => Auth::user()->id]) }}"><i class="fas fa-user-circle" aria-hidden="true"></i> Edit Information</a></li>
                                             @endif
 
-                                            <li><a href="{{ route('myOrders', ['id' => auth()->user()->id]) }}"><i class="fa fa-sign-out" aria-hidden="true"></i>History</a></li>
+                                            <li><a href="{{ route('myOrders', ['id' => auth()->user()->id]) }}"><i class="fas fa-history" aria-hidden="true"></i> Purchase History</a></li>
 
-                                            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
+                                            <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></i>Logout</a></li>
                                         </ul>
                                     </li>
                                     @else
@@ -48,7 +47,7 @@
                                         </a>
                                         <ul class="submenu">
                                             <li><strong>Hello, please sign in your account.</strong></li>
-                                            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Sign In</a></li>
+                                            <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> Sign In</a></li>
                                             <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a></li>
                                         </ul>
                                     </li>
@@ -61,7 +60,11 @@
                                     {{-- <li class="header-search"><a href="#"><i class="flaticon-search"></i></a></li> --}}
                                     <li class="header-shop-cart"><a href="{{ route('customer.cart') }}"><i class="flaticon-shopping-bag"></i><span>{{ count((array) session('cart')) }}</span></a>
                                     </li>
+                                    @if (auth()->check())
                                     <li class="header-btn"><a href="{{ Route('adoption')}}" class="btn">Adopt Here <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a></li>
+                                    @else
+                                    <li class="header-btn"><a href="{{ Route('login')}}" class="btn">Adopt Here <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </nav>
