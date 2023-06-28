@@ -27,7 +27,7 @@ Pet Category Show Admin
                             <tr>
                                 <th>#</th>
                                 <th>Tên Danh Mục</th>
-                                <th>Action</th>
+                                {{--<th>Action</th>--}}
                             </tr>
                         </thead>
                         <tbody>
@@ -35,14 +35,18 @@ Pet Category Show Admin
                             <tr>
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
+                                
                                 <td class="parent">
+                                    {{--
                                     <a href="{{ route('category.edit', $category->id) }}">
                                     <button class="btn btn-icon btn-success"><i class="fas fa-pencil-alt"></i></button>
                                     </a>
                                     <a href="" data-url="{{ route('category.destroy', $category->id) }}" class="active_delete">
                                     <button class="btn btn-danger btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                     </a>
+                                    --}}
                                 </td>
+                                
                             </tr>
                             @endforeach
                         </tbody>
