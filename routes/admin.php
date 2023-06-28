@@ -35,8 +35,13 @@ Route::middleware('admin.auth')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
     // Setting Infor and change password
+    // Route::get('setting-info', [AdminInforController::class, 'getSetting'])->name('admin.getSetting');
+    // Route::post('setting-info', [AdminInforController::class, 'postSetting'])->name('admin.postSetting');
+
     Route::get('setting-info', [AdminInforController::class, 'getSetting'])->name('admin.getSetting');
-    Route::post('setting-info', [AdminInforController::class, 'postSetting'])->name('admin.postSetting');
+    Route::post('change-pass/{id}', [AdminInforController::class, 'changePass'])->name('admin.change-pass');
+
+    
 
     // Slider
     Route::resource('slider', AdminSliderController::class)->except(['destroy']);
@@ -84,5 +89,9 @@ Route::middleware('admin.auth')->group(function() {
     Route::post('order/search', [AdminOrderController::class, 'search'])->name('order.search');
     Route::get('order/{order}/status', [AdminOrderController::class, 'status'])->name('order.status');
     Route::resource('order', AdminOrderController::class)->only(['index','show']);
+
+    //Order Process for {id}
+    Route::get('order/status-complete/{id}', [AdminOrderController::class, 'statusCompleteByID'])->name('order.statusCompleteByID');
+    Route::get('order/status-shipping/{id}', [AdminOrderController::class, 'statusShippingByID'])->name('order.statusShippingByID');
 
 });
