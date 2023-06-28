@@ -53,7 +53,7 @@ Pet Product Create Admin
 
                     <div class="form-group">
                         <label>Normal Price</label>
-                        <input type="text" name="normal_price" class="form-control price-format @error('normal_price') is-invalid @enderror" value="{{old('normal_price')}}" placeholder="Normal price" autofocus>
+                        <input type="number" name="normal_price" class="form-control price-format @error('normal_price') is-invalid @enderror" value="{{old('normal_price')}}" placeholder="Normal price" autofocus min="1">
                         @error('normal_price')
                         <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
                             <div class="required_error">
@@ -65,7 +65,7 @@ Pet Product Create Admin
 
                     <div class="form-group">
                         <label>Promotion Price</label>
-                        <input type="text" name="promotion_price" class="form-control price-format @error('promotion_price') is-invalid @enderror" value="{{old('promotion_price')}}" placeholder="Promotion price" autofocus>
+                        <input type="number" name="promotion_price" class="form-control price-format @error('promotion_price') is-invalid @enderror" value="{{old('promotion_price')}}" placeholder="Promotion price" autofocus min="1">
                         @error('promotion_price')
                         <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
                             <div class="required_error">
@@ -92,7 +92,7 @@ Pet Product Create Admin
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control @error('description') is-invalid @enderror ckeditor" style="resize: none;" name="description" autofocus id="ckeditor1" rows="6" placeholder="Description">{{old('description')}}</textarea>
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror ckeditor" value="{{old('description')}}" placeholder="Description" autofocus>
                         @error('description')
                         <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
                             <div class="required_error">
