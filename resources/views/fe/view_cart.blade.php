@@ -26,16 +26,11 @@
     <link rel="stylesheet" href="{{ asset('/fe/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('/fe/css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('/fe/css/cart.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('/fe/css/clearcartbutton.css') }}">
     <style>
         .input-quantity {
             width: 50px;
         }
-
-        /* .paypal {
-            margin-top: -670px;
-            margin-left: 53px;
-        } */
 
         .checkout-form {
     max-width: 600px;
@@ -123,7 +118,7 @@
         <span>You have {{ count((array) session('cart')) }} items in your cart</span>
         <form action="{{ route('cart.clear') }}" method="POST">
             @csrf
-            <button>Clear All Cart</button>
+            <button class="button-16" role="button">Empty Cart</button>
         </form>
     </div>
     @endif
@@ -149,7 +144,7 @@
                         </div> -->
                         <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['promotion_price'] }} $</span></div>
                         <div class="del-icon">
-                            <a href="#" data-id="{{ $id }}"><i class="far fa-trash-alt"></i></a>
+                            <a href="#" data-id="{{ $id }}"><i class="fas fa-trash-alt"></i></a>
                         </div>
 
                     </div>
@@ -243,7 +238,7 @@
                 <div style="text-align: center; height: 150px;">
                     <p style="font-size: 25px; font-weight: 600;">Your cart is empty</p>
                     <div style="font-size: 18px; font-weight: 400;">
-                        <i class="ti-hand-point-right"></i><a href="{{ Route('home') }}"> Back to shopping</a>
+                        <i class="ti-hand-point-right"></i><a href="{{ Route('shop') }}">Return to shop</a>
                     </div>
                 </div>
             </table>
