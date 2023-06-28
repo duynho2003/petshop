@@ -25,6 +25,7 @@ Pet Order Show Admin
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Show Order</h4>
+                
                 <a href="{{ route('order.statusProcess') }}">
                     <button type="button" class="btn btn-success">Process</i></button>
                 </a>
@@ -34,6 +35,7 @@ Pet Order Show Admin
                 <a href="{{ route('order.statusAll') }}">
                     <button type="button" class="btn btn-success">Complete</i></button>
                 </a>
+                
                 <form action="{{ route('order.search') }}" method="post" class="form_search_date">
                     @csrf
                     <div class="justify-content-end d-flex margin_right">
@@ -57,6 +59,7 @@ Pet Order Show Admin
                                 <th>Status</th>
                                 <th>Order Date</th>
                                 <th>Detail</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,8 +68,7 @@ Pet Order Show Admin
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->name}}</td>
                                 <td>{{$order->phone}}</td>
-                                <td>{{number_format($order->total)}} VND</td>
-
+                                <td>{{number_format($order->total)}} USD</td>
                                 @switch($order->status)
                                 @case("process")
                                 <td>
@@ -94,7 +96,15 @@ Pet Order Show Admin
                                 <td>{{($order->created_at)}}</td>
                                 <td class="parent">
                                     <a href="{{ route('order.show', $order->id) }}">
-                                    <button class="btn btn-social-icon btn-info"><i class="fas fa-info"></i></button>
+                                        <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('order.statusShippingByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-warning"><i class="fas fa-truck"></i></button>
+                                    </a>
+                                    <a href="{{ route('order.statusCompleteByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-success"><i class="fas fa-check"></i></button>
                                     </a>
                                 </td>
                             </tr>
@@ -102,7 +112,7 @@ Pet Order Show Admin
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$orders->links()}}
+                        {{$orders->links('pagination::bootstrap-4')}}
                     </div>
                 </div>
             </div>

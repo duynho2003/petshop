@@ -118,7 +118,7 @@ Pet Product Show Admin
                                 <td>{{optional($product->category)->name}}</td>
                                 <td class="parent">
                                     <a href="{{ route('specId.index'). '/?product_id='.$product->id.' &&type_id='.$product->type_id }}">
-                                        <button class="btn btn-social-icon btn-info"><i class="fas fa-info"></i></button>
+                                    <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
                                     </a>
                                     <a href="{{ route('product.edit', $product->id) }}">
                                         <button class="btn btn-icon btn-success"><i class="fas fa-pencil-alt"></i></button>
@@ -132,7 +132,7 @@ Pet Product Show Admin
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$products->links()}}
+                        {{$products->links('pagination::bootstrap-4')}}
                     </div>
                 </div>
             </div>

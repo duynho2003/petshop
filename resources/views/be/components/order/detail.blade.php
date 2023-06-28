@@ -58,7 +58,7 @@ Pet Order Detail Admin
                             </tr>
                             <tr>
                                 <th>Phương thức thanh toán</th>
-                                <td>{{$order->payment == 0 ? "Thanh toán bằng ví điện tử":"Thanh toán khi nhận hàng"}}</td>
+                                <td>{{$order->payment == 0 ? "Thanh toán khi nhận hàng":"Thanh toán bằng ví điện tử"}}</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
@@ -104,7 +104,7 @@ Pet Order Detail Admin
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->quantity}}</td>
-                                    <td>{{number_format($item->promotion_price)}} VNĐ</td>
+                                    <td>{{number_format($item->promotion_price)}} USD</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -113,7 +113,7 @@ Pet Order Detail Admin
                           
                             <tr>
                                 <th>Total Price</th>
-                                <td class="text_align_right">{{number_format($order->total)}} VNĐ</td>
+                                <td class="text_align_right">{{number_format($order->total)}} USD</td>
                             </tr>
                         </table>
                     </div>

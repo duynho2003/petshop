@@ -52,7 +52,7 @@
                                     <td class="parent">
                                         
                                         <a href="{{ route('user.show', $user->id) }}">
-                                        <button class="btn btn-social-icon btn-info"><i class="fas fa-info"></i></button>
+                                        <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
                                         </a>
 
                                         <!-- @if ($user->status == 0)
@@ -74,7 +74,7 @@
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$users->links()}}
+                        {{$users->links('pagination::bootstrap-4')}}
                     </div>
                 </div>
               </div>

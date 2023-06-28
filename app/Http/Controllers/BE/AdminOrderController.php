@@ -18,10 +18,13 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where("active", 1)->paginate(5);
-        return view("be.components.order.index", compact('orders'));
+        $orders = Order::where('active', 1)
+                       ->orderBy('created_at', 'desc')
+                       ->latest()
+                       ->paginate(5);
+    
+        return view('be.components.order.index', compact('orders'));
     }
-
 
 
     /**
@@ -37,11 +40,11 @@ class AdminOrderController extends Controller
                                     ->select('order_products.quantity','order_products.order_id', 'products.name', 'products.promotion_price')
                                     ->get();
         $productItem = $listProduct->where('order_id', $order->id);
-        return view("be.components.order.detail", compact('order','productItem'));
-        
+        return view("be.components.order.detail", compact('order','productItem'));   
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         // dd($date);
         if ($request->has('search')) {
             $orders = Order::search($request->search)->get();
@@ -54,7 +57,8 @@ class AdminOrderController extends Controller
         return view('be.components.order.search', compact('orders'));
     }
 
-    public function status(Order $order) {
+    public function status(Order $order)
+    {
         if ($order->status === "process") {
             $status = $order->update([
                 'status' => "shipping",
@@ -70,34 +74,61 @@ class AdminOrderController extends Controller
     //     ]);
     //     return view("frontend.components.status.statusSuccess");
     // }
-
-    public function statusAll() {
-        $orders = Order::where("status","shipping")->get();
+    
+    public function statusAll()
+    {
+        $orders = Order::where("status", "shipping")->get();
         foreach ($orders as $order) {
             $order->update([
                 'status' => "success",
-            ]);    
+            ]);
         }
         return redirect()->route('order.index');
     }
 
-    public function statusShipping() {
-        $orders = Order::where("status","process")->get();
+    public function statusShipping()
+    {
+        $orders = Order::where("status", "process")->get();
         foreach ($orders as $order) {
             $order->update([
                 'status' => "shipping",
-            ]);     
+            ]);
         }
         return redirect()->route('order.index');
     }
 
-    public function statusProcess() {
+    public function statusProcess()
+    {
         $orders = Order::where("status")->get();
         foreach ($orders as $order) {
             $order->update([
                 'status' => "process",
-            ]);     
+            ]);
         }
+        return redirect()->route('order.index');
+    }
+
+    //cap nhat trang thai cho tung don hang
+
+    public function statusShippingByID($id)
+    {
+        $order = Order::findOrFail($id);
+    
+        $order->update([
+            'status' => 'shipping',
+        ]);
+    
+        return redirect()->route('order.index');
+    }
+
+    public function statusCompleteByID($id)
+    {
+        $order = Order::findOrFail($id);
+    
+        $order->update([
+            'status' => 'success',
+        ]);
+    
         return redirect()->route('order.index');
     }
 }
