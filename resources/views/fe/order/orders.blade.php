@@ -24,6 +24,7 @@
                                     <th>Phone</th>
                                     <th>Total Price</th>
                                     <th>Order Date</th>
+                                    <th>Status</th>
                                     <th>Detail</th>
                                 </tr>
                             </thead>
@@ -35,6 +36,7 @@
                                     <td>{{$order->phone}}</td>
                                     <td>{{number_format($order->total)}} USD</td>
                                     <td>{{($order->created_at)}}</td>
+                                    <td>{{$order->status}}</td>
                                     <td>
                                         <a href="{{ route('showOrder', ['id' => $order->id]) }}">View Details</a>
                                     </td>
