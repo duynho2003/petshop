@@ -66,9 +66,16 @@ Route::get('/reset-password', [ForgotPasswordController::class, 'reset'])->name(
 Route::get('/reset-password/{token}/{email}', [ForgotPasswordController::class, 'resetPassword'])->name('resetPassword');
 
 Route::post('/reset-password', [ForgotPasswordController::class, 'processResetPassword'])->name('processResetPassword');
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit_user');
+//     Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
+// });
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit_user');
     Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
+    Route::post('/change-pass/{id}', [HomeController::class, 'changePass'])->name('change-pass');
+
 });
 Route::get('/myOrders', [HomeController::class, 'myOrders'])->name('myOrders');
 Route::get('/my-orders/{id}', [HomeController::class,'myOrders'])->name('myOrders');
