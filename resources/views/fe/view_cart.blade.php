@@ -138,10 +138,9 @@
                 @foreach(session('cart') as $id => $details)
                 @php $total += $details['promotion_price'] * $details['quantity'] @endphp
                 <div class="product-details mr-2">
-                    <div class="d-flex justify-content-between">
-                    </div>
+                    
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                        <div class="d-flex flex-row"><img src="" width="50">
+                        <div class="d-flex flex-row"><img src="{{ asset('/images/' . $details['image']) }}" width="50" height="65">
                            
                             <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['name'] }}</span></div>
                         </div>
