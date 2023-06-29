@@ -65,18 +65,22 @@
                         <div class="contact-title mb-20">
                             <h2 class="title">Log In<span>.</span></h2>
                         </div>
-                        @if($errors->has('errors'))
+                        @if ($errors->any())
                         <div class="alert alert-danger">
-                            {{ $errors->first('errors') }}
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>&#9888 {{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
                         @endif
 
                         @if(session('success'))
-                        <p class="success">{{ session('success') }}</p>
+                        <div class="alert alert-success">{{ session('success') }}</div>
                         @endif
 
                         @if(session('message'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-info">
                             {{ session('message') }}
                         </div>
                         @endif
@@ -85,11 +89,11 @@
                                 @csrf
                                 <div class="form-grp">
                                     <label for="name">Your Email <span>*</span></label>
-                                    <input type="email" placeholder="Email" name="email" />
+                                    <input type="email" placeholder="Email" name="email" class="form-control @error('email') is-invalid @enderror" />
                                 </div>
                                 <div class="form-grp">
                                     <label for="email">Password <span>*</span></label>
-                                    <input type="password" placeholder="Password" name="password" />
+                                    <input type="password" placeholder="Password" name="password" class="form-control @error('password') is-invalid @enderror" />
                                 </div>
                                 <div class="form-grp">
                                     <a href="{{Route('forgot')}}">Forgot your password?</a>

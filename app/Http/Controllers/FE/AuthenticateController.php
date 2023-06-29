@@ -4,6 +4,7 @@ namespace App\Http\Controllers\FE;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\UserLoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -246,11 +247,11 @@ public function verifyAccount($token)
         return view('fe.auth.login');
     }
 
-    public function processLogin(Request $request)
+    public function processLogin(UserLoginRequest $request)
     {
         $request->validate([
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         $remember = $request->remember_me;

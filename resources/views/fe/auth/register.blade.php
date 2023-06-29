@@ -88,17 +88,17 @@
             <div class="column">
                 <div class="input-box">
                     <label>First Name</label>
-                    <input type="text" placeholder="Enter first name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" />
+                    <input type="text" placeholder="Enter Your First Name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" />
                 </div>
                 <div class="input-box">
                     <label>Last Name</label>
-                    <input type="text" placeholder="Enter last name" class="form-control @error('last_name') is-invalid @enderror" name="last_name" />
+                    <input type="text" placeholder="Enter Your Last Name" class="form-control @error('last_name') is-invalid @enderror" name="last_name" />
                 </div>
             </div>
 
             <div class="input-box">
-                <label>Email Address</label>
-                <input type="text" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" />
+                <label>Email</label>
+                <input type="email" placeholder="Enter Your Email" class="form-control @error('email') is-invalid @enderror" name="email" />
             </div>
             <div class="input-box">
                 <label>Password<span></span></label>
@@ -113,11 +113,11 @@
             <div class="column">
                 <div class="input-box">
                     <label>Phone Number</label>
-                    <input type="number" placeholder="Enter phone number" class="form-control @error('phone') is-invalid @enderror" name="phone"  />
+                    <input type="number" placeholder="Enter your Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone"  />
                 </div>
                 <div class="input-box">
-                    <label>Birth Date</label>
-                    <input type="date" placeholder="Enter birth date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" max="<?php echo date('Y-m-d'); ?>" />
+                    <label>Date of Birth</label>
+                    <input type="date" placeholder="Enter your Date of Birth" class="form-control @error('birthday') is-invalid @enderror" name="birthday" max="<?php echo date('Y-m-d'); ?>" />
                 </div>
             </div>
             <div class="gender-box">
