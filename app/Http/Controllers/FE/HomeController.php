@@ -210,11 +210,12 @@ class HomeController extends Controller
     public function myOrders($id)
     {
         $orders = Order::where('user_id', $id)
-                        ->orderBy('created_at', 'desc')
-                        ->get();
+            ->orderBy('created_at', 'desc')
+            ->latest()
+            ->paginate(5);
         return view('fe.order.orders', compact('orders'));
     }
-    
+
     public function showOrder($id)
     {
         $order = Order::find($id);
@@ -228,5 +229,15 @@ class HomeController extends Controller
             ->where('order_id', $id)
             ->get();
         return view('fe.order.order_detail', compact('order', 'orderItems'));
+    }
+
+    public function statusCancelByUser($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->update([
+            'status' => "Cancelled",
+        ]);
+
+        return view('fe.order.orders');
     }
 }

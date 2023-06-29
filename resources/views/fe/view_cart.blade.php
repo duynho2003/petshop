@@ -139,7 +139,7 @@
                            
                             <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['name'] }}</span></div>
                         </div>
-                        <input type="number" value="{{ $details['quantity'] }}" required data-pid="{{ $id }}" class="input-quantity"/>
+                        <input min="1" type="number" value="{{ $details['quantity'] }}" required data-pid="{{ $id }}" class="input-quantity"/>
                         <!-- <div class="d-flex flex-row align-items-center"><input type="number" value="{{ $details['quantity'] }}" class="d-block"/>
                         </div> -->
                         <div class="ml-2"><span class="font-weight-bold d-block">{{ $details['promotion_price'] }} $</span></div>

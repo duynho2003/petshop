@@ -9,7 +9,7 @@
     @include('fe.layouts.loadscroll')
     @include('fe.layouts.header')
     <main>
-        
+
 
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
@@ -22,7 +22,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Phone</th>
-                                    <th>Total Price</th>
+                                    <th>Total</th>
                                     <th>Order Date</th>
                                     <th>Status</th>
                                     <th>Detail</th>
@@ -37,18 +37,44 @@
                                     <td>{{$order->phone}}</td>
                                     <td>{{number_format($order->total)}} USD</td>
                                     <td>{{($order->created_at)}}</td>
-                                    <td>{{$order->status}}</td>
+                                    @switch($order->status)
+                                    @case("Process")
+                                    <td>
+                                        <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
+                                    </td>
+                                    @break
+                                    @case("Shipping")
+                                    <td>
+                                        <label class="badge badge-info" style="font-size: 17px;">{{$order->status}}</label>
+                                    </td>
+                                    @break
+                                    @case("Completed")
+                                    <td>
+                                        <label class="badge badge-success" style="font-size: 17px;">{{$order->status}}</label>
+                                    </td>
+                                    @break
+                                    @case("Cancelled")
+                                    <td>
+                                        <label class="badge badge-danger" style="font-size: 17px;">{{$order->status}}</label>
+                                    </td>
+                                    @break
+                                    @default
+                                    @endswitch
                                     <td>
                                         <a href="{{ route('showOrder', ['id' => $order->id]) }}">View Details</a>
                                     </td>
                                     <td>
-                                    <a href="{{ route('order.statusCancelByID', $order->id) }}">
-                                        <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
-                                    </a>
+                                        <a href="{{ route('order.statusCancelByUser', $order->id) }}">
+                                            <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
+                                        </a>
                                     </td>
-                                @endforeach
+                                    @endforeach
+                                </tr>
                             </tbody>
                         </table>
+                        <div class="col-md-12 margin-paginate-slider-index">
+                            {{$orders->links('pagination::bootstrap-5')}}
+                        </div>
                     </div>
                 </div>
             </div>

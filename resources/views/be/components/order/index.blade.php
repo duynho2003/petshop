@@ -55,7 +55,7 @@ Pet Order Show Admin
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                <th>Price</th>
+                                <th>Total</th>
                                 <th>Status</th>
                                 <th>Order Date</th>
                                 <th>Detail</th>
@@ -114,7 +114,7 @@ Pet Order Show Admin
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$orders->links('pagination::bootstrap-4')}}
+                        {{$orders->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>
