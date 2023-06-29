@@ -73,15 +73,15 @@
                             <form action="{{ Route ('processForgotPassword') }}" class="contact-form" method="POST" class="form">
                                 @csrf
                                 @error('email')
-                                <p class="error">{{ $message }}</p>
+                                <p class="alert alert-danger">{{ $message }}</p>
                                 @enderror
                                 @if(session('success'))
-                                <p class="success">{{ session('success') }}</p>
+                                <p class="alert alert-success">{{ session('success') }}</p>
                                 @endif
 
                                 <div class="form-grp">
                                     <label for="name">Enter Your Email <span>*</span></label>
-                                    <input type="email" placeholder="Email" name="email" required />
+                                    <input type="email" placeholder="Email" name="email" />
                                 </div>
 
                                 <!-- <div class="form-grp">
