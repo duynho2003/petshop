@@ -25,9 +25,17 @@ Pet Order Show Admin
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Show Order</h4>
-                <a href="{{ route('order.statusAll') }}">
-                    <button type="button" class="btn btn-success">Ship All</i></button>
+
+                <a href="{{ route('order.statusProcess') }}">
+                    <button type="button" class="btn btn-icon btn-warning"><i class="fas fa-exclamation-circle"></i></button>
                 </a>
+                <a href="{{ route('order.statusShipping') }}">
+                    <button type="button" class="btn btn-icon btn-info"><i class="fas fa-truck"></i></button>
+                </a>
+                <a href="{{ route('order.statusAll') }}">
+                <button class="btn btn-icon btn-success"><i class="fas fa-check"></i></button>
+                </a>
+
                 <form action="{{ route('order.search') }}" method="post" class="form_search_date">
                     @csrf
                     <div class="justify-content-end d-flex margin_right">
@@ -49,7 +57,8 @@ Pet Order Show Admin
                                 <th>Phone</th>
                                 <th>Price</th>
                                 <th>Status</th>
-                                <th>Create</th>
+                                <th>Order Date</th>
+                                <th>Detail</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -59,36 +68,45 @@ Pet Order Show Admin
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->name}}</td>
                                 <td>{{$order->phone}}</td>
-                                <td>{{number_format($order->total)}} VND</td>
+                                <td>{{number_format($order->total)}} USD</td>
                                 @switch($order->status)
-                                @case("process")
+                                @case("Process")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("shipping")
+                                @case("Shipping")
                                 <td>
                                     <label class="badge badge-info" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("success")
+                                @case("Completed")
                                 <td>
                                     <label class="badge badge-success" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("cancel")
+                                @case("Cancelled")
                                 <td>
                                     <label class="badge badge-danger" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
                                 @default
-
                                 @endswitch
-
                                 <td>{{($order->created_at)}}</td>
                                 <td class="parent">
                                     <a href="{{ route('order.show', $order->id) }}">
-                                        <button type="button" class="btn btn-social-icon btn-info"><i class="ti-info"></i></button>
+                                        <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('order.statusCancelByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-danger" @if ($order->status === 'Cancelled' || $order->status === 'Completed') disabled @endif><i class="fas fa-cancel"></i><b>X</b></button>
+                                    </a>
+                                    <a href="{{ route('order.statusShippingByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-warning"@if ($order->status === 'Cancelled' || $order->status === 'Completed') disabled @endif><i class="fas fa-truck"></i></button>
+                                    </a>
+                                    <a href="{{ route('order.statusCompleteByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-success" @if ($order->status === 'Cancelled' || $order->status === 'Completed') disabled @endif><i class="fas fa-check"></i></button>
                                     </a>
                                 </td>
                             </tr>
@@ -96,7 +114,7 @@ Pet Order Show Admin
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$orders->links()}}
+                        {{$orders->links('pagination::bootstrap-4')}}
                     </div>
                 </div>
             </div>

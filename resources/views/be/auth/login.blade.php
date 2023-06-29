@@ -58,7 +58,7 @@
                                             </span>
                                             @enderror
                                         </div>
-
+                                        
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
@@ -66,16 +66,19 @@
                                                     Me</label>
                                             </div>
                                         </div>
+                                        
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Login</button>
                                     </form>
-                                    <hr>
+                                    
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
+                                    {{--
                                     <div class="text-center">
                                         <a class="small" href="register.html">Create an Account!</a>
                                     </div>
+                                --}}
                                 </div>
                             </div>
                         </div>

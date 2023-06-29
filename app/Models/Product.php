@@ -20,6 +20,7 @@ class Product extends Model
         'category_id',
         'slug',
         'type_id',
+        'active',
     ];
 
     public function images() {

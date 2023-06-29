@@ -29,9 +29,13 @@
                         <h4 class="card-title">Edit Information User</h4>
 
                         <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="{{$user->name}}" placeholder="Name"  autofocus required>
-                            
+                            <label>First Name</label>
+                            <input type="text" name="name" class="form-control" value="{{$user->first_name}}" placeholder="First name"  autofocus required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="name" class="form-control" value="{{$user->last_name}}" placeholder="Last name"  autofocus required>
                         </div>
 
                         <div class="form-group">
@@ -39,7 +43,7 @@
                             <input type="email" name="email" class="form-control" value="{{$user->email}}" placeholder="Email"  autofocus required>
                         </div>
 
-                        <div class="select_padding_col col-md-4">
+                        <!-- <div class="select_padding_col col-md-4">
                             <div class="form-group">
                                 <label>Avatar</label>
                                 <input type="file" name="avatar" class="file-upload-default">
@@ -54,11 +58,11 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <img class="mt-3 image_user_edit" src="{{ asset(getAvatarCustomerFromUserTable($user->id)) }}"  alt="">
+                                        <img class="mt-3 image_user_edit" src="{{ asset($user->id) }}"  alt="">
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <label>Phone</label>
@@ -85,18 +89,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Address 1</label>
-                            <input type="text" name="address_1" class="form-control" value="{{$user->address_1}}" placeholder="Name"  autofocus required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Address 2</label>
-                            <input type="text" name="address_2" class="form-control" value="{{$user->address_2}}" placeholder="Name"  autofocus>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Address 3</label>
-                            <input type="text" name="address_3" class="form-control" value="{{$user->address_3}}" placeholder="Name"  autofocus>
+                            <label>Address</label>
+                            <input type="text" name="address" class="form-control" value="{{$user->address}}" placeholder="Name"  autofocus required>
                         </div>
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>

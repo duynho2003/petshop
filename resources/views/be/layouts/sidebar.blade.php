@@ -36,7 +36,7 @@
         <div id="categorymenu" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('category.index') }}">Show List Category</a>
-                <a class="collapse-item" href="{{ route('category.create') }}">Create Category</a>
+                {{-- <a class="collapse-item" href="{{ route('category.create') }}">Create Category</a> --}}
             </div>
         </div>
     </li>
@@ -79,8 +79,15 @@
     <!-- Nav Item - Order -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('order.index') }}">
-            <i class="fas fa-fw fa-reorder"></i>
+            <i class="fas fa-shopping-cart"></i>
             <span>Order</span></a>
+    </li>
+
+    <!-- Adoption -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('adoption-admin') }}">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Adoption</span></a>
     </li>
 
     <!-- Divider -->

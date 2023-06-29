@@ -18,10 +18,13 @@ class AdminOrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::where("active", 1)->paginate(5);
-        return view("be.components.order.index", compact('orders'));
-    }
+        $orders = Order::where('active', 1)
+            ->orderBy('created_at', 'desc')
+            ->latest()
+            ->paginate(5);
 
+        return view('be.components.order.index', compact('orders'));
+    }
 
 
     /**
@@ -33,15 +36,15 @@ class AdminOrderController extends Controller
     public function show(Order $order)
     {
         $listProduct = DB::table('order_products')
-                                    ->join('products', 'order_products.product_id', '=', 'products.id')
-                                    ->select('order_products.quantity','order_products.order_id', 'products.name', 'products.promotion_price')
-                                    ->get();
+            ->join('products', 'order_products.product_id', '=', 'products.id')
+            ->select('order_products.quantity', 'order_products.order_id', 'products.name', 'products.promotion_price')
+            ->get();
         $productItem = $listProduct->where('order_id', $order->id);
-        return view("be.components.order.detail", compact('order','productItem'));
-        
+        return view("be.components.order.detail", compact('order', 'productItem'));
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         // dd($date);
         if ($request->has('search')) {
             $orders = Order::search($request->search)->get();
@@ -54,41 +57,100 @@ class AdminOrderController extends Controller
         return view('be.components.order.search', compact('orders'));
     }
 
-    public function status(Order $order) {
-        if ($order->status === "process") {
+    public function status(Order $order)
+    {
+        if ($order->status === "Process") {
             $status = $order->update([
-                'status' => "shipping",
+                'status' => "Shipping",
             ]);
         }
-        Mail::send('frontend.components.status.checkStatusMail', ['order_id' => $order->id], function ($message) use($order) {
-            $message->to($order->email);
-            $message->subject('Succeed Delivery Mail');
-        });
         return redirect()->back();
     }
 
-    public function checkStatusMail($order_id) {
-        $order = Order::find($order_id);
-        $order->update([
-            'status' => "success",
-        ]);
-        return view("frontend.components.status.statusSuccess");
-    }
+    // public function checkStatusMail($order_id) {
+    //     $order = Order::find($order_id);
+    //     $order->update([
+    //         'status' => "success",
+    //     ]);
+    //     return view("frontend.components.status.statusSuccess");
+    // }
 
-    public function statusAll() {
-        $orders = Order::where("status","process")->get();
+    public function statusAll()
+    {
+        $orders = Order::where("status", "Shipping")->get();
         foreach ($orders as $order) {
             $order->update([
-                'status' => "shipping",
-            ]);     
-            
-            Mail::send('frontend.components.status.checkStatusMail', ['order_id' => $order->id], function ($message) use($order) {
-                $message->to($order->email);
-                $message->subject('Succeed Delivery Mail');
-            });
-
+                'status' => "Completed",
+            ]);
         }
         return redirect()->route('order.index');
     }
 
+    public function statusShipping()
+    {
+        $orders = Order::where("status", "Process")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "Shipping",
+            ]);
+        }
+        return redirect()->route('order.index');
+    }
+
+    public function statusProcess()
+    {
+        $orders = Order::where("status")->get();
+        foreach ($orders as $order) {
+            $order->update([
+                'status' => "Process",
+            ]);
+        }
+        return redirect()->route('order.index');
+    }
+
+    //Cập nhật trạng thái cho từng đơn hàng {id}
+
+    // public function statusCancelByID($id)
+    // {
+    //     $order = Order::findOrFail($id);
+    //         $order->update([
+    //             'status' => "Cancelled",
+    //         ]);
+
+    //     return redirect()->route('order.index');
+    // }
+
+    public function statusCancelByID($id)
+    {
+        $order = Order::findOrFail($id);
+
+        if ($order->status !== 'Cancelled') {
+            $order->update([
+                'status' => 'Cancelled',
+            ]);
+        }
+
+        return redirect()->route('order.index');
+    }
+
+
+    public function statusShippingByID($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->update([
+            'status' => "Shipping",
+        ]);
+
+        return redirect()->route('order.index');
+    }
+
+    public function statusCompleteByID($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->update([
+            'status' => "Completed",
+        ]);
+
+        return redirect()->route('order.index');
+    }
 }

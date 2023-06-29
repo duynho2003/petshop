@@ -39,10 +39,10 @@
                                     <td>{{$type->name}}</td>
                                     <td class="parent">
                                         <a href="{{ route('type.edit', $type->id) }}">
-                                            <button type="button" class="btn btn-social-icon btn-success"><i class="ti-pencil-alt"></i></button>
+                                        <button class="btn btn-icon btn-success"><i class="fas fa-pencil-alt"></i></button>
                                         </a>
                                         <a href="" data-url="{{ route('type.destroy', $type->id) }}" class="active_delete">
-                                            <button type="button" class="btn btn-social-icon btn-danger"><i class="ti-trash"></i></button>
+                                        <button class="btn btn-danger btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                         </a>
                                     </td>
                                 </tr>

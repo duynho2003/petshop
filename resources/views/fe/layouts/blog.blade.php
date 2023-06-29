@@ -14,7 +14,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="blog-post-item mb-50">
                     <div class="blog-post-thumb">
-                        <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/blog_post_thumb01.jpg') }}" alt=""></a>
+                        <a href="blog-details.html"><img src="{{ asset ('fe/img/blog1/blog_post_thumb01.jpg') }}" alt=""></a>
                         <div class="blog-post-tag">
                             <a href="#"><i class="flaticon-bookmark-1"></i>Sharped</a>
                         </div>
@@ -35,7 +35,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="blog-post-item mb-50">
                     <div class="blog-post-thumb">
-                        <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/blog_post_thumb02.jpg') }}" alt=""></a>
+                        <a href="blog-details.html"><img src="{{ asset ('fe/img/blog1/blog_post_thumb02.jpg') }}" alt=""></a>
                         <div class="blog-post-tag">
                             <a href="#"><i class="flaticon-bookmark-1"></i>Creative</a>
                         </div>
@@ -56,7 +56,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="blog-post-item mb-50">
                     <div class="blog-post-thumb">
-                        <a href="blog-details.html"><img src="{{ asset ('fe/img/blog/blog_post_thumb03.jpg') }}" alt=""></a>
+                        <a href="blog-details.html"><img src="{{ asset ('fe/img/blog1/blog_post_thumb03.jpg') }}" alt=""></a>
                         <div class="blog-post-tag">
                             <a href="#"><i class="flaticon-bookmark-1"></i>Business</a>
                         </div>

@@ -58,64 +58,68 @@ class AdminProductController extends Controller
      * @return \Illuminate\Http\Response
      */
   
-    public function store(AdminProductRequest $request)
-    {
-      
-            $normal_price = filter_var($request->normal_price, FILTER_SANITIZE_NUMBER_INT);
-            $promotion_price = filter_var($request->promotion_price, FILTER_SANITIZE_NUMBER_INT);
-            $dataProductCreate = [
-                'name' => $request->name,
-                'normal_price' => $normal_price,
-                'promotion_price' => $promotion_price,
-                'slug' => Str::slug($request->name),
-                'category_id' => $request->category_id,
-                'description' => $request->description,
-                'type_id' =>$request->type_id,
-                'image' =>$request->image
-            ];
-
-            if ($request->hasFile('image')) {
-                $file = $request->file('image');
-                $ext = $file->getClientOriginalExtension();
-                // if ($ext != 'jpg' && $ext != 'jpeg' && $ext != 'png') {
-                //     $error = 1;
-                //     return view('admin.product.create', compact(error));
-                // }
-                $imageFilename = $file->getClientOriginalName();
-                $file->move('images', $imageFilename);
-            } else {
-                $imageFilename = null;
-            }
-
-            // Choose folder
-            // $folder = "";
-            // switch ($request->type_id) {
-            //     case 1:
-            //         $folder = 'images/products/laptop';
-            //         break;
-            //     case 2:
-            //         $folder = 'images/products/pc';
-            //         break;
-            //     case 3:
-            //         $folder = 'images/products/monitor';
-            //         break;
-            //     case 4:
-            //         $folder = 'images/products/keyboard';
-            //         break;
-            //     case 5:
-            //         $folder = 'images/products/mouse';
-            //         break;
-            //     default: break;
-            // }
-   
-            $dataProductCreate['image'] = $imageFilename;
-            Product::create($dataProductCreate);
-
-            // DB::commit();
-            // return redirect()->route('admin.dashboard');
+     public function store(AdminProductRequest $request)
+     {
  
-    
-    }
+         $normal_price = filter_var($request->normal_price, FILTER_SANITIZE_NUMBER_INT);
+         $promotion_price = filter_var($request->promotion_price, FILTER_SANITIZE_NUMBER_INT);
+         $dataProductCreate = [
+             'name' => $request->name,
+             'normal_price' => $normal_price,
+             'promotion_price' => $promotion_price,
+             'slug' => Str::slug($request->name),
+             'category_id' => $request->category_id,
+             'description' => $request->description,
+             'type_id' => $request->type_id,
+             'image' => $request->image
+         ];
+ 
+         if ($request->hasFile('image')) {
+             $file = $request->file('image');
+             $ext = $file->getClientOriginalExtension();
+             // if ($ext != 'jpg' && $ext != 'jpeg' && $ext != 'png') {
+             //     $error = 1;
+             //     return view('admin.product.create', compact(error));
+             // }
+             $imageFilename = $file->getClientOriginalName();
+             $file->move('images', $imageFilename);
+         } else {
+             $imageFilename = null;
+         }
+ 
+         // Choose folder
+         // $folder = "";
+         // switch ($request->type_id) {
+         //     case 1:
+         //         $folder = 'images/products/laptop';
+         //         break;
+         //     case 2:
+         //         $folder = 'images/products/pc';
+         //         break;
+         //     case 3:
+         //         $folder = 'images/products/monitor';
+         //         break;
+         //     case 4:
+         //         $folder = 'images/products/keyboard';
+         //         break;
+         //     case 5:
+         //         $folder = 'images/products/mouse';
+         //         break;
+         //     default: break;
+         // }
+ 
+         $dataProductCreate['image'] = $imageFilename;
+         $products = Product::create($dataProductCreate);
+ 
+         // DB::commit();
+         // return view('be.components.product.index',compact('products'));
+         $max_price = Product::max('normal_price');
+         $max_price_range = $max_price + 10000000;
+         $min_price = Product::min('promotion_price');
+         $min_price_range = $min_price - $min_price;
+         $products = Product::where('active', 1)->latest()->paginate(20);
+         return view('be.components.product.index', compact('products', 'max_price', 'min_price', 'max_price_range', 'min_price_range'));
+     }
 
     /**
      * Display the specified resource.

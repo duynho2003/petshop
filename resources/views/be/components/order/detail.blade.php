@@ -24,12 +24,12 @@ Pet Order Detail Admin
                 <h4 class="card-title">Detail Order</h4>
 
                 <div style="text-align: end">
-                    @if ($order->status == "process")
+                    @if ($order->status == "Process")
                     <a href="{{ route('order.status', $order->id) }}">
                         <button type="button" class="btn btn-danger">Hàng đang được chuẩn bị</i></button>
                     </a>
 
-                    @elseif ($order->status == "shipping")
+                    @elseif ($order->status == "Shipping")
                     <a href="" style="display: none">
                         <button type="button" class="btn btn-success">Hàng đang được giao</i></button>
                     </a>
@@ -58,27 +58,27 @@ Pet Order Detail Admin
                             </tr>
                             <tr>
                                 <th>Phương thức thanh toán</th>
-                                <td>{{$order->payment == 0 ? "Thanh toán bằng ví điện tử":"Thanh toán khi nhận hàng"}}</td>
+                                <td>{{$order->payment == 0 ? "Thanh toán khi nhận hàng":"Thanh toán bằng ví điện tử"}}</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
                                 @switch($order->status)
-                                @case("process")
+                                @case("Process")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("shipping")
+                                @case("Shipping")
                                 <td>
                                     <label class="badge badge-info" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("success")
+                                @case("Completed")
                                 <td>
                                     <label class="badge badge-success" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("cancel")
+                                @case("Cancelled")
                                 <td>
                                     <label class="badge badge-danger" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
@@ -104,19 +104,16 @@ Pet Order Detail Admin
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->quantity}}</td>
-                                    <td>{{number_format($item->promotion_price)}} VNĐ</td>
+                                    <td>{{number_format($item->promotion_price)}} USD</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <table class="table table-hover table-striped table-bordered margin_top">
-                            <tr>
-                                <th>Total Quantity</th>
-                                <td class="text_align_right">{{$order->quantity}}</td>
-                            </tr>
+                          
                             <tr>
                                 <th>Total Price</th>
-                                <td class="text_align_right">{{number_format($order->total)}} VNĐ</td>
+                                <td class="text_align_right">{{number_format($order->total)}} USD</td>
                             </tr>
                         </table>
                     </div>

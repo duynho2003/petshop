@@ -62,8 +62,37 @@ class AdminInforController extends Controller
             DB::rollBack();
             Log::error("Message: {$ex->getMessage()} --- Line: {$ex->getLine()} --- File: {$ex->getFile()}");
         }
+    }
 
-        
-        
+    public function changePass($id, Request $request)
+    {
+        // Lấy thông tin người dùng dựa trên $id
+        $admin = Admin::find($id);
+
+        // Kiểm tra xác thực người dùng
+        if (!auth()->check() || $admin->id !== auth()->user()->id) {
+            return redirect()->back()->with('error', 'Unauthorized access');
+        }
+
+        // Lấy các trường dữ liệu từ request
+        $currentPassword = $request->input('current_pass');
+        $newPassword = $request->input('new_pass');
+        $confirmPassword = $request->input('confirm_pass');
+
+        // Kiểm tra tính hợp lệ của mật khẩu hiện tại
+        if (!Hash::check($currentPassword, $admin->password)) {
+            return redirect()->back()->with('error', 'Current password is incorrect');
+        }
+
+        // Kiểm tra mật khẩu mới và mật khẩu xác nhận
+        if ($newPassword !== $confirmPassword) {
+            return redirect()->back()->with('error', 'New password and confirm password do not match');
+        }
+
+        // Cập nhật mật khẩu mới cho người dùng
+        $admin->password = Hash::make($newPassword);
+        $admin->save();
+
+        return redirect()->back()->with('success', 'Password has been changed successfully');
     }
 }

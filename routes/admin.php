@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BE\AdminAdoptionController;
 use App\Http\Controllers\BE\AdminCategoryController;
 use App\Http\Controllers\BE\AdminInforController;
 use App\Http\Controllers\BE\AdminLoginController;
@@ -35,8 +36,13 @@ Route::middleware('admin.auth')->group(function() {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
     // Setting Infor and change password
+    // Route::get('setting-info', [AdminInforController::class, 'getSetting'])->name('admin.getSetting');
+    // Route::post('setting-info', [AdminInforController::class, 'postSetting'])->name('admin.postSetting');
+
     Route::get('setting-info', [AdminInforController::class, 'getSetting'])->name('admin.getSetting');
-    Route::post('setting-info', [AdminInforController::class, 'postSetting'])->name('admin.postSetting');
+    Route::post('change-pass/{id}', [AdminInforController::class, 'changePass'])->name('admin.change-pass');
+
+    
 
     // Slider
     Route::resource('slider', AdminSliderController::class)->except(['destroy']);
@@ -79,8 +85,20 @@ Route::middleware('admin.auth')->group(function() {
 
     // Order
     Route::get('order/status-all', [AdminOrderController::class, 'statusAll'])->name('order.statusAll');
+    Route::get('order/status-shipping', [AdminOrderController::class, 'statusShipping'])->name('order.statusShipping');
+    Route::get('order/status-process', [AdminOrderController::class, 'statusProcess'])->name('order.statusProcess');
     Route::post('order/search', [AdminOrderController::class, 'search'])->name('order.search');
     Route::get('order/{order}/status', [AdminOrderController::class, 'status'])->name('order.status');
     Route::resource('order', AdminOrderController::class)->only(['index','show']);
 
+    //Order Process for {id}
+    Route::get('order/status-cancel/{id}', [AdminOrderController::class, 'statusCancelByID'])->name('order.statusCancelByID');
+    Route::get('order/status-shipping/{id}', [AdminOrderController::class, 'statusShippingByID'])->name('order.statusShippingByID');
+    Route::get('order/status-complete/{id}', [AdminOrderController::class, 'statusCompleteByID'])->name('order.statusCompleteByID');
+
+    //Adoption 
+    Route::get('/adoption-admin', [AdminAdoptionController::class, 'adoption'])->name('adoption-admin');
+    Route::get('/adoption-show/{id}', [AdminAdoptionController::class, 'show'])->name('adoption.show');
+    Route::get('/adoption-status-cancel/{id}', [AdminAdoptionController::class, 'statusCancelByID'])->name('adoption.statusCancelByID');
+    Route::get('/adoption-status-complete/{id}', [AdminAdoptionController::class, 'statusCompleteByID'])->name('adoption.statusCompleteByID');
 });

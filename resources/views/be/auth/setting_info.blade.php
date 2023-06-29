@@ -24,7 +24,7 @@ Setting Infor Admin
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <form class="forms-sample" action="{{ route('admin.postSetting') }}" method="post" enctype="multipart/form-data">
+                            <form class="forms-sample" action="{{ route('admin.change-pass',['id' => Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 {{-- <h4 class="card-title">Basic Infor Admin</h4>
                             <div class="form-group">
@@ -51,9 +51,22 @@ Setting Infor Admin
                         </div> --}}
 
                         <h4 class="card-title">Change Password</h4>
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            {{ session('error') }}
+                        </div>
+                        @endif
                         <div class="form-group">
                             <label for="exampleInputName1">Current Password</label>
-                            <input type="password" name="current_password" class="form-control" placeholder="Current Password">
+                            <input type="password" name="current_pass" class="form-control" placeholder="Current Password">
                             <p style="font-size: 16px; color: red; padding: 16px;">
                                 {!! session()->get('errors') !!}
                             </p>
@@ -61,7 +74,7 @@ Setting Infor Admin
 
                         <div class="form-group">
                             <label for="exampleInputName1">New Password</label>
-                            <input type="password" name="new_password" class="form-control" placeholder="New Password">
+                            <input type="password" name="new_pass" class="form-control" placeholder="New Password">
                             <p style="font-size: 16px; color: red; padding: 16px;">
                                 {!! session()->get('errors_new_password') !!}
                             </p>
@@ -69,7 +82,7 @@ Setting Infor Admin
 
                         <div class="form-group">
                             <label for="exampleInputName1">Confirm Password</label>
-                            <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password">
+                            <input type="password" name="confirm_pass" class="form-control" placeholder="Confirm Password">
                             <p style="font-size: 16px; color: red; padding: 16px;">
                                 {!! session()->get('errors_confirm_password') !!}
                             </p>
