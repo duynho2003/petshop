@@ -32,8 +32,7 @@ class AdminLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'email.required' => 'Email không được để trống',
-            'password.required' => 'Mật khẩu không được để trống',
+
         ];
     }
 }
