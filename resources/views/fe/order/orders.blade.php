@@ -26,6 +26,7 @@
                                     <th>Order Date</th>
                                     <th>Status</th>
                                     <th>Detail</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,6 +40,11 @@
                                     <td>{{$order->status}}</td>
                                     <td>
                                         <a href="{{ route('showOrder', ['id' => $order->id]) }}">View Details</a>
+                                    </td>
+                                    <td>
+                                    <a href="{{ route('order.statusCancelByID', $order->id) }}">
+                                        <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
+                                    </a>
                                     </td>
                                 @endforeach
                             </tbody>
