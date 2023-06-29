@@ -28,6 +28,7 @@ class UserRegisterRequest extends FormRequest
             'password' => 'required|min:8',
             'confirm_password' => 'required|same:password',
             'birthday' => 'bail|required|before_or_equal: -16 years',
+            'address' => 'required',
         ];
     }
 
@@ -46,6 +47,7 @@ class UserRegisterRequest extends FormRequest
             'confirm_password' => 'Confirm Password is required!',
             'birthday.required' => 'Birthday is required!',
             'birthday.before_or_equal' => 'Birthday must be 16 years old or equal!',
+            'address' => 'Address is required!',
         ];
     }
 }

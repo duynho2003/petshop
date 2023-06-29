@@ -140,7 +140,7 @@
 
             <div class="input-box">
                 <label>Address<span></span></label>
-                <input type="text" placeholder="Enter Your Address" name="address" />
+                <input type="text" placeholder="Enter Your Address" class="form-control @error('address') is-invalid @enderror" name="address" />
             </div>
 
             <div class="container-button">
