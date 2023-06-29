@@ -74,54 +74,50 @@
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
+            <li>&#9888 Error, something went wrong!</li>
                 @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>• {{ $error }}</li>
                 @endforeach
             </ul>
         </div>
         @endif
 
-
         <form action="{{ Route ('processRegister') }}" class="form" method="POST">
             @csrf
-            <!-- <div class="input-box">
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter Full Name" required />
-            </div> -->
 
             <div class="column">
                 <div class="input-box">
                     <label>First Name</label>
-                    <input type="text" placeholder="Enter first name" name="first_name" required />
+                    <input type="text" placeholder="Enter first name" class="form-control @error('first_name') is-invalid @enderror" name="first_name" />
                 </div>
                 <div class="input-box">
                     <label>Last Name</label>
-                    <input type="text" placeholder="Enter last name " name="last_name" required />
+                    <input type="text" placeholder="Enter last name" class="form-control @error('last_name') is-invalid @enderror" name="last_name" />
                 </div>
             </div>
 
             <div class="input-box">
                 <label>Email Address</label>
-                <input type="text" placeholder="Enter Email Address" name="email" required />
+                <input type="text" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" />
             </div>
             <div class="input-box">
                 <label>Password<span></span></label>
-                <input type="password" placeholder="Enter Your Password" name="password" required />
+                <input type="password" placeholder="Enter Your Password" class="form-control @error('password') is-invalid @enderror" name="password"  />
             </div>
 
             <div class="input-box">
                 <label>Confirm Password<span></span></label>
-                <input type="password" placeholder="Enter Your Confirm Password" name="confirm_password" required />
+                <input type="password" placeholder="Enter Your Confirm Password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password" />
             </div>
 
             <div class="column">
                 <div class="input-box">
                     <label>Phone Number</label>
-                    <input type="number" placeholder="Enter phone number" name="phone" required />
+                    <input type="number" placeholder="Enter phone number" class="form-control @error('phone') is-invalid @enderror" name="phone"  />
                 </div>
                 <div class="input-box">
                     <label>Birth Date</label>
-                    <input type="date" placeholder="Enter birth date" name="birthday" max="<?php echo date('Y-m-d',  strtotime('-1 day')); ?>" required />
+                    <input type="date" placeholder="Enter birth date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" max="<?php echo date('Y-m-d'); ?>" />
                 </div>
             </div>
             <div class="gender-box">
@@ -129,7 +125,7 @@
                 <div class="gender-option">
                     <div class="gender">
                         <input type="radio" id="check-male" name="gender" value="male" checked />
-                        <label for="check-male">male</label>
+                        <label for="check-male">Male</label>
                     </div>
                     <div class="gender">
                         <input type="radio" id="check-female" name="gender" value="female" />
@@ -137,37 +133,16 @@
                     </div>
                     <div class="gender">
                         <input type="radio" id="check-other" name="gender" value="other" />
-                        <label for="check-other">prefer not to say</label>
+                        <label for="check-other">Prefer not to say</label>
                     </div>
                 </div>
             </div>
 
             <div class="input-box">
                 <label>Address<span></span></label>
-                <input type="text" placeholder="Enter Your Address" name="address" required />
+                <input type="text" placeholder="Enter Your Address" name="address" />
             </div>
 
-
-            <!-- <div class="input-box address">
-                <label>Address</label>
-                <input type="text" placeholder="Enter street address" required />
-                <input type="text" placeholder="Enter street address line 2" required />
-                <div class="column">
-                    <div class="select-box">
-                        <select>
-                            <option hidden>Country</option>
-                            <option>America</option>
-                            <option>VietNam</option>
-                            <option>TaiWan</option>
-                            <option>China</option>
-                        </select>
-                    </div>
-                    <input type="text" placeholder="Enter your city" required />
-                </div>
-                <div class="column">
-                    <input type="text" placeholder="Enter your region" required />
-                    <input type="number" placeholder="Enter postal code" required />
-                </div>-->
             <div class="container-button">
                 <div class="vertical-center">
                     <button type="submit" class="btn rounded-btn">Register</button>

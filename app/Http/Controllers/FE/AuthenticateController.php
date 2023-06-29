@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FE;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -22,10 +23,6 @@ class AuthenticateController extends Controller
 
     public function register()
     {
-
-
-
-
         return view('fe.auth.register');
     }
 
@@ -94,7 +91,7 @@ class AuthenticateController extends Controller
     //     return redirect()->route('login')->with('message', $message);
     // }
 
-    public function processRegister(Request $request)
+    public function processRegister(UserRegisterRequest $request)
 {
     $request->validate([
         'email' => 'unique:users,email',
