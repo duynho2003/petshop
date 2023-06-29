@@ -8,6 +8,7 @@ use App\Http\Controllers\FE\CartController;
 use App\Http\Controllers\FE\RenderProductCategoryController;
 use App\Http\Controllers\FE\ForgotPasswordController;
 use App\Http\Controllers\BE\AdminLoginController;
+use App\Http\Controllers\BE\AdminOrderController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -94,6 +95,7 @@ Route::group(['middleware'=>'islogin'], function() {
     Route::group(['middleware'=>'isadmin', 'prefix'=>'admin', 'as'=>'admin.'], function() {
         Route::resource('/product', ProductController::class);
     });
+
+// Order Process for User
+Route::get('order/status-cancel/{id}', [HomeController::class, 'statusCancelByUser'])->name('order.statusCancelByUser');
 });
-
-
