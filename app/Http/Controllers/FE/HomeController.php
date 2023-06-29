@@ -109,7 +109,7 @@ class HomeController extends Controller
             $user->save();
             // Thông báo màn hình
             session()->flash('success', 'Your information has been updated!');
-            return view('fe.editUser', compact('user'));
+            return view('fe.auth.editUser', compact('user'));
 
             // Thực hiện các logic khác nếu cần
 
