@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\FE\ProcessRegisterController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FE\HomeController;
