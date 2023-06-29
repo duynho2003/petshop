@@ -113,9 +113,9 @@ class AuthenticateController extends Controller
         'email' => $request->email,
         'phone' => $request->phone,
         'gender' => $request->gender,
-        'address' => $request->address,
         'password' => $request->password,
         'birthday' => $request->birthday,
+        'address' => $request->address,
     ];
 
     $user = User::create($credentials);
@@ -268,9 +268,6 @@ public function verifyAccount($token)
             return redirect()->back()->withErrors(['errors' => 'Email chưa được xác thực']);
         }
     }
-
-
-
 
     public function forgot()
     {

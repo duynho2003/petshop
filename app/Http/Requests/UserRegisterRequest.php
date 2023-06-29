@@ -24,7 +24,6 @@ class UserRegisterRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'required|max:10',
             'gender' => 'required',
-            'address' => 'required',
             'password' => 'required|min:8',
             'confirm_password' => 'required|same:password',
             'birthday' => 'bail|required|before_or_equal: -16 years',
