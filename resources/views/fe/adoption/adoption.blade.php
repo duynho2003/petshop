@@ -38,7 +38,29 @@
                                     <td>{{$item->phone}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->address}}</td>
-                                    <td>{{$item->status}}</td>
+                                    @switch($item->status)
+                                    @case("Process")
+                                    <td>
+                                        <label class="badge badge-warning" style="font-size: 17px;">{{$item->status}}</label>
+                                    </td>
+                                    @break
+                                    @case("Shipping")
+                                    <td>
+                                        <label class="badge badge-info" style="font-size: 17px;">{{$item->status}}</label>
+                                    </td>
+                                    @break
+                                    @case("Completed")
+                                    <td>
+                                        <label class="badge badge-success" style="font-size: 17px;">{{$item->status}}</label>
+                                    </td>
+                                    @break
+                                    @case("Cancelled")
+                                    <td>
+                                        <label class="badge badge-danger" style="font-size: 17px;">{{$item->status}}</label>
+                                    </td>
+                                    @break
+                                    @default
+                                    @endswitch
                                     <td>{{($item->created_at)}}</td>
 
                                     <td>
