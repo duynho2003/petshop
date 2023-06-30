@@ -80,6 +80,18 @@
       </div>
     </div>
     @endif
+    <div class="container">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+            <li>&#9888 Error, something went wrong!</li>
+                @foreach ($errors->all() as $error)
+                <li>• {{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    </div>
     <!-- contact-area -->
     <section class="contact-area pt-110 pb-110">
       <div class="container">
@@ -152,7 +164,7 @@
                                           <div class="col">
                                             <div class="form-group">
                                               <label>Phone</label>
-                                              <input class="form-control" type="text" name="phone" value="{{ $user->phone }}">
+                                              <input class="form-control" type="number" name="phone" value="{{ $user->phone }}">
                                             </div>
                                           </div>
                                         </div>
@@ -199,7 +211,7 @@
                                           <div class="col">
                                             <div class="form-group">
                                               <label>Current Password</label>
-                                              <input class="form-control" id="pass" type="password" placeholder="••••••" name="current_pass">
+                                              <input class="form-control @error('current_pass') is-invalid @enderror" id="pass" type="password" placeholder="••••••" name="current_pass">
                                             </div>
                                           </div>
                                         </div>
@@ -207,7 +219,7 @@
                                           <div class="col">
                                             <div class="form-group">
                                               <label>New Password</label>
-                                              <input class="form-control"  id="pass" type="password" placeholder="••••••" name="new_pass">
+                                              <input class="form-control @error('new_pass') is-invalid @enderror" id="pass" type="password" placeholder="••••••" name="new_pass">
                                             </div>
                                           </div>
                                         </div>
@@ -215,7 +227,7 @@
                                           <div class="col">
                                             <div class="form-group">
                                               <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                              <input class="form-control"  id="pass" type="password" placeholder="••••••" name="confirm_pass">
+                                              <input class="form-control @error('confirm_pass') is-invalid @enderror"  id="pass" type="password" placeholder="••••••" name="confirm_pass">
                                             </div>
                                           </div>
                                         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FE;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserChangePasswordRequest;
 use App\Models\Adoption;
 use App\Models\AdoptionHistory;
 use Illuminate\Http\Request;
@@ -119,7 +120,7 @@ class HomeController extends Controller
         }
     }
 
-    public function changePass($id, Request $request)
+    public function changePass($id, UserChangePasswordRequest $request)
     {
         // Lấy thông tin người dùng dựa trên $id
         $user = User::find($id);
