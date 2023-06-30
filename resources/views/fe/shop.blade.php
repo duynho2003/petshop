@@ -34,9 +34,6 @@
             flex-wrap: wrap;
             justify-content: space-between;
         }
-
-        
-        
     </style>
 
 </head>
@@ -94,7 +91,10 @@
                                 <h4 class="sidebar-title">Category</h4>
                                 <div class="shop-cat-list">
                                     @foreach ($types as $type)
-                                    <li><a href="{{ Route('shop').'?t='.$type->id }}">{{ $type->name }} <span>+</span></a></li>
+                                    <ul>
+                                        <li><a href="{{ Route('shop').'?t='.$type->id }}">{{ $type->name }} <span>+</span></a>
+                                        </li>
+                                    </ul>
                                     @endforeach
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="col-lg-9">
                         <div class="shop-wrap">
-                           
+
                             <!-- View Product -->
 
                             <div class="product-container">
@@ -141,7 +141,9 @@
                                 </div>
 
                                 @endforeach
-
+                                <div class="col-md-12 margin-paginate-slider-index ">
+                                    {{$prods->links('pagination::bootstrap-5')}}
+                                </div>
                                 <!-- <div class="shop-page-meta">
                                     <div class="shop-grid-menu">
                                         <ul>

@@ -36,11 +36,11 @@ class HomeController extends Controller
             $prods = Product::where('category_id', 1)
                 ->where('type_id', $request->t)
                 ->where('active', 1)
-                ->get();
+                ->paginate(5);
         } else {
             $prods = Product::where('category_id', 1)
                 ->where('active', 1)
-                ->get();
+                ->paginate(5);
         }
 
         $types = Type::all();
