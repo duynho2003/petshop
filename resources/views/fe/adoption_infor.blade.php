@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Petco - Pet Breeder & Adoption HTML Template</title>
+    <title>Petco - Adoption</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -101,11 +101,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadcrumb-content">
-                        <h2 class="title">Adoption History</h2>
+                        <h2 class="title">Adoption</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ Route('home') }}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Adoption History</li>
+                                <li class="breadcrumb-item active" aria-current="page">Adoption</li>
                             </ol>
                         </nav>
                     </div>

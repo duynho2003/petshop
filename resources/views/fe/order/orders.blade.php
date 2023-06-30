@@ -2,7 +2,8 @@
 <html class="no-js" lang="en">
 
 <head>
-    <!-- Các thẻ meta, title và các file CSS -->
+<title>Petco - Purchase History</title>
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('fe/img/favicon.png') }}">
 </head>
 
 <body>
@@ -19,7 +20,6 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Name</th>
                                     <th>Phone</th>
                                     <th>Total</th>
@@ -32,7 +32,6 @@
                             <tbody>
                                 @foreach ($orders as $order)
                                 <tr>
-                                    <td>{{$order->id}}</td>
                                     <td>{{$order->name}}</td>
                                     <td>{{$order->phone}}</td>
                                     <td>{{number_format($order->total)}} USD</td>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Petco - Pet Breeder & Adoption HTML Template</title>
+    <title>Petco - Product</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -174,10 +174,12 @@
                                         </ul>--}}
                                     </div>
                                     <div class="shop-details-quantity">
+                                        {{--
                                         <span>Quantity :</span>
                                         <div class="cart-plus-minus">
-                                            <input type="text" value="1">
+                                            <input type="number" value="1">
                                         </div>
+                                        --}}
                                         @if (auth()->check())
                                         <a href="{{ route('add_to_cart', $product->id) }}" class="cart-btn" data-url="">Add to Cart +</a>
                                         @endif
