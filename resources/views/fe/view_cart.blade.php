@@ -174,7 +174,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone:</label>
-                        <input type="text" name="phone" value="{{ $user->phone }}" class="form-control" required>
+                        <input type="number" name="phone" value="{{ $user->phone }}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
