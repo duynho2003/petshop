@@ -100,13 +100,13 @@ Pet Order Show Admin
                                 </td>
                                 <td>
                                     <a href="{{ route('order.statusCancelByID', $order->id) }}">
-                                        <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i><b>X</b></button>
+                                        <button class="btn btn-icon btn-danger" @if ($order->status === 'Cancelled' || $order->status === 'Completed') disabled @endif><i class="fas fa-cancel"></i><b>X</b></button>
                                     </a>
                                     <a href="{{ route('order.statusShippingByID', $order->id) }}">
-                                        <button class="btn btn-icon btn-warning"><i class="fas fa-truck"></i></button>
+                                        <button class="btn btn-icon btn-warning"@if ($order->status === 'Cancelled' || $order->status === 'Completed') disabled @endif><i class="fas fa-truck"></i></button>
                                     </a>
                                     <a href="{{ route('order.statusCompleteByID', $order->id) }}">
-                                        <button class="btn btn-icon btn-success"><i class="fas fa-check"></i></button>
+                                        <button class="btn btn-icon btn-success" @if ($order->status === 'Cancelled' || $order->status === 'Completed') disabled @endif><i class="fas fa-check"></i></button>
                                     </a>
                                 </td>
                             </tr>

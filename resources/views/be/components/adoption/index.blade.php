@@ -114,7 +114,7 @@ Pet Order Show Admin
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$adoption->links('pagination::bootstrap-4')}}
+                        {{$adoption->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>
