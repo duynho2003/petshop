@@ -188,46 +188,48 @@
             </div> -->
 
             <div class="row justify-content-center">
-                @foreach ($prods as $product)
-                <div class="col-lg-4 col-md-6">
-                    <div class="adoption-shop-item">
-                        <div class="adoption-shop-thumb">
-                            <img src="{{ asset('/images/' . $product->image) }}" alt="" width="460px" height="160px">
+            
 
-                            @if (auth()->check())
-                            <a href="{{ route('out-adoption', ['email' => Auth::user()->email]) }}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
-                            @else
-                            <a href="{{ route('login')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
-                            @endif
+            @foreach ($prods as $product)
+            <div class="col-lg-4 col-md-6">
+                <div class="adoption-shop-item">
+                    <div class="adoption-shop-thumb">
+                        <img src="{{ asset('/images/' . $product->image) }}" alt="" width="460px" height="160px">
+                        @if (auth()->check())
+                        <a href="{{ route('out-adoption', ['productId' => $product->id, 'id' => Auth::user()->id]) }}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                        @else
+                        <a href="{{ route('login')}}" class="btn">Adoption <img src="{{ asset ('fe/img/icon/w_pawprint.png') }}" alt=""></a>
+                        @endif
+                    </div>
+                    <!-- Remaining code -->
+                    <div class="adoption-shop-content">
+                        <h4 class="title"><a href="#">{{ $product->name }}</a></h4>
+                        <div class="adoption-meta">
+                            <ul>
+                                <li><i class="fas fa-cog"></i><a href="#">{{ $product->name }}</a></li>
+                                <li><i class="far fa-calendar-alt"></i> Cost: <span style="text-decoration: line-through;">{{ $product->normal_price }} $</span></li>
 
+                            </ul>
                         </div>
-                        <div class="adoption-shop-content">
-                            <h4 class="title"><a href="#">{{ $product->name }}</a></h4>
-                            <div class="adoption-meta">
-                                <ul>
-                                    <li><i class="fas fa-cog"></i><a href="#">{{ $product->name }}</a></li>
-                                    <li><i class="far fa-calendar-alt"></i> Cost: <span style="text-decoration: line-through;">{{ $product->normal_price }} $</span></li>
+                        <div class="adoption-rating">
+                            <ul>
+                                <li class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </li>
+                                <li class="price">Total Price : <span>{{ $product->promotion_price }} $</span></li>
 
-                                </ul>
-                            </div>
-                            <div class="adoption-rating">
-                                <ul>
-                                    <li class="rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </li>
-                                    <li class="price">Total Price : <span>{{ $product->promotion_price }} $</span></li>
-
-                                </ul>
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
+            @endforeach
+
+        </div>
         </div>
     </div>
 </section>

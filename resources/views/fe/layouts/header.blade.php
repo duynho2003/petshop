@@ -36,6 +36,10 @@
 
                                             <li><a href="{{ route('myOrders', ['id' => auth()->user()->id]) }}"><i class="fas fa-history" aria-hidden="true"></i> Purchase History</a></li>
 
+                                            <li><a href="{{ route('myAdoption', ['id' => auth()->user()->id]) }}"><i class="fas fa-history" aria-hidden="true"></i> Adoption History</a></li>
+
+                                          {{--  <li><a href="{{ route('history_adoption', ['id' => auth()->user()->id])}}"><i class="fas fa-history" aria-hidden="true"></i> Adoption History</a></li>--}}
+
                                             <li><a href="{{ route('logout') }}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></i>Logout</a></li>
                                         </ul>
                                     </li>
