@@ -99,7 +99,7 @@ Pet adoption Detail Admin
                                 @foreach ($productItems as $item)
                                 <tr>
                                     <td>{{$item->name}}</td>
-                                    <td><img src="{{ asset('images/'.$item->image) }}" alt=""></td>
+                                    <td><img src="{{ asset('images/'.$item->image) }}" alt="" width="540" height="640"></td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -136,7 +136,7 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone:</label>
-                        <input type="text" name="phone" value="{{ $user->phone }}" class="form-control" required>
+                        <input type="number" name="phone" value="{{ $user->phone }}" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
@@ -156,53 +156,6 @@
 
     <!-- JS here -->
     @include('fe.layouts.master')
-    <script type="text/javascript">
-        $(".del-icon a").click(function(e) {
-            e.preventDefault();
-
-            var ele = $(this);
-            let id = ele.data("id");
-
-            if (confirm("Do you really want to remove?")) {
-                $.ajax({
-                    url: "{{ route('remove_from_cart') }}",
-                    method: "DELETE",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: id
-                    },
-                    success: function(response) {
-                        window.location.reload();
-                    }
-                });
-            }
-        });
-
-        $(".continue__btn.update__btn a").click(function(e) {
-            e.preventDefault();
-
-            let pids = [];
-            let qties = [];
-            $('.input-quantity').each(function(index, value) {
-                pids.push($(value).data('pid'));
-                qties.push($(value).val());
-            });
-
-            $.ajax({
-                url: "{{ Route('update_cart') }}",
-                method: "post",
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    pids: pids,
-                    qties: qties
-                },
-                success: function(response) {
-                    window.location.reload();
-                }
-            });
-        });
-    </script>
-
 </body>
 
 </html>

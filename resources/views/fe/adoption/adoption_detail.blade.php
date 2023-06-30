@@ -58,7 +58,6 @@
                                 @break
                                 @default
                                 @endswitch
-
                             </table>
                         </div>
                         <div class="table-responsive pt-3 col-md-7">

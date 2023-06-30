@@ -124,7 +124,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="shop-item mb-55">
                                         <div class="shop-thumb">
-                                            <a href="{{ Route('productDetails', $product->slug) }}"><img src="{{ asset('/images/' . $product->image) }}" width="500" height="650"></a>
+                                            <a href="{{ Route('productDetails', $product->slug) }}"><img src="{{ asset('/images/' . $product->image) }}" width="370" height="370"></a>
                                         </div>
                                         <div class="shop-content">
                                             <span>{{ $product->name }}</span>

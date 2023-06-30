@@ -71,9 +71,6 @@
                                             <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
                                         </a>
                                     </td>
-
-
-
                                     </a></td>
                                     @endforeach
                             </tbody>

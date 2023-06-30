@@ -130,7 +130,7 @@ Pet Product Show Admin
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$products->links('pagination::bootstrap-4')}}
+                        {{$products->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>
