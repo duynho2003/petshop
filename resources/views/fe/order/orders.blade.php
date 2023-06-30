@@ -37,7 +37,7 @@
                                     <td>{{number_format($order->total)}} USD</td>
                                     <td>{{($order->created_at)}}</td>
                                     @switch($order->status)
-                                    @case("Process")
+                                    @case("Proceed")
                                     <td>
                                         <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                     </td>

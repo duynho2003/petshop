@@ -70,7 +70,7 @@ Pet Order Show Admin
                                 <td>{{$order->phone}}</td>
                                 <td>{{number_format($order->total)}} USD</td>
                                 @switch($order->status)
-                                @case("Process")
+                                @case("Proceed")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>

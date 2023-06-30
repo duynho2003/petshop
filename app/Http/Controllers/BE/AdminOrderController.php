@@ -59,7 +59,7 @@ class AdminOrderController extends Controller
 
     public function status(Order $order)
     {
-        if ($order->status === "Process") {
+        if ($order->status === "Proceed") {
             $status = $order->update([
                 'status' => "Shipping",
             ]);
@@ -88,7 +88,7 @@ class AdminOrderController extends Controller
 
     public function statusShipping()
     {
-        $orders = Order::where("status", "Process")->get();
+        $orders = Order::where("status", "Proceed")->get();
         foreach ($orders as $order) {
             $order->update([
                 'status' => "Shipping",
@@ -102,7 +102,7 @@ class AdminOrderController extends Controller
         $orders = Order::where("status")->get();
         foreach ($orders as $order) {
             $order->update([
-                'status' => "Process",
+                'status' => "Proceed",
             ]);
         }
         return redirect()->route('order.index');

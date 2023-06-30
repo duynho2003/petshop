@@ -71,7 +71,7 @@ Pet Order Show Admin
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->address}}</td>
                                 @switch($item->status)
-                                @case("Process")
+                                @case("Proceed")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$item->status}}</label>
                                 </td>

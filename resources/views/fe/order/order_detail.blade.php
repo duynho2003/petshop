@@ -41,7 +41,7 @@
                             <tr>
                                 <th>Status</th>
                                 @switch($order->status)
-                                @case("Process")
+                                @case("Proceed")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>

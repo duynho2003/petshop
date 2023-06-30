@@ -36,7 +36,7 @@
                                 </tr>
                                 <th>Status</th>
                                 @switch($adoption->status)
-                                @case("Process")
+                                @case("Proceed")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$adoption->status}}</label>
                                 </td>
