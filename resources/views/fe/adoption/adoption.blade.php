@@ -67,7 +67,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('adoption.statusCancelByID_user', ['id' => $item->adoption_id, 'user_id' => auth()->user()->id]) }}">
-                                            <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
+                                        <button class="btn btn-icon btn-danger" @if ($item->status === 'Cancelled' || 'Shipping' || $item->status === 'Completed') hidden @endif><i class="fas fa-cancel"></i></button>
                                         </a>
                                     </td>
                                     </a></td>

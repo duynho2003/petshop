@@ -65,7 +65,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('order.statusCancelByID_user', $order->id) }}">
-                                            <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
+                                        <button class="btn btn-icon btn-danger" @if ($order->status === 'Cancelled' || 'Shipping' || $order->status === 'Completed') hidden @endif><i class="fas fa-cancel"></i></button>
                                         </a>
                                     </td>
                                     @endforeach
