@@ -15,7 +15,6 @@ Route::get('/dog-list', [HomeController::class, 'doglist'])->name('doglist');
 
 Route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 
-Route::get('/adoption', [HomeController::class, 'adoption'])->name('adoption');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
@@ -25,7 +24,6 @@ Route::get('/blogdetails2', [HomeController::class, 'blogdetails2'])->name('blog
 
 Route::get('/blogdetails3', [HomeController::class, 'blogdetails3'])->name('blogdetails3');
 
-Route::get('/out-adoption/{id}', [HomeController::class, 'out_adoption'])->name('out-adoption');
 
 Route::get('/product', [HomeController::class, 'product'])->name('product'); 
 Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
@@ -35,8 +33,12 @@ Route::get('/product/{slug}', [HomeController::class, 'productDetails'])
 
 // adoption
 Route::get('/adoption', [HomeController::class, 'adoption'])->name('adoption');
+Route::post('/send-mail-adoption/{productId}', [HomeController::class, 'send_mail_adoption'])->name('send-mail-adoption');
+Route::get('/out-adoption/{productId}/{id}', [HomeController::class, 'out_adoption'])->name('out-adoption');
+Route::get('/myAdoption/{id}', [HomeController::class,'myAdoption'])->name('myAdoption');
+Route::get('/showAdoption/{id}', [HomeController::class, 'showAdoption'])->name('showAdoption');
+Route::get('/adoption/{id}/cancel/{user_id}', [HomeController::class, 'statusCancelByID_user'])->name('adoption.statusCancelByID_user');
 
-Route::get('/out-adoption/{email}', [HomeController::class, 'out_adoption'])->name('out-adoption');
 
 // xu li phan loai render product view
 Route::get('/category-dog-food', [RenderProductCategoryController::class, 'categorydogfood'])->name('dogfood');
@@ -69,15 +71,24 @@ Route::post('/reset-password', [ForgotPasswordController::class, 'processResetPa
 //     Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
 // });
 
+// Route::group(['middleware' => 'auth'], function () {
+//     Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit_user');
+//     Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
+//     Route::post('/change-pass/{id}', [HomeController::class, 'changePass'])->name('change-pass');
+
+// });
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/edit-user/{id}', [HomeController::class, 'editUser'])->name('edit_user');
     Route::post('/process-edit-user/{id}', [HomeController::class, 'processEditUser'])->name('process_edit_user');
     Route::post('/change-pass/{id}', [HomeController::class, 'changePass'])->name('change-pass');
 
 });
-Route::get('/myOrders', [HomeController::class, 'myOrders'])->name('myOrders');
+
+// Route::get('/myOrders', [HomeController::class, 'myOrders'])->name('myOrders');
 Route::get('/my-orders/{id}', [HomeController::class,'myOrders'])->name('myOrders');
 Route::get('/order/{id}', [HomeController::class, 'showOrder'])->name('showOrder');
+Route::get('/order-cancel/{id}', [HomeController::class, 'statusCancelByID'])->name('order.statusCancelByID_user');
 // Cart
 Route::get('/view-cart', [CartController::class, 'cart'])->name('customer.cart'); 
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart'); 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BE\AdminAdoptionController;
 use App\Http\Controllers\BE\AdminCategoryController;
 use App\Http\Controllers\BE\AdminInforController;
 use App\Http\Controllers\BE\AdminLoginController;
@@ -95,4 +96,9 @@ Route::middleware('admin.auth')->group(function() {
     Route::get('order/status-shipping/{id}', [AdminOrderController::class, 'statusShippingByID'])->name('order.statusShippingByID');
     Route::get('order/status-complete/{id}', [AdminOrderController::class, 'statusCompleteByID'])->name('order.statusCompleteByID');
 
+    //Adoption 
+    Route::get('/adoption-admin', [AdminAdoptionController::class, 'adoption'])->name('adoption-admin');
+    Route::get('/adoption-show/{id}', [AdminAdoptionController::class, 'show'])->name('adoption.show');
+    Route::get('/adoption-status-cancel/{id}', [AdminAdoptionController::class, 'statusCancelByID'])->name('adoption.statusCancelByID');
+    Route::get('/adoption-status-complete/{id}', [AdminAdoptionController::class, 'statusCompleteByID'])->name('adoption.statusCompleteByID');
 });
