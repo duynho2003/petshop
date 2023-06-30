@@ -67,7 +67,7 @@ Pet Product Show Admin
             <div class="card-body">
                 <h4 class="card-title">Show Product</h4>
 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <label for="">Filter price</label>
                     <form action="{{ route('product.search') }}" method="post">
                         @csrf
@@ -86,7 +86,7 @@ Pet Product Show Admin
                             <button type="submit" class="btn btn-primary btn-sm">Filter</button>
                         </div>
                     </form>
-                </div>
+                </div> -->
 
                 <div class="table-responsive pt-3">
                     <table class="table table-hover table-striped">
@@ -116,15 +116,13 @@ Pet Product Show Admin
                                     @endif
                                 </td>
                                 <td>{{optional($product->category)->name}}</td>
-                                <td class="parent">
-                                    <a href="{{ route('specId.index'). '/?product_id='.$product->id.' &&type_id='.$product->type_id }}">
-                                    <button class="btn btn-icon btn-info"><i class="fas fa-info-circle"></i></button>
-                                    </a>
+                                <td class="parent" style="display: flex; line-height: 64px;">
+                                    
                                     <a href="{{ route('product.edit', $product->id) }}">
                                         <button class="btn btn-icon btn-success"><i class="fas fa-pencil-alt"></i></button>
                                     </a>
                                     <a href="" data-url="{{ route('product.destroy', $product->id) }}" class="active_delete">
-                                        <button class="btn btn-danger btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-danger btn-icon btn-delete" style="margin-left: 10px;"><i class="fas fa-trash"></i></button>
                                     </a>
                                 </td>
                             </tr>
