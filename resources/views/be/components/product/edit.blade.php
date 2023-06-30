@@ -92,7 +92,7 @@ Pet Product Create Admin
 
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control @error('description') is-invalid @enderror ckeditor" style="resize: none;" name="description" autofocus id="ckeditor1" rows="6" placeholder="Description">{{old('description')}}</textarea>
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror ckeditor" value="{{old('description')}}" placeholder="Description" autofocus>
                         @error('description')
                         <div class="alert alert-warning d-flex align-items-center mt-3" role="alert">
                             <div class="required_error">
