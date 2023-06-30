@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Petco - Pet Breeder & Adoption</title>
+    <title>Petco - The 10 Most Popular Dog Breeds in the World</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -63,7 +63,7 @@
                     <div class="col-lg-8">
                         <div class="standard-blog-item mb-50">
                             <div class="standard-blog-thumb">
-                                <img src="{{ asset ('fe/img/blog1/blog_thumb01.jpg')}}" alt="">
+                                <img src="{{ asset ('fe/img/blog1/blog_thumb03.jpg')}}" alt="">
                             </div>
                             <div class="standard-blog-content blog-details-content">
                                 <div class="blog-post-meta">
@@ -76,7 +76,7 @@
                                         <li><i class="far fa-bell"></i> Mar 10, 2021</li>
                                     </ul>
                                 </div>
-                                <h4 class="title">Online Pet Everything Your Pet Needs</h4>
+                                <h4 class="title">The 10 Most Popular Dog Breeds in the World</h4>
                                 <p>The domestic dog is a doiated dendant of the wolf. The dog derived from an ancient, extinct wolf, and the modern grey wolf is the dog's nearest living relative. The dog was the first species to be domesticated, by hunter–gatherers. These will include the core vaccines, which are administered in a series of three: at 6-, 12-, and 16 weeks old.</p>
                                 <p>Within a few hours 3-5 days after vaccion for the dog to begin developing immunity. Until a puppy has received its entire vaccine series, or until an adult dog is up to date on vaccines, their exposure to parvovirus should be minimized as much as possible.</p>
                                 <blockquote>
