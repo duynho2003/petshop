@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$types->links()}}
+                        {{$types->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
               </div>

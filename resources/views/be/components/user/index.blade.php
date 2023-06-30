@@ -74,7 +74,7 @@
                         </tbody>
                     </table>
                     <div class="col-md-12 margin-paginate-slider-index">
-                        {{$users->links('pagination::bootstrap-4')}}
+                        {{$users->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
               </div>

@@ -35,7 +35,7 @@ class AdminProductController extends Controller
         $max_price_range = $max_price + 10000000;
         $min_price = Product::min('normal_price');
         $min_price_range = $min_price - $min_price;
-        $products = Product::where('active', 1)->latest()->paginate(20);
+        $products = Product::where('active', 1)->latest()->paginate(5);
         return view('be.components.product.index', compact('products','max_price','min_price','max_price_range','min_price_range'));
     }
 
@@ -117,7 +117,7 @@ class AdminProductController extends Controller
          $max_price_range = $max_price + 10000000;
          $min_price = Product::min('promotion_price');
          $min_price_range = $min_price - $min_price;
-         $products = Product::where('active', 1)->latest()->paginate(20);
+         $products = Product::where('active', 1)->latest()->paginate(5);
          return view('be.components.product.index', compact('products', 'max_price', 'min_price', 'max_price_range', 'min_price_range'));
      }
 
