@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\FE;
 
 use App\Http\Controllers\Controller;
+use App\Models\Adoption;
+use App\Models\AdoptionHistory;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
@@ -190,31 +192,73 @@ class HomeController extends Controller
         return view('fe.home.adoption', compact('prods'));
     }
 
-    public function out_adoption($email)
+    public function send_mail_adoption($productId, Request $request)
     {
+        $email = $request->email;
+        $id = $request->user_id;
         // Validate the email address
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Invalid email address format
             return redirect()->back()->with('error', 'Invalid email address');
         }
 
-        // Send email to the user
-        Mail::send('fe.mail-adoption', [], function ($message) use ($email) {
+        // Get the product information based on the productId
+        $product = Product::find($productId);
+        $product->update(['active' => 0]);
+        $product->save();
+
+        $user = User::where('id', $id)->first();
+        // Check if the product exists
+        if (!$product) {
+            // Product not found
+            return redirect()->back()->with('error', 'Product not found');
+        }
+
+        // Send email to the user with the product information
+        Mail::send('fe.mail-adoption', ['product' => $product, 'user' => $user], function ($message) use ($email) {
             $message->to($email);
             $message->subject('Email Verification Mail');
         });
 
-        return view('fe.home.out-adoption');
+        //luu lại thông tin người nhận nuôi vào bang adoption
+        $adoption = Adoption::create(
+            [
+                'name' => $request->name,
+                'user_id' => $request->user_id,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'address' => $request->address
+            ]
+        );
+        $adoptionHistory = AdoptionHistory::create([
+            'adoption_id' => $adoption->id,
+            'product_id' =>  $product->id
+
+        ]);
+
+        //nếu đã nhận nuôi thì cho con chó đó active = 0
+
+
+
+        return view('fe.out-adoption', ['product' => $product]);
+    }
+
+    public function out_adoption($productId, $id)
+    {
+        $user = User::where('id', $id)->first();
+        $product = Product::find($productId);
+
+        return view('fe.adoption_infor', compact('user', 'product'));
     }
 
     public function myOrders($id)
     {
         $orders = Order::where('user_id', $id)
             ->orderBy('created_at', 'desc')
-            ->latest()
-            ->paginate(5);
+            ->paginate(10);
         return view('fe.order.orders', compact('orders'));
     }
+    
 
     public function showOrder($id)
     {
@@ -231,13 +275,101 @@ class HomeController extends Controller
         return view('fe.order.order_detail', compact('order', 'orderItems'));
     }
 
-    public function statusCancelByUser($id)
+    public function statusCancelByID($id)
     {
         $order = Order::findOrFail($id);
-        $order->update([
-            'status' => "Cancelled",
-        ]);
 
-        return view('fe.order.orders');
+        if ($order->status !== 'Cancelled') {
+            $order->update([
+                'status' => 'Cancelled',
+            ]);
+        }
+        $orders = Order::where('user_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+        return redirect()->route('myOrders', ['id' => $order->user_id]);
+    }
+
+    public function myAdoption($id)
+    {
+        $listAdoption = DB::table('adoptions')
+            ->join('adoption_histories', 'adoptions.id', '=', 'adoption_histories.adoption_id')
+            ->whereColumn('adoption_histories.adoption_id', '=', 'adoptions.id')
+            ->select('adoptions.*', 'adoption_histories.*')
+            ->where('adoptions.user_id', $id)
+            ->orderBy('adoptions.created_at', 'desc')
+            ->paginate(5);
+
+        return view('fe.adoption.adoption', compact('listAdoption'));
+    }
+
+    public function showAdoption($id)
+    {
+        $adoption = Adoption::findOrFail($id);
+        $listProduct = DB::table('adoptions')
+            ->join('adoption_histories', 'adoptions.id', '=', 'adoption_histories.adoption_id')
+            ->join('products', 'adoption_histories.product_id', '=', 'products.id')
+            ->select('adoptions.id as adoption_id', 'products.name', 'products.image')
+            ->where('adoptions.id', $adoption->id)
+            ->get();
+
+
+        $productItems = $listProduct->filter(function ($item) use ($adoption) {
+            return $item->adoption_id === $adoption->id;
+        });
+
+        return view('fe.adoption.adoption_detail', compact('adoption', 'listProduct', 'productItems'));
+    }
+
+    public function statusCancelByUser($id, $user_id)
+    {
+        $adoption = Adoption::findOrFail($id);
+
+        if ($adoption->status !== 'Cancelled') {
+            $adoption->update([
+                'status' => 'Cancelled',
+            ]);
+
+            $adoptionHistory = AdoptionHistory::where('adoption_id', $adoption->id)->first();
+            $product = Product::find($adoptionHistory->product_id);
+            $product->update(['active' => 1]);
+        $product->save();
+
+        }
+
+        $listAdoption = DB::table('adoptions')
+            ->join('adoption_histories', 'adoptions.id', '=', 'adoption_histories.adoption_id')
+            ->whereColumn('adoption_histories.adoption_id', '=', 'adoptions.id')
+            ->select('adoptions.*', 'adoption_histories.*')
+            ->where('adoptions.user_id', $user_id)
+            ->orderBy('adoptions.created_at', 'desc')
+            ->paginate(5);
+        return view('fe.adoption.adoption', compact('listAdoption'));
+    }
+
+    public function statusCancelByID_user($id, $user_id)
+    {
+        $adoption = Adoption::findOrFail($id);
+
+        if ($adoption->status !== 'Cancelled') {
+            $adoption->update([
+                'status' => 'Cancelled',
+            ]);
+
+            $adoptionHistory = AdoptionHistory::where('adoption_id', $adoption->id)->first();
+            $product = Product::find($adoptionHistory->product_id);
+            $product->update(['active' => 1]);
+        $product->save();
+
+        }
+
+        $listAdoption = DB::table('adoptions')
+            ->join('adoption_histories', 'adoptions.id', '=', 'adoption_histories.adoption_id')
+            ->whereColumn('adoption_histories.adoption_id', '=', 'adoptions.id')
+            ->select('adoptions.*', 'adoption_histories.*')
+            ->where('adoptions.user_id', $user_id)
+            ->orderBy('adoptions.created_at', 'desc')
+            ->paginate(5);
+        return view('fe.adoption.adoption', compact('listAdoption'));
     }
 }

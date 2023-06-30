@@ -19,10 +19,10 @@ class AdminOrderController extends Controller
     public function index()
     {
         $orders = Order::where('active', 1)
-                       ->orderBy('created_at', 'desc')
-                       ->latest()
-                       ->paginate(5);
-    
+            ->orderBy('created_at', 'desc')
+            ->latest()
+            ->paginate(5);
+
         return view('be.components.order.index', compact('orders'));
     }
 
@@ -36,11 +36,11 @@ class AdminOrderController extends Controller
     public function show(Order $order)
     {
         $listProduct = DB::table('order_products')
-                                    ->join('products', 'order_products.product_id', '=', 'products.id')
-                                    ->select('order_products.quantity','order_products.order_id', 'products.name', 'products.promotion_price')
-                                    ->get();
+            ->join('products', 'order_products.product_id', '=', 'products.id')
+            ->select('order_products.quantity', 'order_products.order_id', 'products.name', 'products.promotion_price')
+            ->get();
         $productItem = $listProduct->where('order_id', $order->id);
-        return view("be.components.order.detail", compact('order','productItem'));   
+        return view("be.components.order.detail", compact('order', 'productItem'));
     }
 
     public function search(Request $request)
@@ -74,7 +74,7 @@ class AdminOrderController extends Controller
     //     ]);
     //     return view("frontend.components.status.statusSuccess");
     // }
-    
+
     public function statusAll()
     {
         $orders = Order::where("status", "Shipping")->get();
@@ -110,33 +110,47 @@ class AdminOrderController extends Controller
 
     //Cập nhật trạng thái cho từng đơn hàng {id}
 
+    // public function statusCancelByID($id)
+    // {
+    //     $order = Order::findOrFail($id);
+    //         $order->update([
+    //             'status' => "Cancelled",
+    //         ]);
+
+    //     return redirect()->route('order.index');
+    // }
+
     public function statusCancelByID($id)
     {
         $order = Order::findOrFail($id);
+
+        if ($order->status !== 'Cancelled') {
             $order->update([
-                'status' => "Cancelled",
+                'status' => 'Cancelled',
             ]);
+        }
 
         return redirect()->route('order.index');
     }
 
+
     public function statusShippingByID($id)
     {
         $order = Order::findOrFail($id);
-            $order->update([
-                'status' => "Shipping",
-            ]);
-    
+        $order->update([
+            'status' => "Shipping",
+        ]);
+
         return redirect()->route('order.index');
     }
 
     public function statusCompleteByID($id)
     {
         $order = Order::findOrFail($id);
-            $order->update([
-                'status' => "Completed",
-            ]);
-    
+        $order->update([
+            'status' => "Completed",
+        ]);
+
         return redirect()->route('order.index');
     }
 }
