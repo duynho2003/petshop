@@ -34,29 +34,29 @@
                                 <th>Address</th>
                                 <td>{{$order->address}}</td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <th>Phương thức thanh toán</th>
-                                <td>{{$order->payment == 0 ? "Thanh toán bằng ví điện tử":"Thanh toán khi nhận hàng"}}</td>
-                            </tr> -->
-                            <!-- <tr>
+                                <td>{{$order->payment == 0 ? "Thanh toán khi nhận hàng":"Thanh toán bằng ví điện tử"}}</td>
+                            </tr>
+                            <tr>
                                 <th>Status</th>
                                 @switch($order->status)
-                                @case("process")
+                                @case("Process")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("shipping")
+                                @case("Shipping")
                                 <td>
                                     <label class="badge badge-info" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("success")
+                                @case("Completed")
                                 <td>
                                     <label class="badge badge-success" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
                                 @break
-                                @case("cancel")
+                                @case("Cancelled")
                                 <td>
                                     <label class="badge badge-danger" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
@@ -64,7 +64,7 @@
                                 @default
                                 @endswitch
 
-                            </tr> -->
+                            </tr>
                         </table>
                     </div>
                     <div class="table-responsive pt-3 col-md-7">

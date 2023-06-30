@@ -60,21 +60,21 @@
                                     @break
                                     @default
                                     @endswitch
+
                                     <td>
                                         <a href="{{ route('showOrder', ['id' => $order->id]) }}">View Details</a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('order.statusCancelByUser', $order->id) }}">
+                                        <a href="{{ route('order.statusCancelByID_user', $order->id) }}">
                                             <button class="btn btn-icon btn-danger"><i class="fas fa-cancel"></i></button>
                                         </a>
                                     </td>
                                     @endforeach
-                                </tr>
                             </tbody>
                         </table>
-                        <div class="col-md-12 margin-paginate-slider-index">
-                            {{$orders->links('pagination::bootstrap-5')}}
-                        </div>
+                    </div>
+                    <div class="col-md-12 margin-paginate-slider-index">
+                        {{$orders->links('pagination::bootstrap-5')}}
                     </div>
                 </div>
             </div>
