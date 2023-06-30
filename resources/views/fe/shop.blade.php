@@ -121,13 +121,13 @@
 
                             <div class="product-container">
                                 @foreach ($prods as $product)
-                                <div class="col-lg-4 col-md-6">
+                                <div class="col-lg-3 col-md-4">
                                     <div class="shop-item mb-55">
                                         <div class="shop-thumb">
-                                            <a href="{{ Route('productDetails', $product->slug) }}"><img src="{{ asset('/images/' . $product->image) }}" width="370" height="370"></a>
+                                            <a href="{{ Route('productDetails', $product->slug) }}"><img src="{{ asset('/images/' . $product->image) }}" width="200" height="200"></a>
                                         </div>
                                         <div class="shop-content">
-                                            <span>{{ $product->name }}</span>
+                                            {{--<span>{{ $product->name }}</span>--}}
                                             <h4 class="title"><a href="{{ Route('productDetails', $product->slug) }}">{{ $product->name }}</a></h4>
                                             <div class="shop-content-bottom">
                                                 <span class="price">{{number_format($product->promotion_price)}} USD</span>
@@ -141,8 +141,10 @@
                                 </div>
 
                                 @endforeach
-                                <div class="col-md-12 margin-paginate-slider-index ">
-                                    {{$prods->links('pagination::bootstrap-5')}}
+                                <div class="shop-pagination">
+                                    <ul>
+                                        <li class="active">{{$prods->links('pagination::bootstrap-5')}}</li>
+                                    </ul>
                                 </div>
                                 <!-- <div class="shop-page-meta">
                                     <div class="shop-grid-menu">
