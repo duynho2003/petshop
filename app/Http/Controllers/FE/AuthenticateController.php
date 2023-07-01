@@ -180,7 +180,7 @@ public function verifyAccount($token)
             if ($timeElapsed <= 1) {
                 $user->is_email_verified = 1;
                 $user->save();
-                $message = "Xác thực email thành công, bạn có thể bắt đầu đăng nhập";
+                $message = "Email verification is successful, you can start logging in.";
             } else {
                 // Xóa thông tin đăng ký và user_verifies nếu quá thời gian
                 UserVerify::whereHas('user', function ($query) use ($user) {
@@ -189,13 +189,13 @@ public function verifyAccount($token)
 
                 $user->delete();
 
-                $message = "Thời gian xác thực email đã hết hạn. Vui lòng đăng ký lại.";
+                $message = "Email validation time has expired. Please re-register.";
             }
         } else {
-            $message = "Email này đã được xác thực, mời bạn đăng nhập ứng dụng";
+            $message = "This email has been verified, please login to the application.";
         }
     } else {
-        $message = "Mã xác thực không hợp lệ";
+        $message = "Invalid authentication code";
     }
 
     return redirect()->route('login')->with('message', $message);
@@ -263,10 +263,10 @@ public function verifyAccount($token)
             if (Auth::attempt($credentials, $remember)) {
                 return redirect()->route('home');
             } else {
-                return redirect()->back()->withErrors(['errors' => 'Email hoặc mật khẩu không đúng']);
+                return redirect()->back()->withErrors(['errors' => 'Email or password incorrect']);
             }
         } else {
-            return redirect()->back()->withErrors(['errors' => 'Email chưa được xác thực']);
+            return redirect()->back()->withErrors(['errors' => 'Email is not verified']);
         }
     }
 

@@ -32,22 +32,26 @@ class HomeController extends Controller
     }
 
     public function shop(Request $request)
-    {
-        if (isset($request->t)) {
-            $prods = Product::where('category_id', 1)
-                ->where('type_id', $request->t)
-                ->where('active', 1)
-                ->paginate(8);
-        } else {
-            $prods = Product::where('category_id', 1)
-                ->where('active', 1)
-                ->paginate(8);
-        }
-
-        $types = Type::all();
-
-        return view('fe.shop', compact('prods', 'types'));
+{
+    if (isset($request->t)) {
+        $prods = Product::where('category_id', 1)
+            ->where('type_id', $request->t)
+            ->where('active', 1)
+            ->orderByDesc('created_at') // Sắp xếp theo thời gian tạo mới nhất
+            ->paginate(8);
+    } else {
+        $prods = Product::where('category_id', 1)
+            ->where('active', 1)
+            ->orderByDesc('created_at') // Sắp xếp theo thời gian tạo mới nhất
+            ->paginate(8);
     }
+
+    $types = Type::where('active', 1)
+    ->orderByDesc('created_at')
+    ->get();
+
+    return view('fe.shop', compact('prods', 'types'));
+}
 
     public function contact()
     {
@@ -187,11 +191,14 @@ class HomeController extends Controller
     }
 
     public function adoption()
-    {
-        $prods = Product::where('category_id', 2)->where('active', 1)
-            ->get();
-        return view('fe.home.adoption', compact('prods'));
-    }
+{
+    $prods = Product::where('category_id', 2)
+        ->where('active', 1)
+        ->orderByDesc('created_at') // Sắp xếp theo thời gian tạo mới nhất
+        ->get();
+
+    return view('fe.home.adoption', compact('prods'));
+}
 
     public function send_mail_adoption($productId, Request $request)
     {
@@ -218,7 +225,7 @@ class HomeController extends Controller
         // Send email to the user with the product information
         Mail::send('fe.mail-adoption', ['product' => $product, 'user' => $user], function ($message) use ($email) {
             $message->to($email);
-            $message->subject('Email Verification Mail');
+            $message->subject('Email Adoption Notice');
         });
 
         //luu lại thông tin người nhận nuôi vào bang adoption

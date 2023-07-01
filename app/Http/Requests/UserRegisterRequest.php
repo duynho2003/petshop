@@ -43,7 +43,7 @@ class UserRegisterRequest extends FormRequest
             'gender.required' => 'Gender is required!',
             'address.required' => 'Address is required!',
             'password.required' => 'Password is required!',
-            'confirm_password' => 'Confirm Password is required!',
+            'confirm_password.required' => 'Confirm Password is required!',
             'birthday.required' => 'Birthday is required!',
             'birthday.before_or_equal' => 'Birthday must be 16 years old or equal!',
             'address' => 'Address is required!',

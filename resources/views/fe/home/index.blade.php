@@ -411,7 +411,7 @@
         @include('fe.layouts.blog')
         <!-- blog-area-end -->
         <!-- newsletter-area -->
-        @include('fe.layouts.newsletter')
+        
         <!-- newsletter-area-end -->
     </main>
     <!-- main-area-end -->
