@@ -24,7 +24,7 @@ Pet Order Detail Admin
                 <h4 class="card-title">Detail Order</h4>
 
                 <div style="text-align: end">
-                    @if ($order->status == "Process")
+                    @if ($order->status == "Proceed")
                     <a href="{{ route('order.status', $order->id) }}">
                         <button type="button" class="btn btn-danger">Hàng đang được chuẩn bị</i></button>
                     </a>
@@ -63,7 +63,7 @@ Pet Order Detail Admin
                             <tr>
                                 <th>Status</th>
                                 @switch($order->status)
-                                @case("Process")
+                                @case("Proceed")
                                 <td>
                                     <label class="badge badge-warning" style="font-size: 17px;">{{$order->status}}</label>
                                 </td>
